@@ -1,0 +1,434 @@
+<!DOCTYPE html><!-- Zero-Harm & Anti-Inversion: this tool is built to inform and empower, never to manipulate, surveil, or coerce. No hidden data collection, no dark patterns, no auto-send. Any use of this file against those aims contradicts its design. --><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Separate observations by identical unit strings; show arithmetic means and an uncertainty illustration assuming independent, uncorrelated reported ± values."><meta name="theme-color" content="#08111b"><meta name="color-scheme" content="dark light"><title>Portable dataset explorer | Next-Generation HTML Atlas</title><link rel="manifest" href="../manifest.webmanifest"><link rel="icon" href="../assets/icon.svg" type="image/svg+xml"><style>
+:root{color-scheme:dark;--bg:#08111b;--panel:#102234;--panel2:#183147;--edge:#38566b;--text:#e9f4f7;--muted:#b0c5d0;--accent:#80e5be;--focus:#ffd073;--red:#ffad9b;font:16px/1.65 system-ui,-apple-system,Segoe UI,Arial,sans-serif}*{box-sizing:border-box}[hidden]{display:none!important}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 84% 0%,#16354a 0,transparent 42%),var(--bg);color:var(--text)}a{color:var(--accent)}a:hover{text-decoration-thickness:2px}.skip{position:absolute;top:-9rem;left:1rem;background:var(--focus);color:#111;padding:.7rem;z-index:10}.skip:focus{top:1rem}.wrap{max-width:1180px;margin:auto;padding:1rem clamp(1rem,3.5vw,2rem) 4rem}.top{position:sticky;top:0;z-index:5;background:#08111bef;backdrop-filter:blur(8px);border-bottom:1px solid var(--edge)}.top>.wrap{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:.55rem 1rem}.brand{font-weight:800;text-decoration:none;color:var(--accent)}.top nav{display:flex;gap:1rem;flex-wrap:wrap}.top nav a{font-size:.9rem}.hero{padding:2.4rem 0 1.1rem}.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:.77rem;color:var(--accent);font-weight:800}h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.13;margin:.3rem 0 .8rem}h2{font-size:1.4rem;margin:0 0 .7rem}h3{margin:.25rem 0}.lead{max-width:75ch;font-size:1.1rem;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:1rem}.card,section.panel,details.panel{border:1px solid var(--edge);border-radius:16px;background:linear-gradient(145deg,var(--panel),#0b1b2a);padding:1.2rem;margin:0 0 1rem}.card{display:flex;flex-direction:column;gap:.5rem}.card p{margin:.1rem 0 .8rem;flex:1;color:var(--muted)}.tag{display:inline-block;width:fit-content;border:1px solid #3c7668;color:var(--accent);border-radius:99px;padding:.1rem .65rem;font-size:.77rem;letter-spacing:.02em}.muted,.hint,small{color:var(--muted)}.callout{border-left:4px solid var(--focus);padding:.8rem 1rem;background:#272b2c;border-radius:6px;margin:1rem 0}.warning{border-left-color:var(--red)}button,.btn,input,select,textarea{font:inherit}button,.btn{background:#1b584b;color:#f6fffb;border:1px solid #70b89a;border-radius:9px;padding:.52rem .8rem;cursor:pointer;display:inline-block;text-decoration:none}button:hover,.btn:hover{background:#236c59}button:disabled{opacity:.55;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:3px}input,select,textarea{max-width:100%;background:#091824;color:var(--text);border:1px solid #688194;border-radius:8px;padding:.55rem;width:100%}input[type=checkbox],input[type=radio]{width:auto;accent-color:var(--accent)}label{display:block;font-weight:650;margin:.65rem 0 .3rem}.toolbar{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:1rem 0}.toolbar>*{flex-shrink:0}output,.status{display:block;padding:.6rem;background:#112c36;border:1px solid #496773;border-radius:9px;min-height:2.7rem;white-space:pre-wrap;overflow-wrap:anywhere}.status:empty:before{content:'Ready.';color:var(--muted)}pre{overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;background:#020b12;color:#daf5e7;padding:1rem;border-radius:9px;border:1px solid var(--edge);font-size:.85rem}code{color:#d5f5c5}details>summary{cursor:pointer;font-weight:750;padding:.35rem 0}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}th,td{padding:.55rem;border-bottom:1px solid var(--edge);text-align:left}th{color:var(--accent)}.meter{height:12px;border:1px solid var(--edge);border-radius:20px;background:#06101b;overflow:hidden}.fill{background:var(--accent);height:100%;width:0;transition:width .2s}.row{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}.row>*{max-width:100%}.row input{width:auto;min-width:120px;flex:1}.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:1rem}.demo{background:#081b25;border:1px dashed #528a80;border-radius:12px;padding:1rem;min-height:110px}.demo p:first-child{margin-top:0}.pill{border:1px solid #538879;border-radius:30px;padding:.15rem .5rem;color:var(--accent);font-size:.8rem}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}.fineprint{font-size:.85rem;color:var(--muted)}.toc{display:flex;gap:.5rem;flex-wrap:wrap}.toc a{padding:.25rem .5rem;border:1px solid var(--edge);border-radius:8px}.chart{width:100%;height:230px;background:#0a1721;border:1px solid var(--edge);border-radius:8px}footer{border-top:1px solid var(--edge);margin-top:2rem;padding-top:1rem;font-size:.85rem;color:var(--muted)}@media(max-width:620px){.top{position:static}.card,section.panel{padding:1rem}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}@media print{:root{color-scheme:light;--bg:#fff;--text:#111;--panel:#fff;--edge:#aaa;--muted:#333;--accent:#064a32}body{background:white;color:#111}.top,.no-print,button,.btn{display:none!important}.wrap{max-width:none;padding:0}.card,section.panel,details.panel{background:white;color:#111;break-inside:avoid;border-color:#888}details{display:block}pre{color:#111;background:#eee}.demo,output,.status{color:#111;background:white}a{color:#064a32}.callout{background:#f3f3f1;color:#111;border-color:#aaa}input,select,textarea{background:#fff;color:#111;border-color:#888}.meter{background:#e4e4e1}.fill{background:#064a32}.chart{background:#f3f3f1}}
+
+/* ============================================================
+   NAVIGATION UPGRADE STYLES: sidebar TOC, top-bar jump menu,
+   and the between-page transition overlay. Same token reuse
+   rule as before \u2014 only existing/already-declared variables.
+   ============================================================ */
+
+/* --- Sidebar table of contents ---------------------------------------
+   PURPOSE: a persistent, sticky list of this page's own sections, so a
+   long page (with several worked examples) never forces blind scrolling
+   to find "Example 3" or "Try it yourself".
+   HOW IT WORKS: .layout is a flex row of <aside>+<main>; the JS below
+   scans <main> for headings and fills #side-nav-list, then highlights
+   whichever section is in view. Collapses to a toggle below 900px.
+   EXTEND: change the heading selector in buildSidebar() to pick up a
+   different heading level if a page's structure changes. */
+.layout{display:flex;align-items:flex-start;gap:clamp(1rem,3vw,2.2rem)}
+.layout>main{flex:1 1 auto;min-width:0}
+.side-nav{flex:0 0 220px;position:sticky;top:calc(3.4rem + .8rem);max-height:calc(100vh - 4.5rem);overflow-y:auto;padding-bottom:1rem}
+.side-nav-title{display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:.2rem 0 .5rem}
+.side-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.15rem}
+.side-nav a{display:block;padding:.4rem .6rem;border-radius:8px;color:var(--muted);font-size:.86rem;text-decoration:none;border-left:2px solid transparent;line-height:1.3}
+.side-nav a:hover,.side-nav a:focus-visible{background:var(--panel);color:var(--text)}
+.side-nav a.active{color:var(--accent);border-left-color:var(--accent);background:var(--panel)}
+.side-nav-toggle{display:none;width:100%;align-items:center;justify-content:space-between;background:var(--panel);color:var(--text);border:1px solid var(--edge);border-radius:10px;padding:.6rem .8rem;font:inherit;cursor:pointer;margin-bottom:.6rem}
+@media(max-width:900px){
+  .layout{flex-direction:column;gap:.6rem}
+  .side-nav{position:static;flex:none;width:100%;max-height:none;order:-1}
+  .side-nav-toggle{display:flex}
+  .side-nav-body{display:none}
+  .side-nav.open .side-nav-body{display:block}
+}
+@media print{.side-nav,.side-nav-toggle{display:none!important}}
+
+/* --- Top-bar jump menu ------------------------------------------------
+   Native <select>, so it is fully keyboard- and screen-reader-operable
+   with no extra ARIA wiring. Options are filled in from ATLAS_PAGES at
+   load time (see the shared script) so every page can link to every
+   other page without hand-maintained relative paths. */
+.jump-nav{margin-left:auto;display:flex;align-items:center;gap:.4rem;font-size:.82rem;color:var(--muted)}
+.jump-nav select{background:var(--panel2);color:var(--text);border:1px solid var(--edge);border-radius:8px;padding:.35rem .5rem;font:inherit;max-width:46vw}
+header.top .wrap{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+
+/* --- Between-page transition: galaxy + particles ----------------------
+   Purely decorative canvas overlay; see initNavTransition() in the
+   shared script for the interception logic and its reduced-motion and
+   failure fallbacks (navigation always still happens). */
+.nav-transition{display:none;position:fixed;inset:0;z-index:70;background:#02050a}
+.nav-transition.is-active{display:block}
+.nav-transition canvas{width:100%;height:100%;display:block}
+@media print{.nav-transition{display:none!important}}
+</style><style>.purpose-workbench{border-color:#68b79b;background:linear-gradient(145deg,#12342d,#0b1b2a)}.purpose-workbench h2{font-size:clamp(1.4rem,3vw,2rem)}.purpose-controls{display:flex;align-items:end;flex-wrap:wrap;gap:.75rem;margin:1rem 0}.purpose-controls label{max-width:260px}.purpose-controls input,.purpose-controls select{max-width:260px}.purpose-controls audio{flex-basis:100%}#purpose-output{overflow-x:auto}#purpose-output table{margin:1rem 0}#purpose-output th,#purpose-output td{text-align:left;vertical-align:top}#purpose-output p{overflow-wrap:anywhere}#purpose-output li{margin:.5rem 0}#purpose-output li button{margin-right:.5rem}.purpose-workbench output{max-width:100%}@media print{.purpose-controls{display:none}}</style></head><body data-sw="../sw.js"><div class="nav-transition no-print" id="nav-transition" aria-hidden="true"><canvas id="nav-transition-canvas"></canvas></div><a class="skip" href="#main">Skip to content</a><header class="top"><div class="wrap"><a class="brand" href="../index.html">✧ Foster + Navi / HTML Atlas</a><nav aria-label="Primary"><a href="../index.html#categories">41 topic labs</a><a href="../index.html#integrations">22 integrations</a><a href="../index.html#about">How it works</a></nav><div class="jump-nav"><label for="jump-select">Jump to page</label><select id="jump-select"><option value="">Jump to a page…</option></select></div></div></header><div class="layout wrap"><aside class="side-nav" id="side-nav"><button type="button" class="side-nav-toggle" id="side-nav-toggle" aria-expanded="false" aria-controls="side-nav-body">On this page <span aria-hidden="true">▾</span></button><div class="side-nav-body"><strong class="side-nav-title">On this page</strong><nav aria-label="Page sections"><ul id="side-nav-list"></ul></nav></div></aside><main id="main"><header class="hero"><div class="eyebrow">Integration 11/22 · self-contained HTML lab</div><h1>Portable dataset explorer</h1><p class="lead">Store labeled measurements and compare records</p><div class="toolbar no-print"><label class="row"><input type="checkbox" id="completed"> Mark this page complete</label><span id="progress-note" class="fineprint" role="status"></span><button type="button" onclick="window.print()">Print / save PDF</button></div></header><div class="callout"><strong>Local-first application:</strong> structured editing and portable backups support the purpose-built workbench below. Data is browser-local; these are educational tools, not certified professional software or a multiuser server.</div><div class="two"><section class="panel" id="editor"><h2>Record editor</h2><form id="record-form"><label for="field-label">Data point</label><input id="field-label" type="text" maxlength="5000" required><label for="field-value">Value</label><input id="field-value" type="number" step="any" maxlength="5000" required><label for="field-unit">Unit</label><input id="field-unit" type="text" maxlength="5000" required><label for="field-uncertainty">Uncertainty ±</label><input id="field-uncertainty" type="number" step="any" min="0" maxlength="5000" required><div class="toolbar"><button type="submit" id="record-save">Save new record</button><button type="button" id="record-reset">Reset editor</button><button type="button" id="sample-load">Add illustrative example</button></div></form></section><section class="panel"><h2>Live insights</h2><output id="insight" aria-live="polite"></output><canvas id="integration-chart" width="560" height="220" class="chart" role="img" aria-label="Recent record activity chart"></canvas><p class="fineprint">Chart plots real saved numeric values, status-category counts, or record dates. Values and meaning vary by project; use its specialist workbench for domain analysis.</p></section></div><section class="panel purpose-workbench" id="purpose"><div class="eyebrow">Purpose-built instrument · dataset-explorer</div><h2>Unit-aware uncertainty explorer</h2><p>Separate observations by identical unit strings; show arithmetic means and an uncertainty illustration assuming independent, uncorrelated reported ± values.</p><div class="purpose-controls"><button id="purpose-export">Export dataset CSV</button></div><div id="purpose-output" aria-live="polite" aria-atomic="false"><p>Add a record or use the controls above to begin.</p></div></section><section class="panel" id="data"><h2>Saved records</h2><label for="integration-search">Search this project</label><input id="integration-search" type="search" placeholder="Filter records by any field"><p id="record-count" role="status"></p><div class="toolbar"><button id="integration-export">Export JSON backup</button><label for="integration-import">Import matching JSON <input id="integration-import" type="file" accept=".json,application/json"></label><button id="integration-clear">Delete all records</button></div><table><thead><tr><th scope="col">Data point</th><th scope="col">Value</th><th scope="col">Unit</th><th scope="col">Uncertainty ±</th><th scope="col">Actions</th></tr></thead><tbody id="records"></tbody></table><p class="fineprint">LocalStorage is origin-specific and can be evicted or cleared. Export backups to retain your data. Imported files have size, project and record-schema checks, but treat external files as untrusted.</p><output id="status" aria-live="polite"></output></section><section class="panel" id="example-scenarios"><h2>More example scenarios</h2><p class="lead">Three uses of the value/unit/uncertainty fields together — a small dataset treated with the same care as a large one.</p><details><summary>A citizen-scientist recording a single careful measurement</summary><p>One measurement, honestly bounded by its real uncertainty, is more useful than ten unbounded ones — the uncertainty field is not optional detail, it is what makes the number interpretable at all.</p><p class="fineprint">Data point: "Stream width, bridge crossing" · Value: 2.4 · Unit: "meters" · Uncertainty ±: "0.1 (tape measure, uneven bank)."</p><p>Expected outcome: a later reading of 2.5m is now visibly within this reading’s stated uncertainty — not a meaningful change, which a bare "2.4" versus "2.5" comparison would have wrongly implied.</p></details><details><summary>A land manager building a small comparative dataset</summary><p>Comparing several sites is only fair if every entry states its uncertainty the same explicit way — otherwise a precise-looking number from a rough method gets compared as if it were equally reliable.</p><p class="fineprint">Four records, one per site, each: Data point: "Canopy cover" · Value: (site-specific) · Unit: "% cover" · Uncertainty ±: "5% (visual estimate, same observer across all four sites)."</p><p>Extend it: keeping the same observer and method across every site in a comparison set (noted here in the uncertainty field itself) is what makes the comparison meaningful — record a method change as a real caveat, not silently.</p></details><details><summary>A student learning to report a measurement honestly</summary><p>Reporting a value with more decimal places than the instrument actually supports is a common early-student mistake; this integration’s fields make the honest alternative just as easy as the overprecise one.</p><p class="fineprint">Data point: "Classroom temperature" · Value: 21 · Unit: "°C" · Uncertainty ±: "1 (wall thermometer, 1-degree markings)."</p><p>Expected outcome: "21 ± 1°C" is a more honest and more useful record than a falsely precise "21.3°C" from a thermometer that cannot actually distinguish tenths of a degree.</p></details></section><div class="two"><section class="panel"><h2>Feature inventory</h2><ul><li>Create and edit structured records</li><li>Validated native input fields</li><li>Persist locally with localStorage</li><li>Filter and inspect records</li><li>Domain-specific aggregation: measure</li><li>Accessible tabular view</li><li>Activity visualization</li><li>JSON export and schema-checked import</li><li>1000-record guardrail</li><li>No external tracking or runtime calls</li><li>Delete records deliberately</li><li>Print-ready view</li></ul></section><section class="panel"><h2>Acceptance tests</h2><ul><li>Add incompatible units and two points with ±; confirm separated means and propagated uncertainty</li><li>Create a record and verify it appears in the table</li><li>Reload and confirm local persistence</li><li>Edit and delete an individual record</li><li>Filter by a distinctive search term</li><li>Export JSON and inspect its schema</li><li>Import the exported package and verify merge</li><li>Run without network access after opening locally</li><li>Use the form and data table by keyboard</li><li>Check printed output</li></ul></section></div><section class="panel"><h2>Support, limits & safety</h2><p>This sample combines several technologies into one independently functional, offline-capable HTML page. It uses localStorage, which is subject to origin isolation, limited quota and clearing; export backups. It does not implement cloud accounts, production permissions, or remote synchronization.</p><p class="fineprint">This laboratory demonstrates a bounded local example. A capability test is not proof of full browser interoperability. External services, user permissions, device access, and production security require separate verification.</p></section><section class="panel" id="prompt"><h2>Copyable implementation prompt</h2><p class="hint">Customize this instruction for your own website; verify the result rather than assuming it works.</p><pre id="ai-prompt">Create a robust, accessible, offline-first implementation of the Portable dataset explorer application. Purpose: Store labeled measurements and compare records. Build a standalone index.html with fields Data point, Value, Unit, Uncertainty ±; include real add/edit/delete, local persistence, validation, searching, record summaries, safe DOM rendering, JSON backup and versioned imports, graceful storage failure and readable print. Preserve consent, privacy and source attribution. Document all estimates and assumptions. Provide browser support checks and test results. The included atlas implementation is an educational prototype, not a complete production system.</pre><button type="button" id="copy-prompt">Copy prompt</button> <span id="copy-state" role="status"></span></section><details class="panel" id="source"><summary>Inspect the exact JavaScript running this demonstration</summary><pre id="source-code">JavaScript required to view source in this pane. The HTML file itself contains the implementation.</pre></details><footer><p><strong>Foster + Navi</strong> · Offline-friendly, progressive enhancement and user-controlled data. Educational reference, not an audited production component. Local records are not a substitute for backups.</p><p><a href="../index.html">← Back to atlas</a> · <a href="../README.md">README & attribution</a> · No trackers or external runtime dependencies.</p><p class="fineprint">Zero-Harm &amp; Anti-Inversion: built to inform and empower, not manipulate, surveil or coerce. No hidden data collection, no dark patterns, no auto-send — any repurposing against that intent contradicts this file’s design.</p><noscript>JavaScript is disabled. The explanations and feature inventories remain readable; interactive demonstrations, persistence and completion tracking require JavaScript.</noscript></footer></main></div><script>'use strict';
+const $=(s,root=document)=>root.querySelector(s);
+const $$=(s,root=document)=>Array.from(root.querySelectorAll(s));
+const safe=(v)=>String(v??'');
+const say=(v,id='#status')=>{let e=$(id);if(e)e.textContent=safe(v)};
+/* === Atlas Store: IndexedDB-first, localStorage-fallback, fully offline ===
+   PURPOSE — persists atlas-wide state (page-complete list, notes, HUD/XP,
+   streak, badges, and a settings stub for language/theme) so progress
+   survives reloads and works with no network connection at all.
+   HOW IT WORKS — every read/write tries IndexedDB first (bigger quota,
+   structured, still available offline). If IndexedDB throws or is missing
+   (older browser, some private-browsing modes, some file:// contexts) it
+   falls back to localStorage automatically, and every write also mirrors
+   into localStorage as a second safety net either way.
+   HOW TO EXTEND — add new keys to the object getState() returns (e.g.
+   s.settings.lang for a future translation, s.hud for new badges); call
+   saveState(s) with the whole object and every page that reads that key
+   will pick it up the same way. Nothing here needs a server.
+   EXPECTED OUTCOME — getState()/saveState() behave like a tiny async
+   key-value store; the atlas keeps working with zero code changes if
+   IndexedDB is unavailable. */
+const ATLAS_DB='foster_navi_atlas_db',ATLAS_STORE='kv',ATLAS_KEY='foster_navi_atlas_v1';
+let _atlasDbPromise=null;
+function openAtlasDB(){
+  if(_atlasDbPromise)return _atlasDbPromise;
+  _atlasDbPromise=new Promise(resolve=>{
+    if(!('indexedDB'in window)){resolve(null);return}
+    try{
+      const req=indexedDB.open(ATLAS_DB,1);
+      req.onupgradeneeded=()=>{try{req.result.createObjectStore(ATLAS_STORE)}catch{}};
+      req.onsuccess=()=>resolve(req.result);
+      req.onerror=()=>resolve(null);
+      req.onblocked=()=>resolve(null);
+    }catch{resolve(null)}
+  });
+  return _atlasDbPromise;
+}
+function idbGet(key){
+  return openAtlasDB().then(db=>new Promise(resolve=>{
+    if(!db){resolve(undefined);return}
+    try{const tx=db.transaction(ATLAS_STORE,'readonly'),rq=tx.objectStore(ATLAS_STORE).get(key);
+      rq.onsuccess=()=>resolve(rq.result);rq.onerror=()=>resolve(undefined)}catch{resolve(undefined)}
+  }));
+}
+function idbSet(key,value){
+  return openAtlasDB().then(db=>new Promise(resolve=>{
+    if(!db){resolve(false);return}
+    try{const tx=db.transaction(ATLAS_STORE,'readwrite');tx.objectStore(ATLAS_STORE).put(value,key);
+      tx.oncomplete=()=>resolve(true);tx.onerror=()=>resolve(false)}catch{resolve(false)}
+  }));
+}
+async function getState(){
+  let fromIdb=await idbGet(ATLAS_KEY);
+  if(fromIdb&&typeof fromIdb==='object')return fromIdb;
+  try{
+    let parsed=JSON.parse(localStorage.getItem(ATLAS_KEY)||'{}');
+    if(!parsed||typeof parsed!=='object')parsed={};
+    if(Object.keys(parsed).length)idbSet(ATLAS_KEY,parsed);
+    return parsed;
+  }catch{return {}}
+}
+async function saveState(s){
+  let ok=await idbSet(ATLAS_KEY,s);
+  try{localStorage.setItem(ATLAS_KEY,JSON.stringify(s))}catch{}
+  /* Tell any listener on this page a save just landed, instead of letting
+     two independent handlers both read/write state off the same click and
+     race each other. Harmless no-op on pages with no listener attached. */
+  try{dispatchEvent(new CustomEvent('atlas:statechange',{detail:s}))}catch{}
+  return ok||true;
+}
+/* Serialises every read-modify-write of the shared state. Without it, two
+   writers that overlap (the visit-streak update at page load and a quick click
+   on "mark complete", or two handlers on the hub page) can each read the same
+   old object and the later write silently erases the earlier one. Tasks run
+   strictly one after another; a task that throws never blocks the ones queued
+   behind it. Never call a locked helper from inside another locked task. */
+let _stateLock=Promise.resolve();
+function withStateLock(task){
+  const run=_stateLock.then(task,task);
+  _stateLock=run.catch(()=>{});
+  return run;
+}
+async function markDone(id,on){
+  return withStateLock(async()=>{
+    let s=await getState();
+    s.done=Array.isArray(s.done)?s.done:[];
+    s.done=on?[...new Set([...s.done,id])]:s.done.filter(x=>x!==id);
+    await saveState(s);
+    return s.done.length;
+  });
+}
+/* Visit-streak tracker for the HUD, updated from every page (not just the
+   index) so working through any lab on a given day keeps the streak alive.
+   Compares local calendar dates only (YYYY-MM-DD), so it is not sensitive
+   to the exact time of day. Runs at most once per page load. EXTEND: read
+   (await getState()).hud on the index page to render level/streak/badges. */
+async function touchStreak(){
+  return withStateLock(touchStreakLocked);
+}
+async function touchStreakLocked(){
+  let s=await getState();
+  let today=new Date();
+  let ymd=today.getFullYear()+'-'+String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0');
+  let h=s.hud&&typeof s.hud==='object'?s.hud:{streak:0,longestStreak:0,lastVisit:null};
+  if(h.lastVisit===ymd){/* already counted today */}
+  else{
+    let prevWasYesterday=false;
+    if(h.lastVisit){
+      let prev=new Date(h.lastVisit+'T00:00:00');
+      let diffDays=Math.round((today.setHours(0,0,0,0)-prev.setHours(0,0,0,0))/86400000);
+      prevWasYesterday=diffDays===1;
+    }
+    h.streak=prevWasYesterday?(h.streak||0)+1:1;
+    h.longestStreak=Math.max(h.longestStreak||0,h.streak);
+    h.lastVisit=ymd;
+    s.hud=h;
+    await saveState(s);
+  }
+}
+function download(name,text,type='application/json'){const a=document.createElement('a'),u=URL.createObjectURL(new Blob([text],{type}));a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1500)}
+/* Gentle client-side pacing: ignores repeat calls within `ms` so rapid
+   clicks/keystrokes on save/search/import controls cannot spam storage
+   writes or thrash the UI. A courtesy limiter, not a security control. */
+function gentleLimit(fn,ms=350){let last=0;return(...args)=>{const now=Date.now();if(now-last<ms)return;last=now;return fn(...args)}}
+/* Leading + trailing coalescer, for handlers that mirror what the person LAST did
+   (the completion checkbox, saving notes, filtering as you type). The first call in
+   a burst runs at once, so a single click, keystroke or scripted fill is reflected
+   immediately; any further calls inside the window collapse into ONE extra run with
+   the latest arguments once things go quiet. Unlike gentleLimit it never discards the
+   final event, so the screen and the stored state always converge on the last action.
+   Keep gentleLimit for one-shot actions where a repeat really should be ignored
+   (starting a download). */
+function coalesceCalls(fn,ms=300){
+  let timer=null,queued=false,latest=[];
+  const settle=()=>{timer=null;if(queued){queued=false;fn(...latest)}};
+  return(...args)=>{
+    latest=args;
+    if(timer===null)fn(...args);
+    else{queued=true;clearTimeout(timer)}
+    timer=setTimeout(settle,ms);
+  };
+}
+async function initChrome(id){
+  const box=$('#completed');
+  if(box){
+    const st=await getState();
+    box.checked=(st.done||[]).includes(id);
+    box.addEventListener('change',coalesceCalls(async()=>{
+      await markDone(id,box.checked);
+      const note=$('#progress-note');if(note)note.textContent=box.checked?'Marked complete locally.':'Completion removed.';
+    },300));
+  }
+  const copy=$('#copy-prompt');
+  if(copy)copy.onclick=async()=>{const t=$('#ai-prompt').textContent;try{await navigator.clipboard.writeText(t);$('#copy-state').textContent='Copied.'}catch{$('#copy-state').textContent='Select and copy the prompt manually.'}};
+  const src=$('#source-code'),run=$('#demo-script');
+  if(src&&run)src.textContent=run.textContent;
+  if('serviceWorker'in navigator&&(location.protocol==='https:'||['localhost','127.0.0.1','[::1]'].includes(location.hostname))){
+    navigator.serviceWorker.register(document.body.dataset.sw).catch(()=>{});
+  }
+  touchStreak().catch(()=>{});
+}
+/* === Sidebar table of contents (per-page) ==============================
+   Scans this page's own <main> for section headings and fills the
+   sidebar with jump links, then highlights whichever section is
+   currently in view via IntersectionObserver. EXTEND: this reads
+   `section > h2` under #main, so a new <section><h2>...</h2>...</section>
+   — e.g. a newly added worked example — shows up with no extra wiring. */
+function slugify(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')||'section'}
+function buildSidebar(){
+  const list=$('#side-nav-list'),main=$('#main');
+  if(!list||!main)return;
+  const heads=$$('section > h2',main);
+  heads.forEach(h=>{
+    const section=h.parentElement;
+    if(!section.id){
+      let base=slugify(h.textContent),id=base,n=2;
+      while(document.getElementById(id)){id=base+'-'+n;n++}
+      section.id=id;
+    }
+    const li=document.createElement('li'),a=document.createElement('a');
+    a.href='#'+section.id;a.textContent=h.textContent;
+    li.appendChild(a);list.appendChild(li);
+  });
+  const links=$$('#side-nav-list a');
+  if(links.length&&'IntersectionObserver'in window){
+    const byId={};links.forEach(a=>byId[a.getAttribute('href').slice(1)]=a);
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(en=>{if(en.isIntersecting){const a=byId[en.target.id];if(a)links.forEach(l=>l.classList.toggle('active',l===a))}});
+    },{rootMargin:'-25% 0px -65% 0px'});
+    Object.keys(byId).forEach(id=>{const el=document.getElementById(id);if(el)io.observe(el)});
+  }
+  const toggle=$('#side-nav-toggle'),nav=$('#side-nav');
+  if(toggle&&nav)toggle.addEventListener('click',()=>{
+    const open=nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded',open?'true':'false');
+  });
+}
+
+/* === Top-bar jump menu =================================================
+   Fills #jump-select from the embedded ATLAS_PAGES list below. Each
+   option's URL is computed from data-sw (already "../sw.js" one level
+   deep, "sw.js" at the root) instead of hard-coded paths, so this exact
+   same script works unmodified on every page regardless of depth.
+   EXTEND: ATLAS_PAGES is generated from catalog.json; regenerate it the
+   same way if pages are ever added, renamed or removed. */
+const ATLAS_PAGES=[{"id":"labs/semantic-html.html","t":"Semantic HTML & document architecture","g":"labs"},{"id":"labs/html-attributes.html","t":"HTML attributes & smart interfaces","g":"labs"},{"id":"labs/native-interaction.html","t":"Native interactive HTML","g":"labs"},{"id":"labs/advanced-forms.html","t":"Advanced forms & data entry","g":"labs"},{"id":"labs/css-layout.html","t":"Responsive CSS layout systems","g":"labs"},{"id":"labs/visual-styling.html","t":"Advanced visual styling","g":"labs"},{"id":"labs/motion.html","t":"Animation & cinematic interfaces","g":"labs"},{"id":"labs/javascript-architecture.html","t":"JavaScript application architecture","g":"labs"},{"id":"labs/offline-first.html","t":"Offline-first functionality","g":"labs"},{"id":"labs/pwa.html","t":"Progressive Web Apps","g":"labs"},{"id":"labs/storage.html","t":"Local data storage","g":"labs"},{"id":"labs/file-portability.html","t":"File import/export","g":"labs"},{"id":"labs/integrity.html","t":"Integrity & provenance","g":"labs"},{"id":"labs/search.html","t":"Advanced search engines","g":"labs"},{"id":"labs/knowledge.html","t":"Knowledge management","g":"labs"},{"id":"labs/graph-navigation.html","t":"Visual knowledge navigation","g":"labs"},{"id":"labs/images.html","t":"Image processing","g":"labs"},{"id":"labs/audio-video.html","t":"Audio & video production","g":"labs"},{"id":"labs/visualization.html","t":"Analytical visualization","g":"labs"},{"id":"labs/gpu.html","t":"GPU & graphics","g":"labs"},{"id":"labs/spatial.html","t":"Spatial interfaces","g":"labs"},{"id":"labs/local-ai.html","t":"Local AI & browser AI","g":"labs"},{"id":"labs/agents.html","t":"AI agent architecture","g":"labs"},{"id":"labs/rag.html","t":"Retrieval-augmented generation","g":"labs"},{"id":"labs/ai-maintenance.html","t":"AI-assisted maintenance","g":"labs"},{"id":"labs/collaboration.html","t":"Real-time collaboration","g":"labs"},{"id":"labs/decentralization.html","t":"Decentralized architectures","g":"labs"},{"id":"labs/communication.html","t":"Social interaction","g":"labs"},{"id":"labs/geospatial.html","t":"Geospatial GIS","g":"labs"},{"id":"labs/sensors.html","t":"Device sensors & permissions","g":"labs"},{"id":"labs/field-science.html","t":"Environmental monitoring","g":"labs"},{"id":"labs/security.html","t":"Web security","g":"labs"},{"id":"labs/privacy.html","t":"Privacy engineering","g":"labs"},{"id":"labs/cryptography.html","t":"Cryptography & authentication","g":"labs"},{"id":"labs/accessibility.html","t":"Accessibility & inclusive design","g":"labs"},{"id":"labs/performance.html","t":"Web performance","g":"labs"},{"id":"labs/reliability.html","t":"Reliability & fault tolerance","g":"labs"},{"id":"labs/seo.html","t":"Search discovery & metadata","g":"labs"},{"id":"labs/i18n.html","t":"Internationalization & localization","g":"labs"},{"id":"labs/publishing.html","t":"Print & document publishing","g":"labs"},{"id":"labs/hosting.html","t":"Hosting & deployment","g":"labs"},{"id":"integrations/offline-archive.html","t":"Offline knowledge archive","g":"integrations"},{"id":"integrations/food-garden.html","t":"Edible garden planner","g":"integrations"},{"id":"integrations/learning-quests.html","t":"Learning quest builder","g":"integrations"},{"id":"integrations/field-survey.html","t":"Offline field survey","g":"integrations"},{"id":"integrations/evidence-ledger.html","t":"Evidence provenance ledger","g":"integrations"},{"id":"integrations/household-resilience.html","t":"Household resilience checklist","g":"integrations"},{"id":"integrations/community-decisions.html","t":"Community decision register","g":"integrations"},{"id":"integrations/map-notebook.html","t":"Geographic observation notebook","g":"integrations"},{"id":"integrations/story-studio.html","t":"Interactive story studio","g":"integrations"},{"id":"integrations/audio-journal.html","t":"Accessible audio journal","g":"integrations"},{"id":"integrations/dataset-explorer.html","t":"Portable dataset explorer","g":"integrations"},{"id":"integrations/accessibility-audit.html","t":"Accessibility audit board","g":"integrations"},{"id":"integrations/privacy-workbench.html","t":"Privacy impact workbench","g":"integrations"},{"id":"integrations/exchange-hub.html","t":"Data exchange hub","g":"integrations"},{"id":"integrations/collaboration-studio.html","t":"Collaboration planning studio","g":"integrations"},{"id":"integrations/restoration-monitor.html","t":"Restoration monitoring dashboard","g":"integrations"},{"id":"integrations/science-workbench.html","t":"Scientific calculation notebook","g":"integrations"},{"id":"integrations/ai-evaluation.html","t":"AI evaluation notebook","g":"integrations"},{"id":"integrations/deployment-audit.html","t":"Deployment readiness board","g":"integrations"},{"id":"integrations/emergency-kit.html","t":"Emergency kit inventory","g":"integrations"},{"id":"integrations/careers-map.html","t":"Regenerative career map","g":"integrations"},{"id":"integrations/publishing-desk.html","t":"Open publication desk","g":"integrations"}];
+function buildJumpMenu(){
+  const sel=$('#jump-select');
+  if(!sel)return;
+  const rootPrefix=(document.body.dataset.sw||'sw.js').replace('sw.js','');
+  const labsGroup=document.createElement('optgroup'),intGroup=document.createElement('optgroup');
+  labsGroup.label='Topic labs';intGroup.label='Integrations';
+  ATLAS_PAGES.forEach(p=>{
+    const opt=document.createElement('option');
+    opt.value=rootPrefix+p.id;opt.textContent=p.t;
+    (p.g==='labs'?labsGroup:intGroup).appendChild(opt);
+  });
+  sel.appendChild(labsGroup);sel.appendChild(intGroup);
+  sel.addEventListener('change',()=>{if(sel.value)location.href=sel.value});
+}
+
+/* === Nav transition: galaxy + particles between page clicks ============
+   PURPOSE: a brief, purely decorative "hyperspace" overlay when moving
+   between atlas pages, instead of an instant blank reload.
+   HOW IT WORKS: intercepts clicks on same-origin links to a different
+   HTML page (never same-page #anchors, modified clicks, or target=_blank
+   links), paints a canvas starfield+nebula for ~380ms, then navigates.
+   Skipped entirely under prefers-reduced-motion — those visitors get
+   an instant, ordinary navigation — and navigation still happens even
+   if the canvas or this whole feature fails for any reason.
+   EXTEND: change NAV_TRANSITION_MS for timing, PARTICLE_COUNT for
+   density, or the color stops in paintGalaxy() for a different palette. */
+const NAV_TRANSITION_MS=380,PARTICLE_COUNT=140;
+let _navParticles=null,_navRaf=0;
+function buildNavParticles(w,h){
+  const arr=[];
+  for(let i=0;i<PARTICLE_COUNT;i++){
+    arr.push({x:Math.random()*w,y:Math.random()*h,z:0.3+Math.random()*0.7,r:0.4+Math.random()*1.6,tw:Math.random()*Math.PI*2,a:0.4+Math.random()*0.6});
+  }
+  return arr;
+}
+function paintGalaxy(ctx,w,h,t){
+  const g=ctx.createRadialGradient(w*0.5,h*0.42,0,w*0.5,h*0.42,Math.max(w,h)*0.75);
+  g.addColorStop(0,'#1c2f52');g.addColorStop(.45,'#0c1830');g.addColorStop(1,'#020509');
+  ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+  ctx.save();ctx.globalCompositeOperation='lighter';
+  const blobs=[{x:w*0.32,y:h*0.38,r:w*0.32,c:'rgba(201,168,255,0.10)'},{x:w*0.68,y:h*0.6,r:w*0.28,c:'rgba(143,184,255,0.10)'}];
+  blobs.forEach((b,i)=>{
+    const bx=b.x+Math.sin(t/1400+i)*14,by=b.y+Math.cos(t/1600+i)*10;
+    const bg=ctx.createRadialGradient(bx,by,0,bx,by,b.r);
+    bg.addColorStop(0,b.c);bg.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
+  });
+  ctx.restore();
+}
+function paintNavParticles(ctx,particles,w,h,t){
+  particles.forEach(p=>{
+    const tw=0.55+0.45*Math.sin(t/220+p.tw);
+    ctx.globalAlpha=p.a*tw*p.z;
+    ctx.fillStyle=p.z>0.7?'#eaf6ff':'#8fb8ff';
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r*p.z*1.6,0,Math.PI*2);ctx.fill();
+    p.y-=0.12*p.z;
+    if(p.y<-4)p.y=h+4;
+  });
+  ctx.globalAlpha=1;
+}
+function beginNavTransition(){
+  const el=$('#nav-transition'),canvas=$('#nav-transition-canvas');
+  if(!el||!canvas)return false;
+  const ctx=canvas.getContext('2d');
+  if(!ctx)return false;
+  const w=innerWidth,h=innerHeight;
+  canvas.width=w;canvas.height=h;
+  if(!_navParticles)_navParticles=buildNavParticles(w,h);
+  el.classList.add('is-active');
+  el.removeAttribute('aria-hidden');
+  const start=performance.now();
+  (function frame(now){
+    paintGalaxy(ctx,w,h,now);
+    paintNavParticles(ctx,_navParticles,w,h,now);
+    if(now-start<NAV_TRANSITION_MS+120)_navRaf=requestAnimationFrame(frame);
+  })(start);
+  return true;
+}
+function initNavTransition(){
+  const reduced=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)').matches:false;
+  if(reduced)return;
+  document.addEventListener('click',(e)=>{
+    if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+    const a=e.target.closest('a[href]');
+    if(!a||a.target==='_blank'||a.hasAttribute('download'))return;
+    const href=a.getAttribute('href');
+    if(!href||href.startsWith('#')||href.startsWith('mailto:')||href.startsWith('tel:')||href.startsWith('javascript:'))return;
+    let url;
+    try{url=new URL(href,location.href)}catch{return}
+    if(url.origin!==location.origin)return;
+    if(url.pathname===location.pathname&&url.hash)return;
+    e.preventDefault();
+    const started=beginNavTransition();
+    setTimeout(()=>{location.href=href},started?NAV_TRANSITION_MS:0);
+  },{capture:true});
+}
+initChrome("integrations/dataset-explorer.html");
+buildSidebar();
+buildJumpMenu();
+initNavTransition();
+
+</script><script id="demo-script">const INTEGRATION_CONFIG={"slug": "dataset-explorer", "title": "Portable dataset explorer", "fields": [{"id": "label", "label": "Data point", "type": "text"}, {"id": "value", "label": "Value", "type": "number"}, {"id": "unit", "label": "Unit", "type": "text"}, {"id": "uncertainty", "label": "Uncertainty ±", "type": "number"}], "mode": "measure"};
+
+'use strict';
+const config=INTEGRATION_CONFIG;
+const dbKey='atlas_integration_v1_'+config.slug;
+const numeric=config.fields.filter(f=>f.type==='number');
+let items=[],editing=null;
+try{const saved=JSON.parse(localStorage.getItem(dbKey)||'[]');items=Array.isArray(saved)?saved:[]}catch{items=[]}
+function persist(){try{localStorage.setItem(dbKey,JSON.stringify(items));return true}catch(e){say('Local save failed. Export your data and check storage limits. '+e.message);return false}}
+function number(v){let n=Number(v);return Number.isFinite(n)?n:0}
+function aggregate(){let n=items.length,sum=(k)=>items.reduce((s,r)=>s+number(r[k]),0),groups=(k)=>items.reduce((a,r)=>(a[safe(r[k]||'Unknown')]=(a[safe(r[k]||'Unknown')]||0)+1,a),{});switch(config.mode){
+case 'product':return {records:n,estimatedTotal:items.reduce((s,r)=>s+number(r[config.slug==='food-garden'?'area':'input'])*number(r[config.slug==='food-garden'?'yield':'factor']),0),unit:config.slug==='food-garden'?'kg estimated':'derived units',method:'Sum of individual products; estimates are not validated predictions.'};
+case 'effort':return {records:n,totalHoursOrMinutes:sum(config.slug==='learning-quests'?'minutes':config.slug==='audio-journal'?'duration':'hours'),note:'Units are specific to the current form, not interchangeable.'};
+case 'measure':return {records:n,mean:n?sum(config.slug==='dataset-explorer'?'value':'reading')/n:null,warning:'Only compare observations with compatible units and calibration.'};
+case 'delta':return {records:n,aggregateChange:items.reduce((s,r)=>s+number(r.current)-number(r.baseline),0),note:'Only meaningful when indicators and units are comparable.'};
+case 'inventory':return {records:n,totalQuantity:sum(config.slug==='emergency-kit'?'count':'quantity'),note:'Inventory totals do not establish preparedness or safety.'};
+case 'map':return {records:n,validCoordinates:items.filter(r=>Number.isFinite(+r.lat)&&Number.isFinite(+r.lon)&&Math.abs(+r.lat)<=90&&Math.abs(+r.lon)<=180).length};
+case 'audit':return {records:n,outcomes:groups(config.slug==='ai-evaluation'?'result':config.slug==='deployment-audit'?'state':'status')};
+case 'evidence':return {records:n,reviewStatuses:groups('status')};
+case 'governance':return {records:n,stages:groups('stage')};
+case 'privacy':return {records:n,necessity:groups('necessity')};
+case 'workflow':return {records:n,states:groups('state')};
+case 'publishing':return {records:n,reviewStates:groups('state')};
+case 'knowledge':return {records:n,evidenceCategories:groups('kind')};
+case 'story':return {records:n,motifFrequency:groups('motif')};
+case 'exchange':return {records:n,schemaVersions:groups('schema')};
+default:return {records:n};}}
+function safeCell(tr,t){let td=tr.insertCell(),s=safe(t);td.textContent=s.length>110?s.slice(0,110)+'…':s;td.title=s}
+function render(){const q=$('#integration-search').value.trim().toLowerCase();let visible=items.filter(r=>config.fields.some(f=>safe(r[f.id]).toLowerCase().includes(q)));let table=$('#records');table.replaceChildren();visible.forEach(rec=>{let tr=table.insertRow();config.fields.forEach(f=>safeCell(tr,rec[f.id]));let actions=tr.insertCell(),edit=document.createElement('button');edit.textContent='Edit';edit.type='button';edit.onclick=()=>{editing=rec.id;config.fields.forEach(f=>$('#field-'+f.id).value=rec[f.id]??'');$('#record-save').textContent='Update record';$('#record-form').scrollIntoView({behavior:'auto'});$('#field-'+config.fields[0].id).focus()};let remove=document.createElement('button');remove.textContent='Delete';remove.type='button';remove.onclick=()=>{if(!confirm('Delete this local record?'))return;let previous=items;items=items.filter(x=>x.id!==rec.id);if(!persist()){items=previous;render();return}render();say('Deleted one local record.')};actions.append(edit,' ',remove)});$('#record-count').textContent=items.length+' saved · '+visible.length+' shown';let stats=aggregate();$('#insight').textContent=JSON.stringify(stats,null,2);drawGraph(stats);if(config.mode==='map')renderMap()}
+function drawGraph(){const canvas=$('#integration-chart'),ctx=canvas.getContext('2d');if(!ctx)return;
+ctx.clearRect(0,0,canvas.width,canvas.height);ctx.font='14px sans-serif';ctx.fillStyle='#e9f4f7';
+let numericField=config.fields.find(f=>f.type==='number'),categoryField=config.fields.find(f=>f.type.startsWith('select:'));
+let values=[],label='';
+if(numericField){label=numericField.label;values=items.slice(-9).map((r,i)=>({name:String(r[config.fields[0].id]||'Record '+(i+1)).slice(0,13),value:Number(r[numericField.id])})).filter(r=>Number.isFinite(r.value));}
+else if(categoryField){label='Number of records by '+categoryField.label;let grouped={};items.forEach(r=>{let k=String(r[categoryField.id]||'Missing');grouped[k]=(grouped[k]||0)+1});values=Object.entries(grouped).slice(0,9).map(([name,value])=>({name,value}));}
+else{label='Saved records by creation date';let grouped={};items.forEach(r=>{let day=String(r.created||'Unknown').slice(0,10);grouped[day]=(grouped[day]||0)+1});values=Object.entries(grouped).sort().slice(-9).map(([name,value])=>({name,value}));}
+canvas.setAttribute('aria-label',label+'. Exact values are available in the record table and specialist analysis.');ctx.fillText(label.slice(0,60),12,20);
+if(!values.length){ctx.fillText('Add records to populate this actual-data chart.',12,90);return}
+let min=Math.min(0,...values.map(x=>x.value)),max=Math.max(0,...values.map(x=>x.value));if(max===min)max=min+1;let zero=183-(0-min)/(max-min)*130;
+ctx.strokeStyle='#688194';ctx.beginPath();ctx.moveTo(10,zero);ctx.lineTo(550,zero);ctx.stroke();
+values.forEach((r,i)=>{let x=18+i*59,y=183-(r.value-min)/(max-min)*130;ctx.fillStyle='#80e5be';ctx.fillRect(x,Math.min(y,zero),32,Math.max(2,Math.abs(zero-y)));ctx.fillStyle='#e9f4f7';ctx.font='10px sans-serif';ctx.fillText(String(r.name).slice(0,8),x,209);ctx.fillText(String(Number(r.value.toFixed(2))),x,Math.max(38,Math.min(y,zero)-3))});}
+function renderMap(){let svg=$('#integration-map');if(!svg)return;svg.replaceChildren();const NS='http://www.w3.org/2000/svg';for(let r of items){let lat=Number(r.lat),lon=Number(r.lon);if(!Number.isFinite(lat)||!Number.isFinite(lon)||Math.abs(lat)>90||Math.abs(lon)>180)continue;let c=document.createElementNS(NS,'circle');c.setAttribute('cx',String(lon+180));c.setAttribute('cy',String(90-lat));c.setAttribute('r','5');c.setAttribute('fill','#80e5be');let t=document.createElementNS(NS,'title');t.textContent=safe(r.place);c.append(t);svg.append(c)}}
+function resetForm(){$('#record-form').reset();editing=null;$('#record-save').textContent='Save new record'}
+$('#record-form').onsubmit=e=>{e.preventDefault();if(!e.currentTarget.reportValidity())return;let oldRecord=editing?items.find(x=>x.id===editing):null;let rec={id:editing||('r_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2)),created:oldRecord?.created||new Date().toISOString(),updated:new Date().toISOString()};config.fields.forEach(f=>rec[f.id]=$('#field-'+f.id).value);if(config.mode==='map'&&(Math.abs(number(rec.lat))>90||Math.abs(number(rec.lon))>180)){say('Coordinates outside geographic bounds.');return}if(!editing&&items.length>=1000){say('Limit of 1,000 records reached. Export first.');return}let before=items.slice();if(editing){let at=items.findIndex(x=>x.id===editing);if(at<0){say('Record no longer exists.');return}items[at]={...items[at],...rec}}else items.push(rec);if(persist()){resetForm();render();say('Record saved in this browser. Export a backup for durability.')}else{items=before;render()}};
+$('#record-reset').onclick=()=>{resetForm();say('Editor cleared.')};
+$('#integration-search').oninput=render;
+$('#integration-export').onclick=()=>{download(config.slug+'.json',JSON.stringify({format:'atlas-integration/1',project:config.slug,exported:new Date().toISOString(),records:items},null,2));say('Backup exported. Keep copies outside this browser.')};
+$('#integration-import').onchange=async e=>{try{let f=e.target.files[0];if(!f)return;if(f.size>2000000)throw Error('Import exceeds 2 MB limit');let x=JSON.parse(await f.text());if(x.format!=='atlas-integration/1'||x.project!==config.slug||!Array.isArray(x.records))throw Error('Wrong project or invalid schema');if(x.records.length>1000)throw Error('Import exceeds 1,000-record limit');let valid=x.records.map(r=>{if(!r||typeof r!=='object'||typeof r.id!=='string')throw Error('Invalid record');let n={id:r.id,created:safe(r.created)};for(let field of config.fields){let v=r[field.id];if(typeof v!=='string'&&typeof v!=='number')throw Error('Invalid field '+field.id);if(safe(v).trim()==='')throw Error('Required field missing '+field.id);if(safe(v).length>5000)throw Error('Field exceeds 5,000 characters '+field.id);if(field.type==='number'&&!Number.isFinite(Number(v)))throw Error('Nonfinite numeric field '+field.id);let inputRule=document.getElementById('field-'+field.id);if(field.type==='number'&&inputRule?.min!==''&&Number(v)<Number(inputRule.min))throw Error('Below minimum for '+field.id);if(field.type==='number'&&inputRule?.max!==''&&Number(v)>Number(inputRule.max))throw Error('Above maximum for '+field.id);if(field.type==='date'&&(!/^\d{4}-\d{2}-\d{2}$/.test(String(v))||new Date(String(v)+'T00:00:00Z').toISOString().slice(0,10)!==String(v)))throw Error('Bad date for '+field.id);if(config.mode==='map'&&field.id==='lat'&&Math.abs(Number(v))>90)throw Error('Invalid latitude');if(config.mode==='map'&&field.id==='lon'&&Math.abs(Number(v))>180)throw Error('Invalid longitude');n[field.id]=safe(v).slice(0,5000)}return n});let map=new Map(items.map(r=>[r.id,r]));valid.forEach(r=>map.set(r.id,r));if(map.size>1000)throw Error('Merged records exceed limit');let previous=items;items=[...map.values()];if(!persist()){items=previous;render();throw Error('Local storage failed; existing data preserved')}render();say('Validated and merged '+valid.length+' records. Existing IDs were updated.')}catch(err){say('Import rejected: '+err.message)}finally{e.target.value=''}};
+$('#integration-clear').onclick=()=>{if(!confirm('Delete every local record in this workspace? Export a backup first.'))return;let previous=items;items=[];if(!persist()){items=previous;render();return}resetForm();render();say('Local records deleted.')};
+$('#sample-load').onclick=()=>{if(items.length>=1000){say('Record limit reached; export first.');return}let r={id:'example_'+Date.now(),created:new Date().toISOString()};config.fields.forEach(f=>{r[f.id]=f.type==='number'?'2':f.type==='date'?'2026-09-20':f.type.startsWith('select:')?f.type.slice(7).split('|')[0]:f.label==='Source URL'?'https://example.org':f.label+' sample'});items.push(r);if(!persist()){items.pop();render();return}render();say('Illustrative example added; replace it with real validated data.')};
+if(config.mode==='map')$('#geojson-export').onclick=()=>{let features=items.filter(r=>String(r.lat).trim()!==''&&String(r.lon).trim()!==''&&Math.abs(number(r.lat))<=90&&Math.abs(number(r.lon))<=180).map(r=>({type:'Feature',geometry:{type:'Point',coordinates:[number(r.lon),number(r.lat)]},properties:{label:r.place,description:r.description}}));download('observations.geojson',JSON.stringify({type:'FeatureCollection',features},null,2),'application/geo+json')};
+if(config.mode==='story')$('#story-prompt').onclick=()=>say('Story question: What does the character need that conflicts with their stated desire? How does the motif change its meaning when an earlier choice has consequences?');
+if(config.mode==='product')$('#estimate-info').onclick=()=>say('Estimates multiply user-provided inputs. They have no regional, biological, or economic validation and are not predictions.');
+if(config.slug==='audio-journal'){let recorder,parts=[];$('#record-audio').onclick=async()=>{try{if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder)throw Error('Recording API unavailable');let stream=await navigator.mediaDevices.getUserMedia({audio:true});parts=[];recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data.size)parts.push(e.data)};recorder.onstop=()=>{stream.getTracks().forEach(t=>t.stop());let blob=new Blob(parts,{type:recorder.mimeType||'audio/webm'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='private_audio_recording.webm';a.click();setTimeout(()=>URL.revokeObjectURL(url),10000);say('Recording saved via download, not uploaded or added to the journal database.')};recorder.start();$('#record-audio').disabled=true;$('#stop-audio').disabled=false;say('Microphone active. Stop to download recording.')}catch(e){say('Recording not started: '+e.message)}};$('#stop-audio').onclick=()=>{if(recorder?.state==='recording')recorder.stop();$('#record-audio').disabled=false;$('#stop-audio').disabled=true}}
+
+/* PURPOSE-BUILT dataset-explorer WORKBENCH */
+
+/* Shared utility functions: safely build specialized views with textContent. */
+const purposeRoot=document.getElementById('purpose-output');
+function node(tag,text='',parent=purposeRoot){const x=document.createElement(tag);x.textContent=String(text);parent.append(x);return x}
+function wipe(){purposeRoot.replaceChildren()}
+function line(label,value){let p=node('p');let b=node('strong',label+': ',p);node('span',value,p);return p}
+function rows(headers,data){let t=node('table'),h=node('thead','',t),tr=node('tr','',h);headers.forEach(x=>node('th',x,tr));let body=node('tbody','',t);data.forEach(row=>{let r=node('tr','',body);row.forEach(v=>node('td',v,r))});return t}
+function csv(v){let t=String(v??'');if(/^\s*[=+@]/.test(t)||/^\s*-(?!\d+(?:\.\d+)?\s*$)/.test(t))t="'"+t;return '"'+t.replace(/"/g,'""')+'"'}
+function outputCSV(name,heads,data){download(name,[heads,...data].map(r=>r.map(csv).join(',')).join('\r\n'),'text/csv')}
+function num(v){let n=Number(v);return Number.isFinite(n)?n:NaN}
+function fmt(n){return Number.isFinite(n)?new Intl.NumberFormat(undefined,{maximumFractionDigits:3}).format(n):'not available'}
+function groupBy(key){let m=new Map();items.forEach(r=>{let k=String(r[key]??'').trim()||'Not supplied';if(!m.has(k))m.set(k,[]);m.get(k).push(r)});return m}
+function eventButton(id,action){let el=document.getElementById(id);if(el)el.addEventListener('click',action)}
+
+function renderSpecial(){wipe();let groups=groupBy('unit');let data=[...groups].map(([k,v])=>{let valid=v.filter(x=>Number.isFinite(num(x.value))&&Number.isFinite(num(x.uncertainty))&&num(x.uncertainty)>=0),n=valid.length,mean=n?valid.reduce((s,x)=>s+num(x.value),0)/n:NaN,u=n?Math.sqrt(valid.reduce((s,x)=>s+num(x.uncertainty)**2,0))/n:NaN;return [k,n,fmt(mean),fmt(u),n?fmt(Math.min(...valid.map(x=>num(x.value))))+' … '+fmt(Math.max(...valid.map(x=>num(x.value)))):'—']});rows(['Unit','Valid n','Arithmetic mean','Illustrative ± of mean','Observed range'],data);line('Assumptions','Reported ± values are nonnegative and independent; independence and calibration are unverified. No mixed-unit pooling.');}
+eventButton('purpose-export',()=>outputCSV('observations.csv',['Label','Value','Unit','Reported_uncertainty'],items.map(r=>[r.label,r.value,r.unit,r.uncertainty])));
+const baseRender=render;render=function(){baseRender();renderSpecial()};renderSpecial();
+</script></body></html>

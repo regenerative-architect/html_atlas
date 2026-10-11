@@ -1,0 +1,518 @@
+{
+  "schema": "html-atlas/1",
+  "title": "Next-Generation HTML Atlas",
+  "pages": [
+    {
+      "id": "index.html",
+      "title": "Master atlas",
+      "type": "index"
+    },
+    {
+      "id": "labs/semantic-html.html",
+      "title": "Semantic HTML & document architecture",
+      "type": "Topic labs",
+      "summary": "HTML landmarks, structured documents, headings, meaningful text",
+      "tags": "Semantics, landmarks, headings, native elements, structured documents, MathML, SVG"
+    },
+    {
+      "id": "labs/html-attributes.html",
+      "title": "HTML attributes & smart interfaces",
+      "type": "Topic labs",
+      "summary": "Native attributes, validation, language, metadata, and keyboard behavior",
+      "tags": "data attributes, dir, lang, inert, tabindex, autocomplete, ARIA"
+    },
+    {
+      "id": "labs/native-interaction.html",
+      "title": "Native interactive HTML",
+      "type": "Topic labs",
+      "summary": "Disclosures, dialogs, popovers and menu actions",
+      "tags": "details, summary, dialog, popover, native select, focus"
+    },
+    {
+      "id": "labs/advanced-forms.html",
+      "title": "Advanced forms & data entry",
+      "type": "Topic labs",
+      "summary": "Accessible input validation and typed submissions",
+      "tags": "input, fieldset, FormData, validity, constraints, form UX"
+    },
+    {
+      "id": "labs/css-layout.html",
+      "title": "Responsive CSS layout systems",
+      "type": "Topic labs",
+      "summary": "Grid, Flexbox, container queries and fluid sizing",
+      "tags": "Grid, flex, clamp, container queries, responsive composition"
+    },
+    {
+      "id": "labs/visual-styling.html",
+      "title": "Advanced visual styling",
+      "type": "Topic labs",
+      "summary": "Design tokens, color spaces and typography",
+      "tags": "custom properties, OKLCH, gradients, contrast, themes"
+    },
+    {
+      "id": "labs/motion.html",
+      "title": "Animation & cinematic interfaces",
+      "type": "Topic labs",
+      "summary": "Motion preferences and interruptible animation",
+      "tags": "Web Animations, CSS keyframes, reduced motion, transitions"
+    },
+    {
+      "id": "labs/javascript-architecture.html",
+      "title": "JavaScript application architecture",
+      "type": "Topic labs",
+      "summary": "Event-driven state and modular behavior",
+      "tags": "modules, state machines, events, DOM, structured clone"
+    },
+    {
+      "id": "labs/offline-first.html",
+      "title": "Offline-first functionality",
+      "type": "Topic labs",
+      "summary": "Resilient offline drafts and connectivity transitions",
+      "tags": "offline, local drafts, network events, durable state"
+    },
+    {
+      "id": "labs/pwa.html",
+      "title": "Progressive Web Apps",
+      "type": "Topic labs",
+      "summary": "Manifest and service-worker diagnostics",
+      "tags": "manifest, service workers, installability, secure context"
+    },
+    {
+      "id": "labs/storage.html",
+      "title": "Local data storage",
+      "type": "Topic labs",
+      "summary": "Transactional IndexedDB and storage durability",
+      "tags": "IndexedDB, transactions, quota, persistence, recovery"
+    },
+    {
+      "id": "labs/file-portability.html",
+      "title": "File import/export",
+      "type": "Topic labs",
+      "summary": "Structured import, download, preview and validation",
+      "tags": "JSON, Blob, File, import, export, schema validation"
+    },
+    {
+      "id": "labs/integrity.html",
+      "title": "Integrity & provenance",
+      "type": "Topic labs",
+      "summary": "SHA-256 verification and transparent provenance",
+      "tags": "Web Crypto, digests, integrity, timestamps, provenance"
+    },
+    {
+      "id": "labs/search.html",
+      "title": "Advanced search engines",
+      "type": "Topic labs",
+      "summary": "Search, filtering and ranked local results",
+      "tags": "full text, fuzzy ranking, filters, offline search"
+    },
+    {
+      "id": "labs/knowledge.html",
+      "title": "Knowledge management",
+      "type": "Topic labs",
+      "summary": "Linked records, backlinks, source categories",
+      "tags": "annotations, backlinks, structured metadata, facts vs hypotheses"
+    },
+    {
+      "id": "labs/graph-navigation.html",
+      "title": "Visual knowledge navigation",
+      "type": "Topic labs",
+      "summary": "Accessible interactive SVG graph with text equivalent",
+      "tags": "SVG, network graphs, keyboard navigation, alternative lists"
+    },
+    {
+      "id": "labs/images.html",
+      "title": "Image processing",
+      "type": "Topic labs",
+      "summary": "Local preview and canvas transforms",
+      "tags": "File, Blob, Canvas, image decode, exports"
+    },
+    {
+      "id": "labs/audio-video.html",
+      "title": "Audio & video production",
+      "type": "Topic labs",
+      "summary": "Web Audio synthesizer and media capability checks",
+      "tags": "Web Audio, media elements, audiovisual access"
+    },
+    {
+      "id": "labs/visualization.html",
+      "title": "Analytical visualization",
+      "type": "Topic labs",
+      "summary": "Interactive chart with accessible underlying data",
+      "tags": "Canvas, charts, data tables, units, uncertainty"
+    },
+    {
+      "id": "labs/gpu.html",
+      "title": "GPU & graphics",
+      "type": "Topic labs",
+      "summary": "Canvas particle field with GPU feature detection",
+      "tags": "Canvas, WebGL, WebGPU, animation, fallback"
+    },
+    {
+      "id": "labs/spatial.html",
+      "title": "Spatial interfaces",
+      "type": "Topic labs",
+      "summary": "CSS 3D model and WebXR capability inspection",
+      "tags": "CSS transforms, WebXR, device fallback"
+    },
+    {
+      "id": "labs/local-ai.html",
+      "title": "Local AI & browser AI",
+      "type": "Topic labs",
+      "summary": "Honest model availability and deterministic fallback",
+      "tags": "Prompt API checks, GPU, CPU fallback, local inference"
+    },
+    {
+      "id": "labs/agents.html",
+      "title": "AI agent architecture",
+      "type": "Topic labs",
+      "summary": "Permission-gated deterministic workflow simulator",
+      "tags": "state machines, explicit approvals, execution logs"
+    },
+    {
+      "id": "labs/rag.html",
+      "title": "Retrieval-augmented generation",
+      "type": "Topic labs",
+      "summary": "Citation-first lexical retrieval demo (no model claims)",
+      "tags": "document retrieval, excerpts, provenance, unsupported answers"
+    },
+    {
+      "id": "labs/ai-maintenance.html",
+      "title": "AI-assisted maintenance",
+      "type": "Topic labs",
+      "summary": "HTML quality audit and suggested fixes",
+      "tags": "static analysis, maintainability, tests, accessibility"
+    },
+    {
+      "id": "labs/collaboration.html",
+      "title": "Real-time collaboration",
+      "type": "Topic labs",
+      "summary": "Same-origin tab synchronization with BroadcastChannel",
+      "tags": "BroadcastChannel, CRDT concepts, multi-tab messages"
+    },
+    {
+      "id": "labs/decentralization.html",
+      "title": "Decentralized architectures",
+      "type": "Topic labs",
+      "summary": "Portable peer-exchange packages",
+      "tags": "local-first, content addressing, exchange, provenance"
+    },
+    {
+      "id": "labs/communication.html",
+      "title": "Social interaction",
+      "type": "Topic labs",
+      "summary": "Locally persisted moderated discussion simulation",
+      "tags": "messages, safe rendering, drafts, moderation principles"
+    },
+    {
+      "id": "labs/geospatial.html",
+      "title": "Geospatial GIS",
+      "type": "Topic labs",
+      "summary": "Coordinate mapping and portable GeoJSON",
+      "tags": "lat lon, GeoJSON, projections, spatial visualization"
+    },
+    {
+      "id": "labs/sensors.html",
+      "title": "Device sensors & permissions",
+      "type": "Topic labs",
+      "summary": "Explicit capability inspection without silent tracking",
+      "tags": "geolocation, device permissions, consent, fallback"
+    },
+    {
+      "id": "labs/field-science.html",
+      "title": "Environmental monitoring",
+      "type": "Topic labs",
+      "summary": "Measured time-series, calibration and uncertainty",
+      "tags": "environmental measurements, units, quality flags"
+    },
+    {
+      "id": "labs/security.html",
+      "title": "Web security",
+      "type": "Topic labs",
+      "summary": "Safe rendering and browser security inspection",
+      "tags": "textContent, CSP, Trusted Types, origin, permissions"
+    },
+    {
+      "id": "labs/privacy.html",
+      "title": "Privacy engineering",
+      "type": "Topic labs",
+      "summary": "Local permissions ledger and portable privacy choices",
+      "tags": "data minimization, consent, retention, local processing"
+    },
+    {
+      "id": "labs/cryptography.html",
+      "title": "Cryptography & authentication",
+      "type": "Topic labs",
+      "summary": "SHA-256 digest and random generation",
+      "tags": "Web Crypto, SHA256, secure randomness, WebAuthn diagnostics"
+    },
+    {
+      "id": "labs/accessibility.html",
+      "title": "Accessibility & inclusive design",
+      "type": "Topic labs",
+      "summary": "Keyboard, visual preferences and announced status",
+      "tags": "WCAG, focus, contrast, motion, accessibility checks"
+    },
+    {
+      "id": "labs/performance.html",
+      "title": "Web performance",
+      "type": "Topic labs",
+      "summary": "Real performance measurement and workload tester",
+      "tags": "performance.now, timings, budget, async workloads"
+    },
+    {
+      "id": "labs/reliability.html",
+      "title": "Reliability & fault tolerance",
+      "type": "Topic labs",
+      "summary": "Retries, backoff, cancellation and simulated failures",
+      "tags": "timeouts, retry, recovery, cancellation, resilience"
+    },
+    {
+      "id": "labs/seo.html",
+      "title": "Search discovery & metadata",
+      "type": "Topic labs",
+      "summary": "Audit machine-readable metadata",
+      "tags": "title, description, canonical, structured data, robots"
+    },
+    {
+      "id": "labs/i18n.html",
+      "title": "Internationalization & localization",
+      "type": "Topic labs",
+      "summary": "Intl formatting, language and direction",
+      "tags": "Intl, locale, dates, numbers, currencies, RTL"
+    },
+    {
+      "id": "labs/publishing.html",
+      "title": "Print & document publishing",
+      "type": "Topic labs",
+      "summary": "Printable field guide and print preview",
+      "tags": "@media print, semantic publishing, citation formatting"
+    },
+    {
+      "id": "labs/hosting.html",
+      "title": "Hosting & deployment",
+      "type": "Topic labs",
+      "summary": "Deployment diagnostics and static/server boundaries",
+      "tags": "secure contexts, host, manifest, headers, offline deployment"
+    },
+    {
+      "id": "integrations/offline-archive.html",
+      "title": "Offline knowledge archive",
+      "type": "Integration labs",
+      "summary": "Collect evidence-backed notes with tags and source URLs",
+      "tags": "knowledge, Title, Source URL, Evidence category, Summary",
+      "purpose_workbench": "Source coverage & internal backlinks",
+      "specialty": "Explore explicit [[Title]] references, duplicate source URLs, and records that lack independently traceable sources. Links are textual references, not automatic evidence verification.",
+      "acceptance_test": "Test resolved and unresolved [[Title]] references; duplicate URLs; export coverage JSON"
+    },
+    {
+      "id": "integrations/food-garden.html",
+      "title": "Edible garden planner",
+      "type": "Integration labs",
+      "summary": "Plan edible planting beds and quantities",
+      "tags": "product, Crop, Area (m²), Estimated yield (kg/m²), Planting date",
+      "purpose_workbench": "Planting area & yield scenario",
+      "specialty": "Calculate per-crop estimates from your own area × assumed yield. This is a scenario calculator, not a biological prediction or planting recommendation.",
+      "acceptance_test": "Add two crops, adjust area budget, validate each area × assumption, export numerical CSV"
+    },
+    {
+      "id": "integrations/learning-quests.html",
+      "title": "Learning quest builder",
+      "type": "Integration labs",
+      "summary": "Create learning activities with practical completion evidence",
+      "tags": "effort, Quest, Minutes, Difficulty, Proof of learning",
+      "purpose_workbench": "Evidence-backed quest progression",
+      "specialty": "Complete quests explicitly and earn illustrative game points only after a learning-evidence description exists. This does not assess skill or award credentials.",
+      "acceptance_test": "Complete evidence-backed quest, reject empty evidence, check persisted completion and transcript"
+    },
+    {
+      "id": "integrations/field-survey.html",
+      "title": "Offline field survey",
+      "type": "Integration labs",
+      "summary": "Log observations with method and sampling context",
+      "tags": "measure, Site label (not private address), Sample ID, Reading, Unit, Method / calibration",
+      "purpose_workbench": "Measurement quality console",
+      "specialty": "Check sample-identifier duplicates, group numerical observations strictly by their units, and flag missing methods. No cross-unit averaging.",
+      "acceptance_test": "Repeat sample ID, mix units, confirm separate statistics and CSV matches records"
+    },
+    {
+      "id": "integrations/evidence-ledger.html",
+      "title": "Evidence provenance ledger",
+      "type": "Integration labs",
+      "summary": "Separate assertions, sources and verification status",
+      "tags": "evidence, Assertion, Source / identifier, Review status, Method / limits",
+      "purpose_workbench": "Human review & provenance queue",
+      "specialty": "Display disputed/unverified claims first and identify missing sources. A status label is a human entry; the tool never establishes truth by itself.",
+      "acceptance_test": "Flag disputed claim, verify sort order, source gaps and Markdown export"
+    },
+    {
+      "id": "integrations/household-resilience.html",
+      "title": "Household resilience checklist",
+      "type": "Integration labs",
+      "summary": "Plan essentials without making safety guarantees",
+      "tags": "inventory, Preparedness item, Quantity, Priority, Storage location",
+      "purpose_workbench": "Priority inventory & acquisition list",
+      "specialty": "Identify missing quantities and sort optional procurement notes by user-assigned priority; this does not measure emergency readiness.",
+      "acceptance_test": "Sort high/medium/low, flag zero counts, inspect procurement export"
+    },
+    {
+      "id": "integrations/community-decisions.html",
+      "title": "Community decision register",
+      "type": "Integration labs",
+      "summary": "Document options, consent and procedural outcomes",
+      "tags": "governance, Proposal, Affected stakeholders, Stage, Conditions / notes",
+      "purpose_workbench": "Consultation & decision register",
+      "specialty": "Surface proposals and their stated participants/conditions. Recording Approved is not evidence of consent or lawful process.",
+      "acceptance_test": "Stage filter and recorded stakeholder fields change output; export decision minutes"
+    },
+    {
+      "id": "integrations/map-notebook.html",
+      "title": "Geographic observation notebook",
+      "type": "Integration labs",
+      "summary": "Record field locations as labeled coordinates",
+      "tags": "map, Place label, Latitude, Longitude, Observation",
+      "purpose_workbench": "Geographic distance & bounding box",
+      "specialty": "Compute great-circle distances between two recorded observations on a spherical Earth approximation; not a navigational route.",
+      "acceptance_test": "Add two known coordinates, calculate plausible distance, reject >90 lat, verify GeoJSON lon/lat"
+    },
+    {
+      "id": "integrations/story-studio.html",
+      "title": "Interactive story studio",
+      "type": "Integration labs",
+      "summary": "Track characters, motives and evolving symbols",
+      "tags": "story, Character, What they want, Consequence, Recurring symbol",
+      "purpose_workbench": "Motif recurrence & character arc board",
+      "specialty": "Show which symbols recur across characters, then export a reproducible writing brief anchored to the actual records—not a generic AI-generated story.",
+      "acceptance_test": "Add recurring motif across characters; verify counts and story bible"
+    },
+    {
+      "id": "integrations/audio-journal.html",
+      "title": "Accessible audio journal",
+      "type": "Integration labs",
+      "summary": "Organize audio session records and transcripts",
+      "tags": "effort, Session title, Duration (minutes), Transcript / notes, Sharing",
+      "purpose_workbench": "Transcript desk & local playback",
+      "specialty": "Inspect transcript length and explicitly marked sharing preferences. Open a local audio file for playback without uploading it or saving it in the journal.",
+      "acceptance_test": "Add transcript, count words, load local audio and verify no network upload"
+    },
+    {
+      "id": "integrations/dataset-explorer.html",
+      "title": "Portable dataset explorer",
+      "type": "Integration labs",
+      "summary": "Store labeled measurements and compare records",
+      "tags": "measure, Data point, Value, Unit, Uncertainty ±",
+      "purpose_workbench": "Unit-aware uncertainty explorer",
+      "specialty": "Separate observations by identical unit strings; show arithmetic means and an uncertainty illustration assuming independent, uncorrelated reported ± values.",
+      "acceptance_test": "Add incompatible units and two points with ±; confirm separated means and propagated uncertainty"
+    },
+    {
+      "id": "integrations/accessibility-audit.html",
+      "title": "Accessibility audit board",
+      "type": "Integration labs",
+      "summary": "Record test results and necessary remedies",
+      "tags": "audit, Component, Criterion, Result, Remediation",
+      "purpose_workbench": "Defect triage & regression matrix",
+      "specialty": "Prioritize human-recorded failures and manual-review items. This interface does not certify WCAG conformance.",
+      "acceptance_test": "Create fail and manual-review records, check defect order and CSV"
+    },
+    {
+      "id": "integrations/privacy-workbench.html",
+      "title": "Privacy impact workbench",
+      "type": "Integration labs",
+      "summary": "Document collection purposes and reduction options",
+      "tags": "privacy, Data collected, Purpose, Necessity, Retention rule",
+      "purpose_workbench": "Data-minimization review",
+      "specialty": "Translate the user-assigned necessity labels into explicit keep/reconsider/remove queues and identify unspecified retention rules.",
+      "acceptance_test": "Label three data elements as Remove/Optional/Essential and verify inventory export"
+    },
+    {
+      "id": "integrations/exchange-hub.html",
+      "title": "Data exchange hub",
+      "type": "Integration labs",
+      "summary": "Create traceable dataset exchange packages",
+      "tags": "exchange, Dataset, Schema version, Reuse license, Source and rights",
+      "purpose_workbench": "Portable interchange manifest builder",
+      "specialty": "Package dataset names, versions, reuse licenses, and source statements. Generate SHA-256 when Web Crypto is available; a digest does not prove the contents are true.",
+      "acceptance_test": "Create manifest, inspect entry hash or explicit unsupported reason, compare exported entries"
+    },
+    {
+      "id": "integrations/collaboration-studio.html",
+      "title": "Collaboration planning studio",
+      "type": "Integration labs",
+      "summary": "Track participants, tasks and consent-based assignments",
+      "tags": "workflow, Shared task, Owner alias, State, Handoff details",
+      "purpose_workbench": "Local task board with controlled transitions",
+      "specialty": "Move local task cards through Open → In progress → Review → Done. This is not cross-user real-time synchronization.",
+      "acceptance_test": "Create task, advance to Done, reopen, reload state and export handoff CSV"
+    },
+    {
+      "id": "integrations/restoration-monitor.html",
+      "title": "Restoration monitoring dashboard",
+      "type": "Integration labs",
+      "summary": "Track baselines and repeat observations",
+      "tags": "delta, Plot / site, Baseline, Latest measurement, Measured indicator",
+      "purpose_workbench": "Paired restoration measurement analysis",
+      "specialty": "Compare repeated observations within the same indicator. Positive change is not necessarily ecological improvement; direction depends on the indicator.",
+      "acceptance_test": "Add paired positive and negative changes, mixed indicators, zero baseline and check CSV"
+    },
+    {
+      "id": "integrations/science-workbench.html",
+      "title": "Scientific calculation notebook",
+      "type": "Integration labs",
+      "summary": "Record quantities and explicit assumptions",
+      "tags": "product, Experiment, Input value, Conversion / multiplier, Assumptions",
+      "purpose_workbench": "Reproducible numerical notebook & unit converter",
+      "specialty": "Recalculate saved input × multiplier with stated assumptions. Separately, use a small deterministic conversion library with explicit unit pairs.",
+      "acceptance_test": "Test 0°C → 32°F, 1m → 3.281ft, and stored arithmetic independently"
+    },
+    {
+      "id": "integrations/ai-evaluation.html",
+      "title": "AI evaluation notebook",
+      "type": "Integration labs",
+      "summary": "Record reproducible tests and human findings",
+      "tags": "audit, Test case, Expected behavior, Observed behavior, Outcome",
+      "purpose_workbench": "Human-graded evaluation matrix",
+      "specialty": "List expected vs observed output next to the user-recorded outcome. The system never auto-generates a pass or pretends to run a model.",
+      "acceptance_test": "Add pass/fail/uncertain entries, verify denominator excludes uncertain and CSV is correct"
+    },
+    {
+      "id": "integrations/deployment-audit.html",
+      "title": "Deployment readiness board",
+      "type": "Integration labs",
+      "summary": "Track site release requirements and evidence",
+      "tags": "audit, Release check, Area, State, Verification method",
+      "purpose_workbench": "Release gate with evidence requirements",
+      "specialty": "Inspect each release area for at least one verified check with a nonempty proof statement. A passing checklist is not a security certification.",
+      "acceptance_test": "Test empty areas block gate, then verify all five with proof; export report"
+    },
+    {
+      "id": "integrations/emergency-kit.html",
+      "title": "Emergency kit inventory",
+      "type": "Integration labs",
+      "summary": "Maintain a portable inventory without implying professional advice",
+      "tags": "inventory, Supply, Quantity, Expiry date, Storage and checks",
+      "purpose_workbench": "Expiry & replenishment review",
+      "specialty": "Flag stored items with expired or near-term dates, separately from counts. Dates are compared using calendar dates, not clinical safety guidance.",
+      "acceptance_test": "Add expired and future items; adjust horizon; check date arithmetic and exported flags"
+    },
+    {
+      "id": "integrations/careers-map.html",
+      "title": "Regenerative career map",
+      "type": "Integration labs",
+      "summary": "Organize occupations, training and transferable capabilities",
+      "tags": "effort, Occupation, Transferable skill, Training hours (estimate), Credential or source",
+      "purpose_workbench": "Transferable-skill crosswalk & learning plan",
+      "specialty": "Group occupations by user-entered transferable skills and sort training-hour estimates; entries are not verified job postings or recognized credentials.",
+      "acceptance_test": "Create two occupations with same skill, verify grouped crosswalk and ordered roadmap"
+    },
+    {
+      "id": "integrations/publishing-desk.html",
+      "title": "Open publication desk",
+      "type": "Integration labs",
+      "summary": "Track article source, licensing and review readiness",
+      "tags": "publishing, Publication title, Author / attribution, License / permissions, Review state",
+      "purpose_workbench": "Pre-publication checks & structured metadata",
+      "specialty": "Check author attribution, rights statement, and user-entered review state before exporting draft Article JSON-LD. Exporting metadata does not publish a document.",
+      "acceptance_test": "Test Draft blocked; Ready with author/license exports valid JSON-LD but does not publish"
+    }
+  ]
+}

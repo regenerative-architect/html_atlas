@@ -1,0 +1,380 @@
+<!DOCTYPE html><!-- Zero-Harm & Anti-Inversion: this tool is built to inform and empower, never to manipulate, surveil, or coerce. No hidden data collection, no dark patterns, no auto-send. Any use of this file against those aims contradicts its design. --><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Permission-gated deterministic workflow simulator"><meta name="theme-color" content="#08111b"><meta name="color-scheme" content="dark light"><title>AI agent architecture | Next-Generation HTML Atlas</title><link rel="manifest" href="../manifest.webmanifest"><link rel="icon" href="../assets/icon.svg" type="image/svg+xml"><style>
+:root{color-scheme:dark;--bg:#08111b;--panel:#102234;--panel2:#183147;--edge:#38566b;--text:#e9f4f7;--muted:#b0c5d0;--accent:#80e5be;--focus:#ffd073;--red:#ffad9b;font:16px/1.65 system-ui,-apple-system,Segoe UI,Arial,sans-serif}*{box-sizing:border-box}[hidden]{display:none!important}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 84% 0%,#16354a 0,transparent 42%),var(--bg);color:var(--text)}a{color:var(--accent)}a:hover{text-decoration-thickness:2px}.skip{position:absolute;top:-9rem;left:1rem;background:var(--focus);color:#111;padding:.7rem;z-index:10}.skip:focus{top:1rem}.wrap{max-width:1180px;margin:auto;padding:1rem clamp(1rem,3.5vw,2rem) 4rem}.top{position:sticky;top:0;z-index:5;background:#08111bef;backdrop-filter:blur(8px);border-bottom:1px solid var(--edge)}.top>.wrap{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:.55rem 1rem}.brand{font-weight:800;text-decoration:none;color:var(--accent)}.top nav{display:flex;gap:1rem;flex-wrap:wrap}.top nav a{font-size:.9rem}.hero{padding:2.4rem 0 1.1rem}.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:.77rem;color:var(--accent);font-weight:800}h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.13;margin:.3rem 0 .8rem}h2{font-size:1.4rem;margin:0 0 .7rem}h3{margin:.25rem 0}.lead{max-width:75ch;font-size:1.1rem;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:1rem}.card,section.panel,details.panel{border:1px solid var(--edge);border-radius:16px;background:linear-gradient(145deg,var(--panel),#0b1b2a);padding:1.2rem;margin:0 0 1rem}.card{display:flex;flex-direction:column;gap:.5rem}.card p{margin:.1rem 0 .8rem;flex:1;color:var(--muted)}.tag{display:inline-block;width:fit-content;border:1px solid #3c7668;color:var(--accent);border-radius:99px;padding:.1rem .65rem;font-size:.77rem;letter-spacing:.02em}.muted,.hint,small{color:var(--muted)}.callout{border-left:4px solid var(--focus);padding:.8rem 1rem;background:#272b2c;border-radius:6px;margin:1rem 0}.warning{border-left-color:var(--red)}button,.btn,input,select,textarea{font:inherit}button,.btn{background:#1b584b;color:#f6fffb;border:1px solid #70b89a;border-radius:9px;padding:.52rem .8rem;cursor:pointer;display:inline-block;text-decoration:none}button:hover,.btn:hover{background:#236c59}button:disabled{opacity:.55;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:3px}input,select,textarea{max-width:100%;background:#091824;color:var(--text);border:1px solid #688194;border-radius:8px;padding:.55rem;width:100%}input[type=checkbox],input[type=radio]{width:auto;accent-color:var(--accent)}label{display:block;font-weight:650;margin:.65rem 0 .3rem}.toolbar{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:1rem 0}.toolbar>*{flex-shrink:0}output,.status{display:block;padding:.6rem;background:#112c36;border:1px solid #496773;border-radius:9px;min-height:2.7rem;white-space:pre-wrap;overflow-wrap:anywhere}.status:empty:before{content:'Ready.';color:var(--muted)}pre{overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;background:#020b12;color:#daf5e7;padding:1rem;border-radius:9px;border:1px solid var(--edge);font-size:.85rem}code{color:#d5f5c5}details>summary{cursor:pointer;font-weight:750;padding:.35rem 0}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}th,td{padding:.55rem;border-bottom:1px solid var(--edge);text-align:left}th{color:var(--accent)}.meter{height:12px;border:1px solid var(--edge);border-radius:20px;background:#06101b;overflow:hidden}.fill{background:var(--accent);height:100%;width:0;transition:width .2s}.row{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}.row>*{max-width:100%}.row input{width:auto;min-width:120px;flex:1}.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:1rem}.demo{background:#081b25;border:1px dashed #528a80;border-radius:12px;padding:1rem;min-height:110px}.demo p:first-child{margin-top:0}.pill{border:1px solid #538879;border-radius:30px;padding:.15rem .5rem;color:var(--accent);font-size:.8rem}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}.fineprint{font-size:.85rem;color:var(--muted)}.toc{display:flex;gap:.5rem;flex-wrap:wrap}.toc a{padding:.25rem .5rem;border:1px solid var(--edge);border-radius:8px}.chart{width:100%;height:230px;background:#0a1721;border:1px solid var(--edge);border-radius:8px}footer{border-top:1px solid var(--edge);margin-top:2rem;padding-top:1rem;font-size:.85rem;color:var(--muted)}@media(max-width:620px){.top{position:static}.card,section.panel{padding:1rem}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}@media print{:root{color-scheme:light;--bg:#fff;--text:#111;--panel:#fff;--edge:#aaa;--muted:#333;--accent:#064a32}body{background:white;color:#111}.top,.no-print,button,.btn{display:none!important}.wrap{max-width:none;padding:0}.card,section.panel,details.panel{background:white;color:#111;break-inside:avoid;border-color:#888}details{display:block}pre{color:#111;background:#eee}.demo,output,.status{color:#111;background:white}a{color:#064a32}.callout{background:#f3f3f1;color:#111;border-color:#aaa}input,select,textarea{background:#fff;color:#111;border-color:#888}.meter{background:#e4e4e1}.fill{background:#064a32}.chart{background:#f3f3f1}}
+
+/* ============================================================
+   NAVIGATION UPGRADE STYLES: sidebar TOC, top-bar jump menu,
+   and the between-page transition overlay. Same token reuse
+   rule as before \u2014 only existing/already-declared variables.
+   ============================================================ */
+
+/* --- Sidebar table of contents ---------------------------------------
+   PURPOSE: a persistent, sticky list of this page's own sections, so a
+   long page (with several worked examples) never forces blind scrolling
+   to find "Example 3" or "Try it yourself".
+   HOW IT WORKS: .layout is a flex row of <aside>+<main>; the JS below
+   scans <main> for headings and fills #side-nav-list, then highlights
+   whichever section is in view. Collapses to a toggle below 900px.
+   EXTEND: change the heading selector in buildSidebar() to pick up a
+   different heading level if a page's structure changes. */
+.layout{display:flex;align-items:flex-start;gap:clamp(1rem,3vw,2.2rem)}
+.layout>main{flex:1 1 auto;min-width:0}
+.side-nav{flex:0 0 220px;position:sticky;top:calc(3.4rem + .8rem);max-height:calc(100vh - 4.5rem);overflow-y:auto;padding-bottom:1rem}
+.side-nav-title{display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:.2rem 0 .5rem}
+.side-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.15rem}
+.side-nav a{display:block;padding:.4rem .6rem;border-radius:8px;color:var(--muted);font-size:.86rem;text-decoration:none;border-left:2px solid transparent;line-height:1.3}
+.side-nav a:hover,.side-nav a:focus-visible{background:var(--panel);color:var(--text)}
+.side-nav a.active{color:var(--accent);border-left-color:var(--accent);background:var(--panel)}
+.side-nav-toggle{display:none;width:100%;align-items:center;justify-content:space-between;background:var(--panel);color:var(--text);border:1px solid var(--edge);border-radius:10px;padding:.6rem .8rem;font:inherit;cursor:pointer;margin-bottom:.6rem}
+@media(max-width:900px){
+  .layout{flex-direction:column;gap:.6rem}
+  .side-nav{position:static;flex:none;width:100%;max-height:none;order:-1}
+  .side-nav-toggle{display:flex}
+  .side-nav-body{display:none}
+  .side-nav.open .side-nav-body{display:block}
+}
+@media print{.side-nav,.side-nav-toggle{display:none!important}}
+
+/* --- Top-bar jump menu ------------------------------------------------
+   Native <select>, so it is fully keyboard- and screen-reader-operable
+   with no extra ARIA wiring. Options are filled in from ATLAS_PAGES at
+   load time (see the shared script) so every page can link to every
+   other page without hand-maintained relative paths. */
+.jump-nav{margin-left:auto;display:flex;align-items:center;gap:.4rem;font-size:.82rem;color:var(--muted)}
+.jump-nav select{background:var(--panel2);color:var(--text);border:1px solid var(--edge);border-radius:8px;padding:.35rem .5rem;font:inherit;max-width:46vw}
+header.top .wrap{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+
+/* --- Between-page transition: galaxy + particles ----------------------
+   Purely decorative canvas overlay; see initNavTransition() in the
+   shared script for the interception logic and its reduced-motion and
+   failure fallbacks (navigation always still happens). */
+.nav-transition{display:none;position:fixed;inset:0;z-index:70;background:#02050a}
+.nav-transition.is-active{display:block}
+.nav-transition canvas{width:100%;height:100%;display:block}
+@media print{.nav-transition{display:none!important}}
+</style></head><body data-sw="../sw.js"><div class="nav-transition no-print" id="nav-transition" aria-hidden="true"><canvas id="nav-transition-canvas"></canvas></div><a class="skip" href="#main">Skip to content</a><header class="top"><div class="wrap"><a class="brand" href="../index.html">✧ Foster + Navi / HTML Atlas</a><nav aria-label="Primary"><a href="../index.html#categories">41 topic labs</a><a href="../index.html#integrations">22 integrations</a><a href="../index.html#about">How it works</a></nav><div class="jump-nav"><label for="jump-select">Jump to page</label><select id="jump-select"><option value="">Jump to a page…</option></select></div></div></header><div class="layout wrap"><aside class="side-nav" id="side-nav"><button type="button" class="side-nav-toggle" id="side-nav-toggle" aria-expanded="false" aria-controls="side-nav-body">On this page <span aria-hidden="true">▾</span></button><div class="side-nav-body"><strong class="side-nav-title">On this page</strong><nav aria-label="Page sections"><ul id="side-nav-list"></ul></nav></div></aside><main id="main"><header class="hero"><div class="eyebrow">Topic 23/41 · self-contained HTML lab</div><h1>AI agent architecture</h1><p class="lead">Permission-gated deterministic workflow simulator</p><div class="toolbar no-print"><label class="row"><input type="checkbox" id="completed"> Mark this page complete</label><span id="progress-note" class="fineprint" role="status"></span><button type="button" onclick="window.print()">Print / save PDF</button></div></header><div class="callout"><strong>Working demonstration:</strong> Permission-gated deterministic workflow simulator. Try the control below, inspect the code, then adapt the implementation prompt.</div><section class="panel" id="live"><h2>Interactive lab</h2><div class="demo"><label for="agent-task">Select a demonstration task</label><select id="agent-task"><option value="read">Summarize local sample (read-only)</option><option value="write">Modify local task state (approval required)</option></select><div class="toolbar"><label><input type="checkbox" id="agent-approval"> Explicitly approve modification</label><button id="agent-run">Run bounded workflow</button></div><output id="agent-log"></output></div></section><section class="panel" id="more-examples"><h2>More worked examples</h2><p class="lead">Three structural patterns underneath most working agent systems, independent of which model is doing the reasoning.</p><details><summary>The core planner-executor loop</summary><p>Strip away the framework branding and most agents are this loop: ask the model what to do next, run exactly that one tool, feed the result back in, repeat — with a hard step limit so a confused model cannot run forever.</p><pre><code>async function runAgentLoop(goal,tools,maxSteps){
+  maxSteps=maxSteps||6;
+  let history=[{role:&#x27;user&#x27;,content:goal}];
+  for(let step=0;step&lt;maxSteps;step++){
+    const decision=await askModel(history,tools);
+    if(decision.action===&#x27;final&#x27;)return decision.answer;
+    const result=await tools[decision.tool](decision.args);
+    history.push({role:&#x27;tool&#x27;,tool:decision.tool,result:result});
+  }
+  throw new Error(&#x27;Agent did not converge within maxSteps&#x27;);
+}</code></pre><p>Expected outcome: the loop either returns a final answer within <code>maxSteps</code> or raises, on purpose — a silently infinite loop is the failure mode this guards against.</p></details><details><summary>Validating structured output before acting on it</summary><p>A model asked for JSON does not always return valid JSON, or a valid-but-wrong shape. Validating before use turns a downstream crash (or worse, a silently wrong tool call) into one clear, catchable error.</p><pre><code>function parseAgentAction(raw){
+  let obj;
+  try{obj=JSON.parse(raw)}catch{throw new Error(&#x27;Model did not return valid JSON&#x27;)}
+  if(!obj.action||[&#x27;call_tool&#x27;,&#x27;final&#x27;].indexOf(obj.action)===-1)throw new Error(&#x27;Missing or invalid action field&#x27;);
+  return obj;
+}</code></pre><p>Extend it: check argument types per tool the same way, not just the outer <code>action</code>/<code>tool</code> shape — the goal is to fail on the model’s output, never on your own code.</p></details><details><summary>A human-approval gate before a consequential step</summary><p>Not every tool call should run automatically. Wrapping the ones with real-world effect — sending something, spending something, deleting something — in an explicit confirmation keeps a person in the loop for exactly the steps that matter.</p><pre><code>async function withConfirmation(action,describe){
+  const ok=confirm(&#x27;Agent wants to: &#x27;+describe(action)+&#x27;\n\nAllow this step?&#x27;);
+  if(!ok)throw new Error(&#x27;Step rejected by human reviewer&#x27;);
+  return action.run();
+}</code></pre><p>Expected outcome: low-stakes tools (a lookup, a calculation) run straight through the loop above; anything wrapped in <code>withConfirmation</code> pauses for a real yes first.</p></details></section><div class="two"><section class="panel"><h2>Feature inventory</h2><ul><li>state machines</li><li>explicit approvals</li><li>execution logs</li></ul></section><section class="panel"><h2>Acceptance tests</h2><ul><li>Open the file and interact with the demonstration</li><li>Verify its output changes in response to input</li><li>Check behavior with keyboard navigation</li><li>Reload to test persistence if relevant</li><li>Inspect included implementation source</li><li>Test offline via a local file</li><li>Check capability and permission fallback</li><li>Inspect output for untrusted-input safety</li></ul></section></div><section class="panel"><h2>Support, limits & safety</h2><p>This is a deterministic permission-gating simulator, not an autonomous AI agent or security boundary. Enforce real authorization on trusted infrastructure.</p><p class="fineprint">This laboratory demonstrates a bounded local example. A capability test is not proof of full browser interoperability. External services, user permissions, device access, and production security require separate verification.</p></section><section class="panel" id="prompt"><h2>Copyable implementation prompt</h2><p class="hint">Customize this instruction for your own website; verify the result rather than assuming it works.</p><pre id="ai-prompt">Upgrade my website using AI agent architecture. Scope: Permission-gated deterministic workflow simulator. Explicitly consider state machines, explicit approvals, execution logs. Prefer native HTML and documented browser APIs; keep the core feature usable offline wherever possible. Implement a genuine working demonstration and a non-JavaScript reading fallback. Provide accessible keyboard interaction, reduced-motion support where relevant, feature detection, graceful degradation, mobile layouts, printable content, a security/privacy assessment and clearly labeled external requirements. Explain what is fully implemented versus simulated or unavailable. Include tests and preserve existing user data during upgrades.</pre><button type="button" id="copy-prompt">Copy prompt</button> <span id="copy-state" role="status"></span></section><details class="panel" id="source"><summary>Inspect the exact JavaScript running this demonstration</summary><pre id="source-code">JavaScript required to view source in this pane. The HTML file itself contains the implementation.</pre></details><footer><p><strong>Foster + Navi</strong> · Offline-friendly, progressive enhancement and user-controlled data. Educational reference, not an audited production component. Local records are not a substitute for backups.</p><p><a href="../index.html">← Back to atlas</a> · <a href="../README.md">README & attribution</a> · No trackers or external runtime dependencies.</p><p class="fineprint">Zero-Harm &amp; Anti-Inversion: built to inform and empower, not manipulate, surveil or coerce. No hidden data collection, no dark patterns, no auto-send — any repurposing against that intent contradicts this file’s design.</p><noscript>JavaScript is disabled. The explanations and feature inventories remain readable; interactive demonstrations, persistence and completion tracking require JavaScript.</noscript></footer></main></div><script>'use strict';
+const $=(s,root=document)=>root.querySelector(s);
+const $$=(s,root=document)=>Array.from(root.querySelectorAll(s));
+const safe=(v)=>String(v??'');
+const say=(v,id='#status')=>{let e=$(id);if(e)e.textContent=safe(v)};
+/* === Atlas Store: IndexedDB-first, localStorage-fallback, fully offline ===
+   PURPOSE — persists atlas-wide state (page-complete list, notes, HUD/XP,
+   streak, badges, and a settings stub for language/theme) so progress
+   survives reloads and works with no network connection at all.
+   HOW IT WORKS — every read/write tries IndexedDB first (bigger quota,
+   structured, still available offline). If IndexedDB throws or is missing
+   (older browser, some private-browsing modes, some file:// contexts) it
+   falls back to localStorage automatically, and every write also mirrors
+   into localStorage as a second safety net either way.
+   HOW TO EXTEND — add new keys to the object getState() returns (e.g.
+   s.settings.lang for a future translation, s.hud for new badges); call
+   saveState(s) with the whole object and every page that reads that key
+   will pick it up the same way. Nothing here needs a server.
+   EXPECTED OUTCOME — getState()/saveState() behave like a tiny async
+   key-value store; the atlas keeps working with zero code changes if
+   IndexedDB is unavailable. */
+const ATLAS_DB='foster_navi_atlas_db',ATLAS_STORE='kv',ATLAS_KEY='foster_navi_atlas_v1';
+let _atlasDbPromise=null;
+function openAtlasDB(){
+  if(_atlasDbPromise)return _atlasDbPromise;
+  _atlasDbPromise=new Promise(resolve=>{
+    if(!('indexedDB'in window)){resolve(null);return}
+    try{
+      const req=indexedDB.open(ATLAS_DB,1);
+      req.onupgradeneeded=()=>{try{req.result.createObjectStore(ATLAS_STORE)}catch{}};
+      req.onsuccess=()=>resolve(req.result);
+      req.onerror=()=>resolve(null);
+      req.onblocked=()=>resolve(null);
+    }catch{resolve(null)}
+  });
+  return _atlasDbPromise;
+}
+function idbGet(key){
+  return openAtlasDB().then(db=>new Promise(resolve=>{
+    if(!db){resolve(undefined);return}
+    try{const tx=db.transaction(ATLAS_STORE,'readonly'),rq=tx.objectStore(ATLAS_STORE).get(key);
+      rq.onsuccess=()=>resolve(rq.result);rq.onerror=()=>resolve(undefined)}catch{resolve(undefined)}
+  }));
+}
+function idbSet(key,value){
+  return openAtlasDB().then(db=>new Promise(resolve=>{
+    if(!db){resolve(false);return}
+    try{const tx=db.transaction(ATLAS_STORE,'readwrite');tx.objectStore(ATLAS_STORE).put(value,key);
+      tx.oncomplete=()=>resolve(true);tx.onerror=()=>resolve(false)}catch{resolve(false)}
+  }));
+}
+async function getState(){
+  let fromIdb=await idbGet(ATLAS_KEY);
+  if(fromIdb&&typeof fromIdb==='object')return fromIdb;
+  try{
+    let parsed=JSON.parse(localStorage.getItem(ATLAS_KEY)||'{}');
+    if(!parsed||typeof parsed!=='object')parsed={};
+    if(Object.keys(parsed).length)idbSet(ATLAS_KEY,parsed);
+    return parsed;
+  }catch{return {}}
+}
+async function saveState(s){
+  let ok=await idbSet(ATLAS_KEY,s);
+  try{localStorage.setItem(ATLAS_KEY,JSON.stringify(s))}catch{}
+  /* Tell any listener on this page a save just landed, instead of letting
+     two independent handlers both read/write state off the same click and
+     race each other. Harmless no-op on pages with no listener attached. */
+  try{dispatchEvent(new CustomEvent('atlas:statechange',{detail:s}))}catch{}
+  return ok||true;
+}
+/* Serialises every read-modify-write of the shared state. Without it, two
+   writers that overlap (the visit-streak update at page load and a quick click
+   on "mark complete", or two handlers on the hub page) can each read the same
+   old object and the later write silently erases the earlier one. Tasks run
+   strictly one after another; a task that throws never blocks the ones queued
+   behind it. Never call a locked helper from inside another locked task. */
+let _stateLock=Promise.resolve();
+function withStateLock(task){
+  const run=_stateLock.then(task,task);
+  _stateLock=run.catch(()=>{});
+  return run;
+}
+async function markDone(id,on){
+  return withStateLock(async()=>{
+    let s=await getState();
+    s.done=Array.isArray(s.done)?s.done:[];
+    s.done=on?[...new Set([...s.done,id])]:s.done.filter(x=>x!==id);
+    await saveState(s);
+    return s.done.length;
+  });
+}
+/* Visit-streak tracker for the HUD, updated from every page (not just the
+   index) so working through any lab on a given day keeps the streak alive.
+   Compares local calendar dates only (YYYY-MM-DD), so it is not sensitive
+   to the exact time of day. Runs at most once per page load. EXTEND: read
+   (await getState()).hud on the index page to render level/streak/badges. */
+async function touchStreak(){
+  return withStateLock(touchStreakLocked);
+}
+async function touchStreakLocked(){
+  let s=await getState();
+  let today=new Date();
+  let ymd=today.getFullYear()+'-'+String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0');
+  let h=s.hud&&typeof s.hud==='object'?s.hud:{streak:0,longestStreak:0,lastVisit:null};
+  if(h.lastVisit===ymd){/* already counted today */}
+  else{
+    let prevWasYesterday=false;
+    if(h.lastVisit){
+      let prev=new Date(h.lastVisit+'T00:00:00');
+      let diffDays=Math.round((today.setHours(0,0,0,0)-prev.setHours(0,0,0,0))/86400000);
+      prevWasYesterday=diffDays===1;
+    }
+    h.streak=prevWasYesterday?(h.streak||0)+1:1;
+    h.longestStreak=Math.max(h.longestStreak||0,h.streak);
+    h.lastVisit=ymd;
+    s.hud=h;
+    await saveState(s);
+  }
+}
+function download(name,text,type='application/json'){const a=document.createElement('a'),u=URL.createObjectURL(new Blob([text],{type}));a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1500)}
+/* Gentle client-side pacing: ignores repeat calls within `ms` so rapid
+   clicks/keystrokes on save/search/import controls cannot spam storage
+   writes or thrash the UI. A courtesy limiter, not a security control. */
+function gentleLimit(fn,ms=350){let last=0;return(...args)=>{const now=Date.now();if(now-last<ms)return;last=now;return fn(...args)}}
+/* Leading + trailing coalescer, for handlers that mirror what the person LAST did
+   (the completion checkbox, saving notes, filtering as you type). The first call in
+   a burst runs at once, so a single click, keystroke or scripted fill is reflected
+   immediately; any further calls inside the window collapse into ONE extra run with
+   the latest arguments once things go quiet. Unlike gentleLimit it never discards the
+   final event, so the screen and the stored state always converge on the last action.
+   Keep gentleLimit for one-shot actions where a repeat really should be ignored
+   (starting a download). */
+function coalesceCalls(fn,ms=300){
+  let timer=null,queued=false,latest=[];
+  const settle=()=>{timer=null;if(queued){queued=false;fn(...latest)}};
+  return(...args)=>{
+    latest=args;
+    if(timer===null)fn(...args);
+    else{queued=true;clearTimeout(timer)}
+    timer=setTimeout(settle,ms);
+  };
+}
+async function initChrome(id){
+  const box=$('#completed');
+  if(box){
+    const st=await getState();
+    box.checked=(st.done||[]).includes(id);
+    box.addEventListener('change',coalesceCalls(async()=>{
+      await markDone(id,box.checked);
+      const note=$('#progress-note');if(note)note.textContent=box.checked?'Marked complete locally.':'Completion removed.';
+    },300));
+  }
+  const copy=$('#copy-prompt');
+  if(copy)copy.onclick=async()=>{const t=$('#ai-prompt').textContent;try{await navigator.clipboard.writeText(t);$('#copy-state').textContent='Copied.'}catch{$('#copy-state').textContent='Select and copy the prompt manually.'}};
+  const src=$('#source-code'),run=$('#demo-script');
+  if(src&&run)src.textContent=run.textContent;
+  if('serviceWorker'in navigator&&(location.protocol==='https:'||['localhost','127.0.0.1','[::1]'].includes(location.hostname))){
+    navigator.serviceWorker.register(document.body.dataset.sw).catch(()=>{});
+  }
+  touchStreak().catch(()=>{});
+}
+/* === Sidebar table of contents (per-page) ==============================
+   Scans this page's own <main> for section headings and fills the
+   sidebar with jump links, then highlights whichever section is
+   currently in view via IntersectionObserver. EXTEND: this reads
+   `section > h2` under #main, so a new <section><h2>...</h2>...</section>
+   — e.g. a newly added worked example — shows up with no extra wiring. */
+function slugify(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')||'section'}
+function buildSidebar(){
+  const list=$('#side-nav-list'),main=$('#main');
+  if(!list||!main)return;
+  const heads=$$('section > h2',main);
+  heads.forEach(h=>{
+    const section=h.parentElement;
+    if(!section.id){
+      let base=slugify(h.textContent),id=base,n=2;
+      while(document.getElementById(id)){id=base+'-'+n;n++}
+      section.id=id;
+    }
+    const li=document.createElement('li'),a=document.createElement('a');
+    a.href='#'+section.id;a.textContent=h.textContent;
+    li.appendChild(a);list.appendChild(li);
+  });
+  const links=$$('#side-nav-list a');
+  if(links.length&&'IntersectionObserver'in window){
+    const byId={};links.forEach(a=>byId[a.getAttribute('href').slice(1)]=a);
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(en=>{if(en.isIntersecting){const a=byId[en.target.id];if(a)links.forEach(l=>l.classList.toggle('active',l===a))}});
+    },{rootMargin:'-25% 0px -65% 0px'});
+    Object.keys(byId).forEach(id=>{const el=document.getElementById(id);if(el)io.observe(el)});
+  }
+  const toggle=$('#side-nav-toggle'),nav=$('#side-nav');
+  if(toggle&&nav)toggle.addEventListener('click',()=>{
+    const open=nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded',open?'true':'false');
+  });
+}
+
+/* === Top-bar jump menu =================================================
+   Fills #jump-select from the embedded ATLAS_PAGES list below. Each
+   option's URL is computed from data-sw (already "../sw.js" one level
+   deep, "sw.js" at the root) instead of hard-coded paths, so this exact
+   same script works unmodified on every page regardless of depth.
+   EXTEND: ATLAS_PAGES is generated from catalog.json; regenerate it the
+   same way if pages are ever added, renamed or removed. */
+const ATLAS_PAGES=[{"id":"labs/semantic-html.html","t":"Semantic HTML & document architecture","g":"labs"},{"id":"labs/html-attributes.html","t":"HTML attributes & smart interfaces","g":"labs"},{"id":"labs/native-interaction.html","t":"Native interactive HTML","g":"labs"},{"id":"labs/advanced-forms.html","t":"Advanced forms & data entry","g":"labs"},{"id":"labs/css-layout.html","t":"Responsive CSS layout systems","g":"labs"},{"id":"labs/visual-styling.html","t":"Advanced visual styling","g":"labs"},{"id":"labs/motion.html","t":"Animation & cinematic interfaces","g":"labs"},{"id":"labs/javascript-architecture.html","t":"JavaScript application architecture","g":"labs"},{"id":"labs/offline-first.html","t":"Offline-first functionality","g":"labs"},{"id":"labs/pwa.html","t":"Progressive Web Apps","g":"labs"},{"id":"labs/storage.html","t":"Local data storage","g":"labs"},{"id":"labs/file-portability.html","t":"File import/export","g":"labs"},{"id":"labs/integrity.html","t":"Integrity & provenance","g":"labs"},{"id":"labs/search.html","t":"Advanced search engines","g":"labs"},{"id":"labs/knowledge.html","t":"Knowledge management","g":"labs"},{"id":"labs/graph-navigation.html","t":"Visual knowledge navigation","g":"labs"},{"id":"labs/images.html","t":"Image processing","g":"labs"},{"id":"labs/audio-video.html","t":"Audio & video production","g":"labs"},{"id":"labs/visualization.html","t":"Analytical visualization","g":"labs"},{"id":"labs/gpu.html","t":"GPU & graphics","g":"labs"},{"id":"labs/spatial.html","t":"Spatial interfaces","g":"labs"},{"id":"labs/local-ai.html","t":"Local AI & browser AI","g":"labs"},{"id":"labs/agents.html","t":"AI agent architecture","g":"labs"},{"id":"labs/rag.html","t":"Retrieval-augmented generation","g":"labs"},{"id":"labs/ai-maintenance.html","t":"AI-assisted maintenance","g":"labs"},{"id":"labs/collaboration.html","t":"Real-time collaboration","g":"labs"},{"id":"labs/decentralization.html","t":"Decentralized architectures","g":"labs"},{"id":"labs/communication.html","t":"Social interaction","g":"labs"},{"id":"labs/geospatial.html","t":"Geospatial GIS","g":"labs"},{"id":"labs/sensors.html","t":"Device sensors & permissions","g":"labs"},{"id":"labs/field-science.html","t":"Environmental monitoring","g":"labs"},{"id":"labs/security.html","t":"Web security","g":"labs"},{"id":"labs/privacy.html","t":"Privacy engineering","g":"labs"},{"id":"labs/cryptography.html","t":"Cryptography & authentication","g":"labs"},{"id":"labs/accessibility.html","t":"Accessibility & inclusive design","g":"labs"},{"id":"labs/performance.html","t":"Web performance","g":"labs"},{"id":"labs/reliability.html","t":"Reliability & fault tolerance","g":"labs"},{"id":"labs/seo.html","t":"Search discovery & metadata","g":"labs"},{"id":"labs/i18n.html","t":"Internationalization & localization","g":"labs"},{"id":"labs/publishing.html","t":"Print & document publishing","g":"labs"},{"id":"labs/hosting.html","t":"Hosting & deployment","g":"labs"},{"id":"integrations/offline-archive.html","t":"Offline knowledge archive","g":"integrations"},{"id":"integrations/food-garden.html","t":"Edible garden planner","g":"integrations"},{"id":"integrations/learning-quests.html","t":"Learning quest builder","g":"integrations"},{"id":"integrations/field-survey.html","t":"Offline field survey","g":"integrations"},{"id":"integrations/evidence-ledger.html","t":"Evidence provenance ledger","g":"integrations"},{"id":"integrations/household-resilience.html","t":"Household resilience checklist","g":"integrations"},{"id":"integrations/community-decisions.html","t":"Community decision register","g":"integrations"},{"id":"integrations/map-notebook.html","t":"Geographic observation notebook","g":"integrations"},{"id":"integrations/story-studio.html","t":"Interactive story studio","g":"integrations"},{"id":"integrations/audio-journal.html","t":"Accessible audio journal","g":"integrations"},{"id":"integrations/dataset-explorer.html","t":"Portable dataset explorer","g":"integrations"},{"id":"integrations/accessibility-audit.html","t":"Accessibility audit board","g":"integrations"},{"id":"integrations/privacy-workbench.html","t":"Privacy impact workbench","g":"integrations"},{"id":"integrations/exchange-hub.html","t":"Data exchange hub","g":"integrations"},{"id":"integrations/collaboration-studio.html","t":"Collaboration planning studio","g":"integrations"},{"id":"integrations/restoration-monitor.html","t":"Restoration monitoring dashboard","g":"integrations"},{"id":"integrations/science-workbench.html","t":"Scientific calculation notebook","g":"integrations"},{"id":"integrations/ai-evaluation.html","t":"AI evaluation notebook","g":"integrations"},{"id":"integrations/deployment-audit.html","t":"Deployment readiness board","g":"integrations"},{"id":"integrations/emergency-kit.html","t":"Emergency kit inventory","g":"integrations"},{"id":"integrations/careers-map.html","t":"Regenerative career map","g":"integrations"},{"id":"integrations/publishing-desk.html","t":"Open publication desk","g":"integrations"}];
+function buildJumpMenu(){
+  const sel=$('#jump-select');
+  if(!sel)return;
+  const rootPrefix=(document.body.dataset.sw||'sw.js').replace('sw.js','');
+  const labsGroup=document.createElement('optgroup'),intGroup=document.createElement('optgroup');
+  labsGroup.label='Topic labs';intGroup.label='Integrations';
+  ATLAS_PAGES.forEach(p=>{
+    const opt=document.createElement('option');
+    opt.value=rootPrefix+p.id;opt.textContent=p.t;
+    (p.g==='labs'?labsGroup:intGroup).appendChild(opt);
+  });
+  sel.appendChild(labsGroup);sel.appendChild(intGroup);
+  sel.addEventListener('change',()=>{if(sel.value)location.href=sel.value});
+}
+
+/* === Nav transition: galaxy + particles between page clicks ============
+   PURPOSE: a brief, purely decorative "hyperspace" overlay when moving
+   between atlas pages, instead of an instant blank reload.
+   HOW IT WORKS: intercepts clicks on same-origin links to a different
+   HTML page (never same-page #anchors, modified clicks, or target=_blank
+   links), paints a canvas starfield+nebula for ~380ms, then navigates.
+   Skipped entirely under prefers-reduced-motion — those visitors get
+   an instant, ordinary navigation — and navigation still happens even
+   if the canvas or this whole feature fails for any reason.
+   EXTEND: change NAV_TRANSITION_MS for timing, PARTICLE_COUNT for
+   density, or the color stops in paintGalaxy() for a different palette. */
+const NAV_TRANSITION_MS=380,PARTICLE_COUNT=140;
+let _navParticles=null,_navRaf=0;
+function buildNavParticles(w,h){
+  const arr=[];
+  for(let i=0;i<PARTICLE_COUNT;i++){
+    arr.push({x:Math.random()*w,y:Math.random()*h,z:0.3+Math.random()*0.7,r:0.4+Math.random()*1.6,tw:Math.random()*Math.PI*2,a:0.4+Math.random()*0.6});
+  }
+  return arr;
+}
+function paintGalaxy(ctx,w,h,t){
+  const g=ctx.createRadialGradient(w*0.5,h*0.42,0,w*0.5,h*0.42,Math.max(w,h)*0.75);
+  g.addColorStop(0,'#1c2f52');g.addColorStop(.45,'#0c1830');g.addColorStop(1,'#020509');
+  ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+  ctx.save();ctx.globalCompositeOperation='lighter';
+  const blobs=[{x:w*0.32,y:h*0.38,r:w*0.32,c:'rgba(201,168,255,0.10)'},{x:w*0.68,y:h*0.6,r:w*0.28,c:'rgba(143,184,255,0.10)'}];
+  blobs.forEach((b,i)=>{
+    const bx=b.x+Math.sin(t/1400+i)*14,by=b.y+Math.cos(t/1600+i)*10;
+    const bg=ctx.createRadialGradient(bx,by,0,bx,by,b.r);
+    bg.addColorStop(0,b.c);bg.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
+  });
+  ctx.restore();
+}
+function paintNavParticles(ctx,particles,w,h,t){
+  particles.forEach(p=>{
+    const tw=0.55+0.45*Math.sin(t/220+p.tw);
+    ctx.globalAlpha=p.a*tw*p.z;
+    ctx.fillStyle=p.z>0.7?'#eaf6ff':'#8fb8ff';
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r*p.z*1.6,0,Math.PI*2);ctx.fill();
+    p.y-=0.12*p.z;
+    if(p.y<-4)p.y=h+4;
+  });
+  ctx.globalAlpha=1;
+}
+function beginNavTransition(){
+  const el=$('#nav-transition'),canvas=$('#nav-transition-canvas');
+  if(!el||!canvas)return false;
+  const ctx=canvas.getContext('2d');
+  if(!ctx)return false;
+  const w=innerWidth,h=innerHeight;
+  canvas.width=w;canvas.height=h;
+  if(!_navParticles)_navParticles=buildNavParticles(w,h);
+  el.classList.add('is-active');
+  el.removeAttribute('aria-hidden');
+  const start=performance.now();
+  (function frame(now){
+    paintGalaxy(ctx,w,h,now);
+    paintNavParticles(ctx,_navParticles,w,h,now);
+    if(now-start<NAV_TRANSITION_MS+120)_navRaf=requestAnimationFrame(frame);
+  })(start);
+  return true;
+}
+function initNavTransition(){
+  const reduced=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)').matches:false;
+  if(reduced)return;
+  document.addEventListener('click',(e)=>{
+    if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+    const a=e.target.closest('a[href]');
+    if(!a||a.target==='_blank'||a.hasAttribute('download'))return;
+    const href=a.getAttribute('href');
+    if(!href||href.startsWith('#')||href.startsWith('mailto:')||href.startsWith('tel:')||href.startsWith('javascript:'))return;
+    let url;
+    try{url=new URL(href,location.href)}catch{return}
+    if(url.origin!==location.origin)return;
+    if(url.pathname===location.pathname&&url.hash)return;
+    e.preventDefault();
+    const started=beginNavTransition();
+    setTimeout(()=>{location.href=href},started?NAV_TRANSITION_MS:0);
+  },{capture:true});
+}
+initChrome("labs/agents.html");
+buildSidebar();
+buildJumpMenu();
+initNavTransition();
+
+</script><script id="demo-script">let taskCount=0;$('#agent-run').onclick=()=>{const write=$('#agent-task').value==='write',approved=$('#agent-approval').checked;const steps=['1. Validate task against allowlist.'];if(write&&!approved)steps.push('2. DENIED: explicit approval not granted. No write performed.');else if(write){taskCount++;steps.push('2. Approved deterministic local update; count='+taskCount);}else steps.push('2. Read sample record, returned a summary: "one local record".');steps.push('3. Audit log generated. No network calls or model inference.');say(steps.join('\n'),'#agent-log')};</script></body></html>
