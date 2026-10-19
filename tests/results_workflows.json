@@ -1,0 +1,79 @@
+{
+  "suite": "workflows",
+  "total": 14,
+  "passed": 14,
+  "failed": 0,
+  "seconds": 20.6,
+  "results": [
+    {
+      "test": "home page counts: 44 labs, 24 tools, 68 map points",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "catalog search: synonyms, specialties and filters",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "command palette finds and opens a page",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "command palette explains glossary terms",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "comfort settings apply and persist across pages",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "device reduced-motion preference is respected",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "privacy panel reports the lock and zero outside connections",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "page notes and completion reach the home dashboard",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "state lock keeps 20 concurrent writes and the rhythm update",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "progress backup, reset and restore",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "following a learning path shows the trail and the path banner",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "one-minute breathing pause starts and stops",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "print styles hide navigation and use a white page",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "offline copy: pages open with the network switched off",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

@@ -1,0 +1,244 @@
+{
+  "suite": "tools",
+  "total": 47,
+  "passed": 47,
+  "failed": 0,
+  "seconds": 58.7,
+  "results": [
+    {
+      "test": "sample, workbench and reload: accessibility-audit",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: ai-evaluation",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: audio-journal",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: careers-map",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: collaboration-studio",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: community-decisions",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: compassionate-messages",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: dataset-explorer",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: deployment-audit",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: emergency-kit",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: evidence-ledger",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: exchange-hub",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: field-survey",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: food-garden",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: household-resilience",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: learning-quests",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: map-notebook",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: mutual-aid",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: offline-archive",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: privacy-workbench",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: publishing-desk",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: restoration-monitor",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: science-workbench",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "sample, workbench and reload: story-studio",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "edit, delete and Undo",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "JSON backup, delete all, restore",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "import refuses other tools and bad values",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "CSV export neutralises formulas",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "IndexedDB copy restores cleared quick store",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "garden yield and space budget",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "science converts 0 \u00b0C to 32 \u00b0F",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "quest completion toggles",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "map: one degree at the equator is about 111 km",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "dataset groups by unit before averaging",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "archive backlinks resolve and flag missing targets",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "field survey flags duplicate sample ids",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "decision register filters by stage",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "publishing desk gates on review state",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "task board advances a task",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "AI evaluation counts only reviewed tests",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "release gate stays closed without evidence",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "emergency kit expiry window (relative sample dates)",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "exchange hub builds a manifest",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "restoration refuses a percentage from a zero baseline",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "compassionate messages: compose, check, rough draft, download",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "mutual aid: matching, expiry, privacy check, minimal list",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "security lab shows hostile markup as plain text",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

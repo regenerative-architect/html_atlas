@@ -1,0 +1,704 @@
+{
+  "suite": "a11y",
+  "total": 139,
+  "passed": 139,
+  "failed": 0,
+  "seconds": 137.1,
+  "results": [
+    {
+      "test": "axe night: index.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/accessibility.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/advanced-forms.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/agents.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/ai-maintenance.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/audio-video.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/collaboration.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/communication.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/cryptography.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/css-layout.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/decentralization.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/field-science.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/file-portability.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/geospatial.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/gpu.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/graph-navigation.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/hosting.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/html-attributes.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/i18n.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/images.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/integrity.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/javascript-architecture.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/knowledge.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/local-ai.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/motion.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/native-interaction.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/offline-first.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/performance.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/privacy.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/publishing.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/pwa.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/rag.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/reliability.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/search.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/security.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/semantic-html.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/sensors.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/seo.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/spatial.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/storage.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/sustainable-web.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/visual-styling.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/visualization.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/web-components.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: labs/workers-wasm.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/accessibility-audit.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/ai-evaluation.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/audio-journal.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/careers-map.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/collaboration-studio.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/community-decisions.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/compassionate-messages.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/dataset-explorer.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/deployment-audit.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/emergency-kit.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/evidence-ledger.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/exchange-hub.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/field-survey.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/food-garden.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/household-resilience.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/learning-quests.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/map-notebook.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/mutual-aid.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/offline-archive.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/privacy-workbench.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/publishing-desk.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/restoration-monitor.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/science-workbench.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe night: integrations/story-studio.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: index.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/accessibility.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/advanced-forms.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/agents.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/ai-maintenance.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/audio-video.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/collaboration.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/communication.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/cryptography.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/css-layout.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/decentralization.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/field-science.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/file-portability.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/geospatial.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/gpu.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/graph-navigation.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/hosting.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/html-attributes.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/i18n.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/images.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/integrity.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/javascript-architecture.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/knowledge.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/local-ai.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/motion.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/native-interaction.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/offline-first.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/performance.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/privacy.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/publishing.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/pwa.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/rag.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/reliability.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/search.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/security.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/semantic-html.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/sensors.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/seo.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/spatial.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/storage.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/sustainable-web.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/visual-styling.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/visualization.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/web-components.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: labs/workers-wasm.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/accessibility-audit.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/ai-evaluation.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/audio-journal.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/careers-map.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/collaboration-studio.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/community-decisions.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/compassionate-messages.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/dataset-explorer.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/deployment-audit.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/emergency-kit.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/evidence-ledger.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/exchange-hub.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/field-survey.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/food-garden.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/household-resilience.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/learning-quests.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/map-notebook.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/mutual-aid.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/offline-archive.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/privacy-workbench.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/publishing-desk.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/restoration-monitor.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/science-workbench.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe day: integrations/story-studio.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "axe contrast: index.html",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

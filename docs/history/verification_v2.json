@@ -1,0 +1,38 @@
+{
+  "version": "2.0",
+  "html_pages": 64,
+  "topic_labs": 41,
+  "integration_applications": 22,
+  "specialized_workbenches": 22,
+  "javascript_blocks_node_syntax_checked": 128,
+  "local_links_verified": 517,
+  "broken_local_links": [],
+  "external_runtime_scripts": [],
+  "service_worker_precache_entries": 69,
+  "service_worker_html_precache_count": 64,
+  "browser_ui_tests": {
+    "integration": {
+      "passed": 32,
+      "total": 32
+    },
+    "topics": {
+      "passed": 41,
+      "total": 41
+    },
+    "workflows": {
+      "passed": 17,
+      "total": 17
+    }
+  },
+  "browser_ui_total_passed": 90,
+  "browser_test_method": "Chromium: actual DOM and interaction through document injection with an in-memory localStorage shim. Not a real origin-persistence, navigation, service-worker, or cross-browser test.",
+  "unverified": [
+    "HTTPS/localhost hosted service worker install and offline reload",
+    "real origin localStorage persistence and eviction",
+    "cross-browser support",
+    "hardware and permissions",
+    "assistive-technology manual testing",
+    "production security and domain validation"
+  ],
+  "claim": "Educational suite with 22 purpose-built local tools and 41 browser feature labs; not a complete production implementation of all cataloged technologies."
+}

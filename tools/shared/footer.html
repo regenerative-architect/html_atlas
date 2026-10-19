@@ -1,0 +1,74 @@
+<footer class="atlas-foot">
+  <div class="wrap">
+    <p class="zero-harm"><strong>Zero Harm &amp; Anti-Coercion.</strong> This page is built to inform and empower. It never tracks you, never pressures you, and never sends anything anywhere unless you choose to. What you enter stays on this device unless you export it. Using it to manipulate, surveil, coerce or harass anyone goes against its purpose.</p>
+    <div class="split">
+      <button type="button" class="privacy-chip" id="open-privacy" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span id="privacy-chip-text">Privacy lock on</span></button>
+      <nav class="foot-links" aria-label="Atlas resources"><a href="{{ROOT}}index.html">Atlas home</a><a href="{{ROOT}}README.md">Read me</a><a href="{{ROOT}}LICENSE">MIT license</a><a href="{{ROOT}}catalog.json">Catalog data</a></nav>
+    </div>
+    <p class="fineprint">Made by Foster + Navi for people and the planet. Next-Generation HTML Atlas, version {{VERSION}}. An educational reference, not an audited production component. Browser storage is not a backup, so export anything that matters.</p>
+    <noscript><p class="fineprint">JavaScript is off. Explanations, examples and links still work; interactive demos, saving and progress need JavaScript.</p></noscript>
+  </div>
+</footer>
+<div class="toast-region" id="toast-region" aria-live="polite"></div>
+
+<dialog class="atlas-dialog" id="atlas-palette" aria-label="Search the atlas">
+  <div class="palette-input-row">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-4.2-4.2"/></svg>
+    <input id="palette-input" type="text" role="combobox" aria-expanded="false" aria-controls="palette-list" aria-autocomplete="list" aria-label="Search pages, sections, terms or actions" placeholder="Search pages, sections, terms or actions" autocomplete="off" spellcheck="false">
+    <button type="button" class="btn-quiet" data-close>Close</button>
+  </div>
+  <div id="palette-list" role="listbox" aria-label="Search results"></div>
+  <div id="palette-detail" class="palette-detail" aria-live="polite" hidden></div>
+  <div class="palette-foot" aria-hidden="true"><span><kbd>↑</kbd> <kbd>↓</kbd> to move</span><span><kbd>Enter</kbd> to open</span><span><kbd>Esc</kbd> to close</span></div>
+</dialog>
+
+<dialog class="atlas-dialog" id="atlas-comfort" aria-labelledby="comfort-title">
+  <div class="dialog-head"><h2 id="comfort-title">Comfort settings</h2><button type="button" class="btn-quiet" data-close>Close</button></div>
+  <div class="dialog-body">
+    <p class="muted">Changes apply right away and are saved on this device only.</p>
+    <div class="setting"><fieldset><legend>Colour theme</legend><div class="choice-row">
+      <label><input type="radio" name="theme" value="auto"> Match my device</label><label><input type="radio" name="theme" value="night"> Night</label><label><input type="radio" name="theme" value="day"> Day</label><label><input type="radio" name="theme" value="contrast"> High contrast</label></div></fieldset></div>
+    <div class="setting"><fieldset><legend>Motion</legend><p>Calm stops animations and page transitions.</p><div class="choice-row">
+      <label><input type="radio" name="motion" value="auto"> Match my device</label><label><input type="radio" name="motion" value="reduced"> Calm</label><label><input type="radio" name="motion" value="full"> Allow motion</label></div></fieldset></div>
+    <div class="setting"><fieldset><legend>Ambient light</legend><p>The drifting fireflies and soft light behind the page. Purely decorative.</p><div class="choice-row">
+      <label><input type="radio" name="ambient" value="on"> On</label><label><input type="radio" name="ambient" value="calm"> Gentle</label><label><input type="radio" name="ambient" value="off"> Off</label></div></fieldset></div>
+    <div class="setting"><fieldset><legend>Surfaces</legend><p>Solid panels can be easier to read and faster on older devices.</p><div class="choice-row">
+      <label><input type="radio" name="glass" value="frosted"> Frosted glass</label><label><input type="radio" name="glass" value="solid"> Solid</label></div></fieldset></div>
+    <div class="setting"><fieldset><legend>Text size</legend><div class="choice-row">
+      <label><input type="radio" name="text" value="small"> Smaller</label><label><input type="radio" name="text" value="normal"> Standard</label><label><input type="radio" name="text" value="large"> Large</label><label><input type="radio" name="text" value="xlarge"> Extra large</label></div></fieldset></div>
+    <div class="setting"><fieldset><legend>Reading spacing</legend><p>Relaxed adds space between lines, letters and words, which many readers find easier.</p><div class="choice-row">
+      <label><input type="radio" name="reading" value="normal"> Standard</label><label><input type="radio" name="reading" value="relaxed"> Relaxed</label></div></fieldset></div>
+    <div class="setting"><fieldset><legend>Progress game</legend><p>Levels, badges and your learning rhythm on the atlas home. Your progress is kept either way.</p><div class="choice-row">
+      <label><input type="radio" name="game" value="on"> Show</label><label><input type="radio" name="game" value="off"> Hide</label></div></fieldset></div>
+    <div class="setting"><h3>Need a breather?</h3><p>A one-minute guided breathing pause, any time.</p><button type="button" id="open-pause">Start a one-minute pause</button></div>
+  </div>
+  <div class="dialog-foot"><button type="button" id="comfort-reset">Reset to defaults</button><button type="button" class="btn-primary" data-close>Done</button></div>
+</dialog>
+
+<dialog class="atlas-dialog" id="atlas-privacy" aria-labelledby="privacy-title">
+  <div class="dialog-head"><h2 id="privacy-title">Your privacy on this page</h2><button type="button" class="btn-quiet" data-close>Close</button></div>
+  <div class="dialog-body">
+    <ul class="checklist" id="privacy-facts"></ul>
+    <h3>Offline copy</h3>
+    <p id="offline-status" aria-live="polite">Checking…</p>
+    <div class="toolbar"><button type="button" id="offline-save" hidden>Save all pages for offline use</button><button type="button" id="offline-remove" hidden>Remove offline copy</button></div>
+    <h3>Erase everything</h3>
+    <p>Removes all atlas progress, notes, comfort settings, records you created in the tools, and any offline copy from this browser. Export anything you want to keep first.</p>
+    <button type="button" class="btn-danger" id="erase-all">Erase all atlas data on this device</button>
+    <div id="erase-confirm" class="callout warning" hidden><p><strong>Erase everything now?</strong> This cannot be undone.</p><div class="toolbar"><button type="button" id="erase-cancel">Keep my data</button><button type="button" class="btn-danger" id="erase-yes">Yes, erase everything</button></div></div>
+    <p id="erase-status" class="fineprint" role="status"></p>
+  </div>
+  <div class="dialog-foot"><button type="button" class="btn-primary" data-close>Done</button></div>
+</dialog>
+
+<dialog class="atlas-dialog" id="atlas-pause" aria-labelledby="pause-title">
+  <div class="dialog-head"><h2 id="pause-title">A one-minute pause</h2><button type="button" class="btn-quiet" data-close>Close</button></div>
+  <div class="dialog-body">
+    <p class="muted">Box breathing: in for four, hold for four, out for four, hold for four. Follow the light, or just the words.</p>
+    <div class="breath-stage"><div class="breath-orb" id="breath-orb" aria-hidden="true"></div></div>
+    <p class="breath-cue" id="breath-cue">Ready when you are.</p>
+    <p class="fineprint" id="breath-time" style="text-align:center;max-width:none" aria-live="polite"></p>
+    <div class="toolbar" style="justify-content:center"><label for="breath-length" class="sr-only">Length of pause</label><select id="breath-length" style="width:auto"><option value="60">1 minute</option><option value="120">2 minutes</option><option value="180">3 minutes</option></select><button type="button" class="btn-primary" id="breath-start">Begin</button><button type="button" id="breath-stop" hidden>Stop</button></div>
+    <p class="fineprint">If slow breathing feels uncomfortable, stop and breathe normally. This is a simple relaxation practice, not medical treatment.</p>
+  </div>
+</dialog>

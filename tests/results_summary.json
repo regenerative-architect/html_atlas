@@ -1,0 +1,30 @@
+[
+  {
+    "suite": "pages",
+    "exit_code": 0,
+    "total": 73,
+    "passed": 73,
+    "failed": 0
+  },
+  {
+    "suite": "tools",
+    "exit_code": 0,
+    "total": 47,
+    "passed": 47,
+    "failed": 0
+  },
+  {
+    "suite": "workflows",
+    "exit_code": 0,
+    "total": 14,
+    "passed": 14,
+    "failed": 0
+  },
+  {
+    "suite": "a11y",
+    "exit_code": 0,
+    "total": 139,
+    "passed": 139,
+    "failed": 0
+  }
+]

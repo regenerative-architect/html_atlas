@@ -1,0 +1,91 @@
+{
+  "schema": "atlas-verification/1",
+  "atlas_version": "3.0",
+  "verified_on": "2026-10-19",
+  "environment": {
+    "browser": "Chromium 141.0.7390.37, headless, via Playwright 1.56.0",
+    "python": "3.13",
+    "axe_core": "4.10.2"
+  },
+  "counts": {
+    "pages": 69,
+    "home": 1,
+    "topic_labs": 44,
+    "working_tools": 24,
+    "glossary_terms": 67,
+    "learning_paths": 7
+  },
+  "build_audit": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "build_in_sync": true,
+  "test_suites": {
+    "pages": {
+      "total": 73,
+      "passed": 73,
+      "failed": 0
+    },
+    "tools": {
+      "total": 47,
+      "passed": 47,
+      "failed": 0
+    },
+    "workflows": {
+      "total": 14,
+      "passed": 14,
+      "failed": 0
+    },
+    "a11y": {
+      "total": 139,
+      "passed": 139,
+      "failed": 0
+    }
+  },
+  "interaction_sweep": {
+    "pages": 69,
+    "theme": "night",
+    "viewport_px": 1280,
+    "controls_pressed": 1047,
+    "page_errors": 0,
+    "console_errors": 0,
+    "failed_clicks": 0,
+    "axe_violations": 0,
+    "ignored_browser_messages": [
+      "Service Worker registration blocked by Playwright (the sweep blocks service workers on purpose)",
+      "Failed to create WebGPU Context Provider (headless browser without a graphics chip)"
+    ]
+  },
+  "phone_width_check": {
+    "viewport_px": 390,
+    "themes": [
+      "night",
+      "day"
+    ],
+    "page_views": 138,
+    "horizontal_overflow": 0,
+    "errors": 0
+  },
+  "privacy_and_safety": {
+    "pages_with_privacy_lock": 69,
+    "pages_with_zero_harm_note": 69,
+    "pages_with_no_referrer": 69,
+    "external_scripts_or_styles": 0,
+    "analytics_or_tracking": 0
+  },
+  "size": {
+    "largest_page": {
+      "file": "index.html",
+      "kB": 276
+    },
+    "all_pages_kB": 11171
+  },
+  "checksums": "SHA256SUMS.json lists the SHA-256 of every file except itself and test results; python3 tools/atlas_build.py regenerates it",
+  "not_covered": [
+    "Firefox and Safari",
+    "screen readers and other assistive technologies",
+    "hardware features unavailable in headless browsers (WebGPU, WebXR, sensors, Bluetooth, USB, serial, camera, microphone, built-in AI)",
+    "security assurance of the teaching labs",
+    "headers of any particular host"
+  ]
+}

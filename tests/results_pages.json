@@ -1,0 +1,374 @@
+{
+  "suite": "pages",
+  "total": 73,
+  "passed": 73,
+  "failed": 0,
+  "seconds": 48.7,
+  "results": [
+    {
+      "test": "loads cleanly: index.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/accessibility.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/advanced-forms.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/agents.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/ai-maintenance.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/audio-video.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/collaboration.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/communication.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/cryptography.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/css-layout.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/decentralization.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/field-science.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/file-portability.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/geospatial.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/gpu.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/graph-navigation.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/hosting.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/html-attributes.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/i18n.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/images.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/integrity.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/javascript-architecture.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/knowledge.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/local-ai.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/motion.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/native-interaction.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/offline-first.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/performance.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/privacy.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/publishing.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/pwa.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/rag.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/reliability.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/search.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/security.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/semantic-html.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/sensors.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/seo.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/spatial.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/storage.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/sustainable-web.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/visual-styling.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/visualization.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/web-components.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: labs/workers-wasm.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/accessibility-audit.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/ai-evaluation.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/audio-journal.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/careers-map.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/collaboration-studio.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/community-decisions.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/compassionate-messages.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/dataset-explorer.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/deployment-audit.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/emergency-kit.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/evidence-ledger.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/exchange-hub.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/field-survey.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/food-garden.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/household-resilience.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/learning-quests.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/map-notebook.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/mutual-aid.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/offline-archive.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/privacy-workbench.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/publishing-desk.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/restoration-monitor.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/science-workbench.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "loads cleanly: integrations/story-studio.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "opens from disk (file://): index.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "opens from disk (file://): labs/security.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "opens from disk (file://): labs/workers-wasm.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "test": "opens from disk (file://): integrations/mutual-aid.html",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

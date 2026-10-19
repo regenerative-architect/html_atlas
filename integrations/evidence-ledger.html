@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<!-- Next-Generation HTML Atlas v3. Zero Harm & Anti-Coercion: built to inform and empower. No tracking, no pressure, and nothing leaves this device unless you choose. -->
+<html lang="en" data-theme="auto">
+<head>
+<!-- atlas:head:start -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' file: data: blob:; media-src 'self' file: data: blob:; font-src 'self' data:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self' file:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#061a1c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#e8f0eb" media="(prefers-color-scheme: light)">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/icon-192.png">
+<script id="atlas-boot">/* Atlas boot: applies your saved comfort settings before the page paints,
+   so there is no flash of the wrong theme. Runs in <head>, reads one
+   localStorage key on this device, sends nothing anywhere. */
+(function(){
+  var d=document.documentElement,s={};
+  try{s=JSON.parse(localStorage.getItem('atlas_settings_v3')||'{}')||{}}catch(e){s={}}
+  var mq=function(q){try{return window.matchMedia&&window.matchMedia(q).matches}catch(e){return false}};
+  d.classList.add('js');
+  d.setAttribute('data-theme',s.theme||'auto');
+  d.setAttribute('data-motion',s.motion==='reduced'||(s.motion!=='full'&&mq('(prefers-reduced-motion: reduce)'))?'reduced':'full');
+  d.setAttribute('data-ambient',s.ambient||'on');
+  d.setAttribute('data-text',s.text||'normal');
+  d.setAttribute('data-reading',s.reading||'normal');
+  d.setAttribute('data-game',s.game||'on');
+  if(s.glass==='solid')d.setAttribute('data-glass','lite');
+})();</script>
+<!-- atlas:head:end -->
+<title>Evidence provenance ledger | Next-Generation HTML Atlas</title>
+<meta name="description" content="Track claims, sources and review status so disputed things get checked first.">
+<style id="atlas-css">
+/* =====================================================================
+   ATLAS DESIGN SYSTEM v3 — "Canopy light"
+   One stylesheet shared by every page in the atlas.
+   EDIT HERE, then run:  python3 tools/atlas_build.py
+   The build copies this file into each page's <style id="atlas-css">,
+   so every page stays a single self-contained file that works offline.
+
+   Concept: knowledge as a living forest canopy. Soft light and drifting
+   fireflies live *behind* frosted-glass panels; everything in front is
+   calm, legible and quiet. Night is the default; Day and High contrast
+   are one click away in Comfort settings (or follow your device).
+   ===================================================================== */
+
+/* ---------- 1. Design tokens: Night canopy (default) -----------------
+   EXTEND: change a colour here and every component follows. Keep text
+   colours at 4.5:1 contrast or better against --panel-solid. */
+:root{
+  color-scheme:dark;
+  --bg:#061a1c;              /* deep canopy */
+  --bg-2:#0b2a2c;            /* gradient partner */
+  --panel:rgba(22,63,62,.58);        /* frosted glass over the light */
+  --panel-solid:#103131;             /* used when blur is unavailable */
+  --panel-strong:rgba(12,40,41,.86); /* header, dialogs */
+  --panel-sunk:rgba(3,16,18,.55);    /* inputs, code, results */
+  --edge:rgba(150,230,210,.16);
+  --edge-strong:rgba(150,230,210,.34);
+  --text:#e9f5f1;
+  --muted:#a9c6bf;
+  --accent:#7fe3bf;          /* bioluminescent mint */
+  --accent-ink:#062019;      /* text placed on --accent */
+  --accent-soft:rgba(127,227,191,.14);
+  --gold:#ffd073;            /* firefly light, also focus */
+  --coral:#ffad9b;
+  --sky:#8fb8ff;
+  --violet:#c9a8ff;
+  --focus:#ffd073;
+  --ok:#7fe3bf;--warn:#ffd073;--bad:#ffad9b;
+  --glow-a:rgba(127,227,191,.16);    /* canopy glow, top left */
+  --glow-b:rgba(143,184,255,.10);    /* moonlight, right */
+  --glow-c:rgba(255,208,115,.07);    /* firefly warmth, bottom */
+  --beam:rgba(190,255,230,.045);     /* light shafts */
+  --shadow-1:0 1px 0 rgba(255,255,255,.05) inset,0 1px 2px rgba(0,0,0,.35),0 8px 24px -14px rgba(0,0,0,.7);
+  --shadow-2:0 1px 0 rgba(255,255,255,.07) inset,0 2px 6px rgba(0,0,0,.35),0 22px 48px -22px rgba(0,0,0,.85);
+  --shadow-3:0 1px 0 rgba(255,255,255,.08) inset,0 30px 80px -24px rgba(0,0,0,.9);
+  --radius-l:20px;--radius-m:14px;--radius-s:10px;
+  --font-sans:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Helvetica Neue",Arial,sans-serif;
+  --font-serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua","URW Palladio L",P052,Georgia,serif;
+  --font-mono:ui-monospace,"Cascadia Code","SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --text-scale:1;
+  --measure:72ch;
+  --header-h:3.6rem;
+}
+
+/* ---------- 2. Day canopy: follows a light device setting unless the
+   person picked Night or High contrast, and applies when Day is picked.
+   (The two blocks are identical on purpose: one works without JS.) -- */
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="night"]):not([data-theme="contrast"]){
+    color-scheme:light;
+    --bg:#e8f0eb;--bg-2:#f5f9f6;
+    --panel:rgba(255,255,255,.66);--panel-solid:#fbfdfb;--panel-strong:rgba(250,253,251,.9);--panel-sunk:rgba(232,241,236,.78);
+    --edge:rgba(16,70,60,.14);--edge-strong:rgba(16,70,60,.3);
+    --text:#0f2a2b;--muted:#3e5b57;
+    --accent:#0a6b51;--accent-ink:#ffffff;--accent-soft:rgba(10,107,81,.1);
+    --gold:#7a4f00;--coral:#a3341d;--sky:#1f53a3;--violet:#6a3fb5;
+    --focus:#b86e00;--ok:#0a6b51;--warn:#7a4f00;--bad:#a3341d;
+    --glow-a:rgba(255,236,170,.55);--glow-b:rgba(160,215,200,.45);--glow-c:rgba(255,255,255,.6);
+    --beam:rgba(255,246,214,.38);
+    --shadow-1:0 1px 0 rgba(255,255,255,.9) inset,0 1px 2px rgba(20,60,50,.08),0 10px 24px -16px rgba(20,60,50,.35);
+    --shadow-2:0 1px 0 rgba(255,255,255,.95) inset,0 2px 6px rgba(20,60,50,.08),0 24px 48px -24px rgba(20,60,50,.4);
+    --shadow-3:0 1px 0 #fff inset,0 30px 80px -28px rgba(20,60,50,.45);
+  }
+}
+:root[data-theme="day"]{
+  color-scheme:light;
+  --bg:#e8f0eb;--bg-2:#f5f9f6;
+  --panel:rgba(255,255,255,.66);--panel-solid:#fbfdfb;--panel-strong:rgba(250,253,251,.9);--panel-sunk:rgba(232,241,236,.78);
+  --edge:rgba(16,70,60,.14);--edge-strong:rgba(16,70,60,.3);
+  --text:#0f2a2b;--muted:#3e5b57;
+  --accent:#0a6b51;--accent-ink:#ffffff;--accent-soft:rgba(10,107,81,.1);
+  --gold:#7a4f00;--coral:#a3341d;--sky:#1f53a3;--violet:#6a3fb5;
+  --focus:#b86e00;--ok:#0a6b51;--warn:#7a4f00;--bad:#a3341d;
+  --glow-a:rgba(255,236,170,.55);--glow-b:rgba(160,215,200,.45);--glow-c:rgba(255,255,255,.6);
+  --beam:rgba(255,246,214,.38);
+  --shadow-1:0 1px 0 rgba(255,255,255,.9) inset,0 1px 2px rgba(20,60,50,.08),0 10px 24px -16px rgba(20,60,50,.35);
+  --shadow-2:0 1px 0 rgba(255,255,255,.95) inset,0 2px 6px rgba(20,60,50,.08),0 24px 48px -24px rgba(20,60,50,.4);
+  --shadow-3:0 1px 0 #fff inset,0 30px 80px -28px rgba(20,60,50,.45);
+}
+
+/* ---------- 3. High contrast: opaque surfaces, strong edges, no glass */
+:root[data-theme="contrast"]{
+  color-scheme:dark;
+  --bg:#000;--bg-2:#000;--panel:#000;--panel-solid:#000;--panel-strong:#000;--panel-sunk:#0b0b0b;
+  --edge:#ffffff;--edge-strong:#ffffff;--text:#ffffff;--muted:#e6e6e6;
+  --accent:#9dffd8;--accent-ink:#000;--accent-soft:rgba(157,255,216,.18);
+  --gold:#ffe066;--coral:#ffb4a3;--sky:#a9c8ff;--violet:#dcc6ff;--focus:#ffe066;
+  --ok:#9dffd8;--warn:#ffe066;--bad:#ffb4a3;
+  --glow-a:transparent;--glow-b:transparent;--glow-c:transparent;--beam:transparent;
+  --shadow-1:none;--shadow-2:none;--shadow-3:none;
+}
+@media (prefers-contrast:more){
+  :root:not([data-theme="contrast"]){--edge:var(--edge-strong);--muted:var(--text)}
+  a{text-decoration-thickness:2px}
+}
+
+/* ---------- 4. Base ---------------------------------------------------- */
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{font-size:calc(100% * var(--text-scale));-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 1rem)}
+:root[data-text="small"]{--text-scale:.92}
+:root[data-text="large"]{--text-scale:1.14}
+:root[data-text="xlarge"]{--text-scale:1.3}
+@media (prefers-reduced-motion:no-preference){html:not([data-motion="reduced"]){scroll-behavior:smooth}}
+body{
+  margin:0;min-height:100vh;color:var(--text);
+  font:1.0625rem/1.65 var(--font-sans);
+  background:
+    radial-gradient(1200px 700px at 8% -10%,var(--glow-a),transparent 60%),
+    radial-gradient(900px 600px at 100% 10%,var(--glow-b),transparent 65%),
+    radial-gradient(1000px 700px at 50% 115%,var(--glow-c),transparent 60%),
+    linear-gradient(180deg,var(--bg-2),var(--bg) 42%) fixed;
+  background-color:var(--bg);
+  overflow-wrap:break-word;
+}
+/* Reading comfort setting: more air between lines, letters and words. */
+:root[data-reading="relaxed"] main{line-height:1.85;letter-spacing:.012em;word-spacing:.08em}
+:root[data-reading="relaxed"] main p,:root[data-reading="relaxed"] main li{max-width:64ch}
+:root[data-reading="relaxed"] em,:root[data-reading="relaxed"] i{font-style:normal;font-weight:650}
+
+h1,h2,h3,h4{line-height:1.18;margin:0 0 .6rem;text-wrap:balance}
+h1{font-family:var(--font-serif);font-weight:600;font-size:clamp(2.1rem,1.4rem + 3vw,3.6rem);letter-spacing:-.012em}
+h2{font-family:var(--font-serif);font-weight:600;font-size:clamp(1.45rem,1.2rem + 1vw,1.95rem);letter-spacing:-.005em}
+h3{font-size:1.12rem;font-weight:700}
+h4{font-size:1rem;font-weight:700}
+p{margin:.55rem 0 .85rem;max-width:var(--measure)}
+li{max-width:var(--measure)}
+ul,ol{padding-left:1.25rem}
+li+li{margin-top:.25rem}
+a{color:var(--accent);text-underline-offset:.18em;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+strong{font-weight:700}
+small,.fineprint{font-size:.875rem;color:var(--muted)}
+.muted,.hint{color:var(--muted)}
+.lead{font-size:clamp(1.08rem,1rem + .35vw,1.28rem);color:var(--muted);max-width:62ch;margin-top:.2rem}
+.eyebrow{display:block;font-size:.9rem;font-weight:650;color:var(--accent);margin:0 0 .35rem;letter-spacing:.01em}
+hr{border:0;border-top:1px solid var(--edge);margin:1.5rem 0}
+kbd{font:600 .78rem/1 var(--font-mono);padding:.22rem .4rem;border-radius:6px;border:1px solid var(--edge-strong);background:var(--panel-sunk);color:var(--text)}
+code,pre{font-family:var(--font-mono)}
+code{font-size:.92em;color:var(--accent)}
+pre{overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;background:var(--panel-sunk);color:var(--text);padding:1rem;border-radius:var(--radius-s);border:1px solid var(--edge);font-size:.86rem;line-height:1.55;max-height:32rem}
+pre code{color:inherit;font-size:inherit}
+::selection{background:color-mix(in srgb,var(--accent) 35%,transparent)}
+mark{background:color-mix(in srgb,var(--gold) 38%,transparent);color:inherit;border-radius:3px;padding:0 .12em}
+
+/* Visible focus for everyone using a keyboard. */
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+#main:focus{outline:none}
+
+/* ---------- 5. Ambient light: shafts (CSS) + fireflies (canvas) -------
+   PURPOSE: the one bold, living element of the design. It sits behind
+   everything (z-index -1), never receives clicks, and is switched off by
+   reduced-motion, High contrast, or Comfort settings > Ambient light. */
+.atlas-beams,#atlas-ambient{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.atlas-beams{overflow:hidden}
+.atlas-beams::before,.atlas-beams::after{
+  content:"";position:absolute;top:-30%;left:-20%;width:140%;height:160%;
+  background:
+    linear-gradient(105deg,transparent 0 18%,var(--beam) 24%,transparent 31%),
+    linear-gradient(112deg,transparent 0 38%,var(--beam) 42%,transparent 47%),
+    linear-gradient(100deg,transparent 0 58%,var(--beam) 63%,transparent 70%);
+  filter:blur(18px);opacity:.9;transform-origin:20% 0;
+  animation:atlas-beam 38s ease-in-out infinite alternate;
+}
+.atlas-beams::after{opacity:.55;animation-duration:53s;animation-delay:-11s;transform:rotate(4deg)}
+@keyframes atlas-beam{from{transform:rotate(-2deg) translateX(-2%)}to{transform:rotate(3deg) translateX(3%)}}
+#atlas-ambient{width:100%;height:100%;opacity:1;transition:opacity .8s}
+:root[data-ambient="off"] #atlas-ambient,:root[data-theme="contrast"] #atlas-ambient,
+:root[data-ambient="off"] .atlas-beams,:root[data-theme="contrast"] .atlas-beams{display:none}
+
+/* ---------- 6. Frame: skip link, header, layout, sidebar ------------- */
+.skip{position:absolute;left:1rem;top:-10rem;z-index:100;background:var(--gold);color:#111;padding:.7rem 1rem;border-radius:var(--radius-s);font-weight:700}
+.skip:focus{top:.75rem}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(1rem,3.5vw,2rem)}
+.atlas-top{position:sticky;top:0;z-index:30;background:var(--panel-strong);border-bottom:1px solid var(--edge);box-shadow:0 10px 30px -24px rgba(0,0,0,.8)}
+.atlas-top .wrap{display:flex;align-items:center;gap:.75rem 1.25rem;min-height:var(--header-h);flex-wrap:wrap;padding-top:.35rem;padding-bottom:.35rem}
+.brand{display:inline-flex;align-items:center;gap:.55rem;font-weight:750;color:var(--text);text-decoration:none;letter-spacing:.005em}
+.brand svg{width:28px;height:28px;flex:none}
+.brand span{font-family:var(--font-serif);font-size:1.12rem;font-weight:600}
+.atlas-nav{display:flex;gap:.25rem 1rem;flex-wrap:wrap}
+.atlas-nav a{color:var(--muted);text-decoration:none;font-size:.95rem;padding:.35rem .1rem;border-bottom:2px solid transparent}
+.atlas-nav a:hover,.atlas-nav a[aria-current="page"]{color:var(--text);border-bottom-color:var(--accent)}
+.top-actions{margin-left:auto;display:flex;gap:.5rem;align-items:center}
+.search-trigger{display:inline-flex;align-items:center;gap:.6rem;min-width:min(16rem,52vw);justify-content:space-between;color:var(--muted)!important;font-weight:500!important}
+.search-trigger svg{width:18px;height:18px}
+.icon-btn{display:inline-grid;place-items:center;width:44px;height:44px;padding:0!important}
+.icon-btn svg{width:20px;height:20px}
+.layout{display:grid;grid-template-columns:15.5rem minmax(0,1fr);gap:clamp(1.25rem,3vw,2.5rem);align-items:start;padding-top:1.25rem;padding-bottom:3rem}
+.side-nav{position:sticky;top:calc(var(--header-h) + 1rem);max-height:calc(100vh - var(--header-h) - 2rem);overflow:auto;padding:.25rem .25rem 1rem 0;scrollbar-width:thin}
+.side-nav-title{display:block;font-size:.85rem;font-weight:700;color:var(--muted);margin:.2rem 0 .5rem .6rem}
+.side-nav ul{list-style:none;margin:0;padding:0}
+.side-nav li+li{margin-top:.1rem}
+.side-nav a{display:block;padding:.42rem .7rem;border-radius:var(--radius-s);color:var(--muted);text-decoration:none;font-size:.92rem;line-height:1.3;border-left:2px solid transparent}
+.side-nav a:hover{color:var(--text);background:var(--accent-soft)}
+.side-nav a.active{color:var(--text);border-left-color:var(--accent);background:var(--accent-soft)}
+.side-progress{margin:1rem .6rem 0;font-size:.85rem;color:var(--muted)}
+.side-progress .meter{margin-top:.35rem}
+.side-nav-toggle{display:none}
+.side-nav-toggle svg{width:18px;height:18px;transition:transform .2s}
+.side-nav.open .side-nav-toggle svg{transform:rotate(180deg)}
+@media (max-width:960px){
+  .layout{grid-template-columns:minmax(0,1fr);padding-top:.75rem}
+  .side-nav{position:static;max-height:none;overflow:visible;padding:0}
+  .side-nav-body{margin-top:.5rem;padding:.5rem;border:1px solid var(--edge);border-radius:var(--radius-m);background:var(--panel-solid)}
+  .js .side-nav-toggle{display:flex;width:100%;justify-content:space-between;align-items:center}
+  .js .side-nav-body{display:none}
+  .js .side-nav.open .side-nav-body{display:block}
+  .search-trigger{min-width:0}
+  .search-trigger .search-label-long,.search-trigger kbd{display:none}
+}
+/* Things that only work with JavaScript stay out of the way without it. */
+html:not(.js) .js-only,html:not(.js) .page-actions{display:none!important}
+@media (max-width:640px){
+  .atlas-nav{order:3;width:100%;gap:.15rem .9rem}
+  .brand span{font-size:1rem}
+}
+main{min-width:0}
+
+/* ---------- 7. Surfaces: panels, cards, callouts ---------------------- */
+.panel,.card,section.panel,details.panel{
+  position:relative;background:var(--panel);border:1px solid var(--edge);border-radius:var(--radius-l);
+  padding:clamp(1rem,2.4vw,1.6rem);margin:0 0 1.25rem;box-shadow:var(--shadow-1);
+}
+/* Frosted glass only where the browser supports it; otherwise solid. */
+@supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .panel,.card,.atlas-top,.atlas-dialog,.toast{-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%)}
+}
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .panel,.card{background:var(--panel-solid)}
+}
+:root[data-glass="lite"] .panel,:root[data-glass="lite"] .card{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--panel-solid)}
+@media (prefers-reduced-transparency:reduce){.panel,.card,.atlas-top,.atlas-dialog{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:var(--panel-solid)!important}}
+/* Pointer light: a soft highlight follows the cursor across a surface. */
+.lit{background-image:radial-gradient(520px circle at var(--mx,50%) var(--my,-40%),color-mix(in srgb,var(--accent) 9%,transparent),transparent 42%)}
+.panel>h2:first-child,.panel>header:first-child h2{margin-top:0}
+.panel-feature{border-color:color-mix(in srgb,var(--accent) 45%,var(--edge));box-shadow:var(--shadow-2),0 0 0 1px color-mix(in srgb,var(--accent) 12%,transparent)}
+.panel-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.5rem 1rem;margin-bottom:.5rem}
+.panel-head h2{margin:0}
+.callout{border:1px solid var(--edge);border-left:4px solid var(--gold);padding:.85rem 1.1rem;background:var(--panel-sunk);border-radius:var(--radius-s);margin:1rem 0}
+.callout.warning{border-left-color:var(--coral)}
+.callout.calm{border-left-color:var(--accent)}
+.callout>:first-child{margin-top:0}.callout>:last-child{margin-bottom:0}
+.demo{background:var(--panel-sunk);border:1px dashed color-mix(in srgb,var(--accent) 45%,transparent);border-radius:var(--radius-m);padding:clamp(.9rem,2vw,1.25rem);min-height:110px}
+.demo>:first-child{margin-top:0}
+/* Sub-sections inside a demo get breathing room above their heading. */
+.demo h3{margin-top:1.9rem}
+.demo>h3:first-child,.demo>:first-child h3{margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr));gap:1rem}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:1.25rem}
+.two>.panel{margin-bottom:0}
+.two+.panel,.two+section{margin-top:1.25rem}
+.stack>*+*{margin-top:.75rem}
+.row{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.row>*{max-width:100%}
+.row input:not([type=checkbox]):not([type=radio]){width:auto;min-width:8rem;flex:1}
+.toolbar{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.9rem 0}
+.split{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+
+/* ---------- 8. Hero (top of each page) ------------------------------- */
+.hero{padding:clamp(1rem,3vw,2.2rem) 0 1rem}
+.hero h1{margin-bottom:.5rem}
+.hero .lead{margin-bottom:1rem}
+.page-actions{display:flex;flex-wrap:wrap;gap:.5rem .75rem;align-items:center}
+.page-actions .btn-quiet{border-color:var(--edge)}
+.check-pill{display:inline-flex;align-items:center;gap:.55rem;padding:.45rem .85rem;border:1px solid var(--edge-strong);border-radius:999px;background:var(--panel);font-weight:600;cursor:pointer;min-height:44px}
+.check-pill input{margin:0}
+/* A checkbox or radio with a sentence-long label beside it. */
+label.check{display:flex;gap:.55rem;align-items:flex-start;font-weight:400;margin:.45rem 0}
+label.check input{margin:.2rem 0 0}
+.check-pill:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+
+/* ---------- 9. Controls -------------------------------------------------- */
+button,.btn,input,select,textarea{font:inherit;color:inherit}
+button,.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:44px;
+  padding:.55rem .95rem;border-radius:var(--radius-s);border:1px solid var(--edge-strong);
+  background:color-mix(in srgb,var(--panel-solid) 70%,transparent);color:var(--text);
+  font-weight:650;text-decoration:none;cursor:pointer;line-height:1.2;
+  transition:background-color .15s,border-color .15s,transform .15s;
+}
+button:hover,.btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+button:active,.btn:active{transform:translateY(1px)}
+button:disabled,button[aria-disabled="true"]{opacity:.55;cursor:not-allowed;transform:none}
+.btn-primary,button.btn-primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn-primary:hover{background:color-mix(in srgb,var(--accent) 86%,#fff);color:var(--accent-ink)}
+.btn-quiet{background:transparent;border-color:transparent}
+.btn-quiet:hover{border-color:var(--edge-strong)}
+.btn-danger{border-color:color-mix(in srgb,var(--bad) 55%,transparent)}
+.btn-danger:hover{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,transparent)}
+.btn svg,button svg{width:18px;height:18px;flex:none}
+label{display:block;font-weight:650;margin:.75rem 0 .3rem}
+label.inline,.check-pill{display:inline-flex;font-weight:600;margin:0}
+input,select,textarea{width:100%;max-width:100%;padding:.62rem .7rem;border-radius:var(--radius-s);border:1px solid var(--edge-strong);background:var(--panel-sunk);color:var(--text);min-height:44px}
+textarea{min-height:6rem;resize:vertical;line-height:1.5}
+input::placeholder,textarea::placeholder{color:color-mix(in srgb,var(--muted) 80%,transparent)}
+input[type=checkbox],input[type=radio]{width:1.2rem;height:1.2rem;min-height:0;accent-color:var(--accent);margin:0 .4rem 0 0;vertical-align:-.2em}
+input[type=range]{padding:0;min-height:44px;accent-color:var(--accent);background:transparent;border:0}
+input[type=color]{padding:.2rem;width:4rem}
+input[type=file]{padding:.45rem}
+input[type=file]::file-selector-button{font:inherit;font-weight:650;margin-right:.75rem;padding:.4rem .75rem;border-radius:8px;border:1px solid var(--edge-strong);background:var(--panel-solid);color:var(--text);cursor:pointer}
+input:user-invalid,select:user-invalid,textarea:user-invalid{border-color:var(--bad)}
+fieldset{border:1px solid var(--edge);border-radius:var(--radius-m);padding:.75rem 1rem 1rem;margin:0 0 1rem}
+legend{font-weight:700;padding:0 .4rem}
+.field-hint{font-size:.875rem;color:var(--muted);margin:.25rem 0 0}
+.choice-row{display:flex;flex-wrap:wrap;gap:.5rem}
+.choice-row label{display:inline-flex;align-items:center;gap:.35rem;margin:0;padding:.5rem .8rem;border:1px solid var(--edge-strong);border-radius:999px;font-weight:600;cursor:pointer;min-height:44px}
+.choice-row label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.choice-row input{margin:0}
+
+/* ---------- 10. Results: plain-language output -------------------------- */
+output,.status{display:block;margin-top:.75rem;padding:.75rem .9rem;background:var(--panel-sunk);border:1px solid var(--edge);border-left:3px solid var(--accent);border-radius:var(--radius-s);min-height:2.9rem;white-space:pre-wrap;overflow-wrap:anywhere}
+output:empty::before,.status:empty::before{content:"Results appear here.";color:var(--muted)}
+output.quiet:empty{display:none}
+/* "Checked again, same result": a brief glow (or a still outline with calm motion). */
+.refreshed{animation:refresh-glow .8s ease-out}
+@keyframes refresh-glow{from{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 45%,transparent)}to{box-shadow:0 0 0 0 transparent}}
+:root[data-motion="reduced"] .refreshed{animation:none;outline:2px solid var(--accent);outline-offset:2px}
+.result-good{border-left-color:var(--ok)}.result-warn{border-left-color:var(--warn)}.result-bad{border-left-color:var(--bad)}
+.facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,12rem),1fr));gap:.6rem;margin:.75rem 0;padding:0}
+.facts>div{padding:.7rem .85rem;border:1px solid var(--edge);border-radius:var(--radius-s);background:var(--panel-sunk)}
+.facts dt{font-size:.85rem;color:var(--muted);font-weight:600}
+.facts dd{margin:.15rem 0 0;font-size:1.15rem;font-weight:700;overflow-wrap:anywhere}
+.facts dd small{display:block;font-size:.8rem;font-weight:500}
+.checklist{list-style:none;padding:0;margin:.5rem 0}
+.checklist li{display:flex;gap:.6rem;align-items:flex-start;padding:.35rem 0;border-bottom:1px solid var(--edge)}
+.checklist li:last-child{border-bottom:0}
+.mark{flex:none;display:inline-grid;place-items:center;width:1.4rem;height:1.4rem;border-radius:50%;font-size:.8rem;font-weight:800;border:1px solid currentColor;margin-top:.12rem}
+.mark.ok{color:var(--ok)}.mark.warn{color:var(--warn)}.mark.bad{color:var(--bad)}.mark.info{color:var(--sky)}
+.tech-view{margin-top:.75rem}
+.tech-view>summary{font-size:.92rem;color:var(--muted)}
+
+/* ---------- 11. Data display: tables, meters, chips, charts ----------- */
+.table-scroll{overflow-x:auto;border:1px solid var(--edge);border-radius:var(--radius-m);margin:.9rem 0;background:var(--panel-sunk)}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+caption{text-align:left;padding:.6rem .8rem;color:var(--muted);font-size:.875rem;caption-side:top}
+th,td{padding:.6rem .8rem;border-bottom:1px solid var(--edge);text-align:left;vertical-align:top}
+th{color:var(--text);font-weight:700;background:color-mix(in srgb,var(--accent) 7%,transparent)}
+tbody tr:last-child td{border-bottom:0}
+td button{min-height:36px;padding:.3rem .65rem;font-size:.88rem}
+.meter{height:.7rem;border-radius:999px;background:var(--panel-sunk);border:1px solid var(--edge);overflow:hidden}
+.fill{height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 70%,transparent),var(--accent));box-shadow:0 0 14px color-mix(in srgb,var(--accent) 50%,transparent);transition:width .4s ease}
+.tag,.pill,.chip{display:inline-flex;align-items:center;gap:.35rem;width:fit-content;border:1px solid var(--edge-strong);color:var(--muted);border-radius:999px;padding:.15rem .65rem;font-size:.82rem;font-weight:600;line-height:1.5}
+.tag{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.chip.on,.pill.done{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+.chart{display:block;width:100%;height:240px;background:var(--panel-sunk);border:1px solid var(--edge);border-radius:var(--radius-m)}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1rem;font-size:.85rem;color:var(--muted);margin:.5rem 0}
+.legend i{display:inline-block;width:.7rem;height:.7rem;border-radius:50%;margin-right:.35rem;vertical-align:-.05em}
+
+/* ---------- 12. Disclosure (details/summary) ------------------------- */
+details>summary{cursor:pointer;font-weight:700;padding:.55rem 0;list-style:none;display:flex;gap:.55rem;align-items:baseline}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";flex:none;width:.55rem;height:.55rem;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg);transition:transform .2s;position:relative;top:-.05rem}
+details[open]>summary::before{transform:rotate(45deg)}
+details.example{border-top:1px solid var(--edge);padding:.25rem 0}
+details.example:last-of-type{border-bottom:1px solid var(--edge)}
+details.example[open]{padding-bottom:.75rem}
+
+/* ---------- 13. Plain-language guide ("Start here") ------------------- */
+.guide-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:1.1rem 2rem;margin-top:.75rem}
+@media (min-width:760px){.guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.guide-grid>div{padding-top:.75rem;border-top:1px solid var(--edge)}
+.guide-toggle{font-size:.9rem;min-height:40px}
+.guide-grid h3{display:flex;gap:.5rem;align-items:center;font-size:1.02rem;margin-bottom:.35rem}
+.guide-grid h3 svg{width:20px;height:20px;color:var(--accent);flex:none}
+.guide-grid p{margin:.2rem 0 .4rem}
+.guide-grid ol,.guide-grid ul{margin:.2rem 0;padding-left:1.2rem}
+.audience{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem}
+
+/* ---------- 14. Catalog cards (index) and pager ---------------------- */
+.card{display:flex;flex-direction:column;gap:.45rem;padding:1.1rem 1.15rem;border-radius:var(--radius-m);margin:0}
+.card h3{margin:0;font-size:1.05rem;line-height:1.3}
+.card h3 a{color:var(--text);text-decoration:none}
+.card h3 a::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.card:hover{border-color:color-mix(in srgb,var(--accent) 50%,var(--edge))}
+.card:focus-within{outline:3px solid var(--focus);outline-offset:2px}
+.card h3 a:focus-visible{outline:none}
+.card p{margin:0;color:var(--muted);font-size:.95rem;flex:1}
+.card .card-meta{display:flex;justify-content:space-between;align-items:center;gap:.5rem;font-size:.82rem;color:var(--muted)}
+.card[data-group="integrations"]{border-top:3px solid color-mix(in srgb,var(--sky) 65%,transparent)}
+.card[data-group="labs"]{border-top:3px solid color-mix(in srgb,var(--accent) 65%,transparent)}
+.pager{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:1rem;margin:1.5rem 0}
+.pager a{display:block;padding:1rem 1.1rem;border:1px solid var(--edge);border-radius:var(--radius-m);background:var(--panel);text-decoration:none;color:var(--text)}
+.pager a:hover{border-color:var(--accent)}
+.pager small{display:block;color:var(--muted);font-weight:600}
+.pager .next{text-align:right}
+.related{display:flex;flex-wrap:wrap;gap:.5rem;margin:.25rem 0 0}
+.related a{display:inline-flex;padding:.35rem .75rem;border:1px solid var(--edge-strong);border-radius:999px;text-decoration:none;font-size:.9rem;color:var(--text)}
+.related a:hover{border-color:var(--accent)}
+.path-banner{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center;justify-content:space-between;padding:.8rem 1rem;border-radius:var(--radius-m);border:1px solid color-mix(in srgb,var(--gold) 50%,var(--edge));background:color-mix(in srgb,var(--gold) 8%,var(--panel-sunk));margin:0 0 1.25rem}
+
+/* ---------- 15. Dialogs: palette, comfort, privacy, pause ------------- */
+.atlas-dialog{width:min(40rem,calc(100vw - 2rem));max-height:min(88vh,46rem);padding:0;border:1px solid var(--edge-strong);border-radius:var(--radius-l);background:var(--panel-strong);color:var(--text);box-shadow:var(--shadow-3)}
+.atlas-dialog::backdrop{background:rgba(2,10,12,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.atlas-dialog[open]{display:flex;flex-direction:column}
+.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem .5rem}
+.dialog-head h2{margin:0;font-size:1.35rem}
+.dialog-body{padding:.25rem 1.25rem 1.25rem;overflow:auto}
+.dialog-foot{padding:.75rem 1.25rem 1rem;border-top:1px solid var(--edge);display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end}
+@media (prefers-reduced-motion:no-preference){
+  :root:not([data-motion="reduced"]) .atlas-dialog[open]{animation:atlas-rise .22s ease-out}
+}
+@keyframes atlas-rise{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+/* Command palette */
+#atlas-palette{margin-top:min(12vh,7rem);width:min(44rem,calc(100vw - 1.5rem))}
+.palette-input-row{display:flex;align-items:center;gap:.6rem;padding:.9rem 1.1rem;border-bottom:1px solid var(--edge)}
+.palette-input-row svg{width:20px;height:20px;color:var(--muted);flex:none}
+.palette-input-row input{border:0;background:transparent;font-size:1.1rem;padding:.3rem 0;min-height:40px}
+.palette-input-row input:focus-visible{outline:none}
+.palette-input-row:focus-within{box-shadow:inset 0 -2px 0 var(--accent)}
+#palette-list{list-style:none;margin:0;padding:.4rem;overflow:auto;max-height:min(58vh,30rem)}
+#palette-list .group-label{font-size:.8rem;font-weight:700;color:var(--muted);padding:.65rem .7rem .25rem}
+#palette-list [role="option"]{display:grid;grid-template-columns:1.6rem 1fr auto;gap:.15rem .6rem;align-items:center;padding:.55rem .7rem;border-radius:var(--radius-s);cursor:pointer}
+#palette-list [role="option"] .opt-title{font-weight:650}
+#palette-list [role="option"] .opt-sub{grid-column:2/4;font-size:.85rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#palette-list [role="option"] .opt-kind{font-size:.78rem;color:var(--muted)}
+#palette-list [role="option"] svg{width:18px;height:18px;color:var(--accent)}
+#palette-list [aria-selected="true"]{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
+.palette-empty{padding:1.25rem;color:var(--muted)}
+.palette-detail{margin:.25rem .6rem .75rem;padding:.9rem 1rem;border:1px solid var(--edge);border-radius:var(--radius-m);background:var(--panel-sunk)}
+.palette-foot{display:flex;gap:1rem;flex-wrap:wrap;padding:.6rem 1.1rem;border-top:1px solid var(--edge);font-size:.8rem;color:var(--muted)}
+/* Comfort settings */
+.setting{padding:.75rem 0;border-bottom:1px solid var(--edge)}
+.setting:last-child{border-bottom:0}
+.setting legend{font-weight:700;padding:0}
+.setting fieldset{border:0;padding:0;margin:0}
+.setting p{margin:.2rem 0 .55rem;font-size:.9rem;color:var(--muted)}
+/* Pause / breathing practice */
+.breath-stage{display:grid;place-items:center;min-height:15rem;position:relative}
+.breath-orb{width:7rem;height:7rem;border-radius:50%;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--accent) 85%,#fff),color-mix(in srgb,var(--accent) 35%,transparent) 62%,transparent 72%);box-shadow:0 0 60px color-mix(in srgb,var(--accent) 45%,transparent);transform:scale(.7);transition:transform 4s cubic-bezier(.45,.05,.35,1)}
+.breath-orb.in{transform:scale(1.35)}
+.breath-cue{font-family:var(--font-serif);font-size:1.6rem;margin:.75rem 0 0;text-align:center;min-height:2.2rem}
+:root[data-motion="reduced"] .breath-orb{transition:none}
+@media (prefers-reduced-motion:reduce){.breath-orb{transition:none}}
+
+/* ---------- 16. Toasts ------------------------------------------------ */
+.toast-region{position:fixed;left:50%;bottom:1.25rem;transform:translateX(-50%);z-index:60;display:flex;flex-direction:column;gap:.5rem;align-items:center;width:min(32rem,calc(100vw - 2rem));pointer-events:none}
+.toast{pointer-events:auto;display:flex;gap:.75rem;align-items:center;justify-content:space-between;width:100%;padding:.7rem .8rem .7rem 1rem;border-radius:var(--radius-m);border:1px solid var(--edge-strong);background:var(--panel-strong);box-shadow:var(--shadow-2)}
+.toast button{min-height:36px;padding:.3rem .7rem}
+
+/* ---------- 17. Footer ------------------------------------------------ */
+.atlas-foot{border-top:1px solid var(--edge);margin-top:2rem;padding:1.5rem 0 2.5rem;color:var(--muted);font-size:.92rem}
+.atlas-foot .wrap{display:grid;gap:1rem}
+.foot-links{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem}
+.zero-harm{border:1px solid var(--edge);border-left:4px solid var(--accent);border-radius:var(--radius-s);padding:.85rem 1rem;background:var(--panel);max-width:none}
+.zero-harm strong{color:var(--text)}
+.privacy-chip{display:inline-flex;align-items:center;gap:.5rem;min-height:40px;border-radius:999px;font-size:.88rem}
+.privacy-chip svg{width:16px;height:16px;color:var(--accent)}
+
+/* ---------- 18. Legacy helpers kept for older page content ------------ */
+.toc{display:flex;gap:.5rem;flex-wrap:wrap}
+.toc a{padding:.3rem .7rem;border:1px solid var(--edge-strong);border-radius:999px;text-decoration:none}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.purpose-workbench{border-color:color-mix(in srgb,var(--sky) 45%,var(--edge))}
+.purpose-controls{display:flex;flex-wrap:wrap;gap:.75rem 1rem;align-items:end;margin:1rem 0}
+.purpose-controls label{margin:0 0 .3rem}
+.purpose-controls>div{min-width:min(100%,14rem)}
+.purpose-controls audio{flex-basis:100%;width:100%}
+#purpose-output{overflow-x:auto}
+#purpose-output li{margin:.45rem 0}
+#purpose-output li button{margin-right:.5rem}
+.stat-line{margin:.35rem 0}
+
+/* ---------- 19. Motion preferences ------------------------------------
+   The device setting is honoured by default; Comfort settings can force
+   "Calm" (reduced) or explicitly allow motion (data-motion="full"). */
+@media (prefers-reduced-motion:reduce){
+  :root:not([data-motion="full"]) *,:root:not([data-motion="full"]) *::before,:root:not([data-motion="full"]) *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+:root[data-motion="reduced"] *,:root[data-motion="reduced"] *::before,:root[data-motion="reduced"] *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+/* Native cross-page transitions where supported (Chrome, Edge, Safari). */
+@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.32s}
+
+/* ---------- 20. Print: clean, light, no chrome ------------------------- */
+@media print{
+  :root{color-scheme:light;--bg:#fff;--bg-2:#fff;--panel:#fff;--panel-solid:#fff;--panel-sunk:#fff;--text:#111;--muted:#333;--accent:#064a32;--edge:#999;--edge-strong:#777;--gold:#6b4500;--coral:#8a2a17;--sky:#1a4488}
+  body{background:#fff!important;color:#111;font-size:11pt}
+  .atlas-top,.side-nav,.atlas-beams,#atlas-ambient,.no-print,.toast-region,.pager,.page-actions,dialog,button,.btn{display:none!important}
+  .layout{display:block;padding:0}
+  .wrap{max-width:none;padding:0}
+  .panel,.card,.demo,output,.status,.callout,.facts>div,.table-scroll,pre{background:#fff!important;color:#111!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border-color:#999!important;break-inside:avoid}
+  details{display:block}
+  details>summary::before{display:none}
+  a{color:#064a32}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.85em;color:#333;overflow-wrap:anywhere}
+  input,select,textarea{background:#fff;color:#111;border-color:#888}
+  .chart{background:#fff}
+}
+</style>
+</head>
+<body data-page="integrations/evidence-ledger.html" data-root="../" data-group="integrations" data-sw="sw.js">
+<!-- atlas:top:start -->
+<a class="skip" href="#main">Skip to content</a>
+<div class="atlas-beams" aria-hidden="true"></div>
+<canvas id="atlas-ambient" aria-hidden="true"></canvas>
+<header class="atlas-top">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="12.5" fill="none" stroke="currentColor" stroke-width="2" opacity=".5"/><path d="M16 5.5l2.6 7.9 7.9 2.6-7.9 2.6L16 26.5l-2.6-7.9L5.5 16l7.9-2.6z" fill="currentColor"/></svg><span>HTML Atlas</span></a>
+    <nav class="atlas-nav" aria-label="Atlas">
+      <a href="../index.html#paths">Learning paths</a>
+      <a href="../index.html#catalog">All 69 pages</a>
+      <a href="../index.html#glossary">Glossary</a>
+    </nav>
+    <div class="top-actions">
+      <button type="button" class="search-trigger" id="open-palette" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" hidden><span class="row" style="gap:.5rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-4.2-4.2"/></svg><span>Search<span class="search-label-long"> pages and terms</span></span></span><kbd>Ctrl K</kbd></button>
+      <button type="button" class="icon-btn" id="open-comfort" aria-haspopup="dialog" aria-label="Comfort settings" title="Comfort settings" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2.2"/><circle cx="10" cy="17" r="2.2"/></svg></button>
+    </div>
+  </div>
+</header>
+<!-- atlas:top:end -->
+<div class="layout wrap">
+<!-- atlas:sidebar:start -->
+<aside class="side-nav" id="side-nav">
+  <button type="button" class="side-nav-toggle" id="side-nav-toggle" aria-expanded="false" aria-controls="side-nav-body" hidden>On this page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button>
+  <div class="side-nav-body" id="side-nav-body">
+    <strong class="side-nav-title" id="side-nav-title">On this page</strong>
+    <nav aria-labelledby="side-nav-title"><ul id="side-nav-list"><li><a href="#start-here">Start here, in plain language</a></li><li><a href="#editor">Add or edit a record</a></li><li><a href="#insights">At a glance</a></li><li><a href="#purpose">Human review &amp; provenance queue</a></li><li><a href="#data">Saved records</a></li><li><a href="#storage">Where your data lives</a></li><li><a href="#example-scenarios">More example scenarios</a></li><li><a href="#inventory">What this tool does</a></li><li><a href="#checks">How to check it works</a></li><li><a href="#limits">Limits and safety</a></li><li><a href="#prompt">Build it yourself with an AI assistant</a></li><li><a href="#source">Look under the hood</a></li><li><a href="#related">Related pages</a></li></ul></nav>
+    <div class="side-progress" id="side-progress" hidden><span id="side-progress-text"></span><div class="meter" aria-hidden="true"><div class="fill" id="side-progress-fill"></div></div></div>
+  </div>
+</aside>
+<!-- atlas:sidebar:end -->
+<main id="main" tabindex="-1">
+<header class="hero">
+<p class="eyebrow">Working tool 5 of 24</p>
+<h1>Evidence provenance ledger</h1>
+<p class="lead">Track claims, their sources and their review status, so disputed and unverified statements always rise to the top for checking.</p>
+<!-- atlas:actions:start -->
+<div class="page-actions no-print">
+  <label class="check-pill"><input type="checkbox" id="completed"> Mark this page complete</label>
+  <a class="btn btn-quiet" href="#your-notes">My notes</a>
+  <button type="button" class="btn-quiet" data-atlas-print hidden>Print or save as PDF</button>
+  <span id="progress-note" class="fineprint" role="status"></span>
+</div>
+<!-- atlas:actions:end -->
+</header>
+<section class="panel guide" id="start-here"><div class="panel-head"><h2>Start here, in plain language</h2><button type="button" class="btn-quiet guide-toggle js-only" aria-expanded="true" aria-controls="guide-body">Fold the guide away</button></div><div id="guide-body"><div class="guide-grid"><div><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg> What it is</h3><p>A ledger for statements that matter: what was claimed, where it came from, its review status and the method or limits of that review. The workbench sorts disputed and unverified claims first and lists any with no source.</p></div><div><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19c0-8 6-14 15-14 0 9-6 15-14 15"/><path d="M5 19l8-8"/></svg> Why it matters for people and planet</h3><p>Misinformation spreads faster than corrections. A shared, honest record of what has and has not been checked helps communities, journalists and public servants act on evidence and admit uncertainty without shame.</p></div><div><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg> Try it in three steps</h3><ol><li>Press <strong>Add a sample</strong> two or three times to fill the ledger.</li><li>See the review queue order: disputed first, then unverified, in review, verified.</li><li>Export the review queue as Markdown to share with whoever will check it.</li></ol></div><div><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9.5" r="2.5"/><path d="M3.5 19c.8-3.2 3-5 5.5-5s4.7 1.8 5.5 5M14.5 15.2c2.6-.6 5 .8 6 3.8"/></svg> Where people use this</h3><ul><li>A council team tracking claims made during a public consultation.</li><li>A teacher modelling fact-checking with a class.</li><li>A newsroom or newsletter keeping a correction log.</li></ul></div></div><p class="fineprint">A status here is a person's judgement, recorded honestly. The tool never decides what is true.</p><div class="audience" aria-label="Especially useful for"><span class="chip">Public service</span><span class="chip">Teachers</span><span class="chip">Organizers</span></div></div></section><div class="two"><section class="panel panel-feature" id="editor"><h2>Add or edit a record</h2><p class="muted">Fill in every field unless it says optional. Everything stays on this device.</p><div id="editing-banner" class="callout" hidden><p>Editing “<strong id="editing-name"></strong>”. Save your changes or cancel.</p><button type="button" id="editing-cancel">Cancel editing</button></div><form id="record-form"><div class="field"><label for="field-claim">Assertion</label><input id="field-claim" name="claim" type="text" maxlength="5000" required autocomplete="off"></div><div class="field"><label for="field-source">Source / identifier <span class="muted">(optional)</span></label><input id="field-source" name="source" type="text" maxlength="5000" autocomplete="off" aria-describedby="field-source-hint"><p class="field-hint" id="field-source-hint">Where the claim came from. Leave empty if unknown; the gap will be listed for follow-up.</p></div><div class="field"><label for="field-status">Review status</label><select id="field-status" name="status"><option>Unverified</option><option>In review</option><option>Verified</option><option>Disputed</option></select></div><div class="field"><label for="field-reason">Method / limits</label><textarea id="field-reason" name="reason" rows="3" maxlength="5000" required></textarea></div><div class="toolbar"><button type="submit" id="record-save" class="btn-primary">Save new record</button><button type="button" id="record-reset">Clear form</button><button type="button" id="sample-load">Add a sample</button></div></form></section><section class="panel" id="insights"><h2>At a glance</h2><div id="insight"></div><canvas id="integration-chart" class="chart" role="img" aria-label="Chart of saved records"></canvas><p id="chart-caption" class="fineprint"></p><details class="tech-view"><summary>Chart values as a table</summary><div class="table-scroll"><table><thead><tr><th scope="col">Label</th><th scope="col">Value</th></tr></thead><tbody id="chart-table-body"></tbody></table></div></details><details class="tech-view"><summary>Technical summary (JSON)</summary><pre id="insight-json"></pre></details></section></div>
+<section class="panel purpose-workbench" id="purpose"><p class="eyebrow">Purpose-built workbench</p><h2>Human review &amp; provenance queue</h2><p>Display disputed/unverified claims first and identify missing sources. A status label is a human entry; the tool never establishes truth by itself.</p><div class="purpose-controls"><button id="purpose-export">Export review queue (Markdown)</button></div><div id="purpose-output"><p>Add a record or use the controls above to begin.</p></div></section>
+<section class="panel" id="data"><h2>Saved records</h2><label for="integration-search">Search these records</label><input id="integration-search" type="search" placeholder="Type any word from any field" autocomplete="off"><p id="record-count" role="status"></p><div class="table-scroll" tabindex="0" role="region" aria-label="Saved records table"><table><thead><tr><th scope="col">Assertion</th><th scope="col">Source / identifier</th><th scope="col">Review status</th><th scope="col">Method / limits</th><th scope="col">Actions</th></tr></thead><tbody id="records"></tbody></table></div><p id="records-empty" class="muted" hidden></p><h3>Backups and exports</h3><div class="toolbar"><button type="button" id="integration-export">Download JSON backup</button><button type="button" id="integration-csv">Download spreadsheet (CSV)</button></div><label for="integration-import">Restore from a JSON backup of this tool</label><input id="integration-import" type="file" accept=".json,application/json"><div class="toolbar"><button type="button" id="integration-clear" class="btn-danger">Delete all records</button></div><output id="status" aria-live="polite"></output></section>
+<section class="panel" id="storage"><h2>Where your data lives</h2><p>Your records are saved in this browser on this device, twice: a quick copy and a sturdier backup copy. Nobody else can see them, and nothing is uploaded. Browsers can still clear stored data, so download a backup after important changes.</p><div id="storage-health"></div><div class="toolbar"><button type="button" id="storage-persist">Ask the browser to keep this data</button></div><p id="storage-persist-status" class="fineprint" role="status"></p></section>
+<section class="panel" id="example-scenarios"><h2>More example scenarios</h2><p class="lead">Three uses of the assertion/source/review-status split that keep "someone said" separate from "this was checked".</p><details class="example"><summary>A policy researcher logging a cited statistic before checking it</summary><p>A submission cites a specific number; recording the assertion and its stated source immediately — before anyone has had time to verify it — means the unchecked claim is on record honestly, not lost or silently treated as fact.</p><p class="fineprint">Assertion: "12% rental vacancy rate in the district" · Source / identifier: link to the submission, page 4 · Review status: "Unverified" · Method / limits: "Original dataset not yet located."</p><p>Expected outcome: "Unverified" here is not a criticism of the source — it is an honest, temporary status that gets updated the moment someone actually checks the underlying number, which is the whole point of tracking status separately from the claim itself.</p></details><details class="example"><summary>A media-literacy class checking a public claim together</summary><p>Walking students through actually verifying a circulating claim — not just discussing whether it "sounds true" — works better with the assertion, the check performed, and the outcome all on the same record.</p><p class="fineprint">Assertion: "A specific factory closure caused a stated number of local job losses" · Source / identifier: the original news article · Review status: "In review" (partly confirmed) · Method / limits: "Closure confirmed via a second source; exact job-loss figure not independently found."</p><p>Extend it: keep a partly confirmed claim at "In review" and write exactly what is and is not confirmed in Method / limits — resist collapsing it to either fully true or fully false when the class’s own checking genuinely only got partway there.</p></details><details class="example"><summary>A land manager documenting a restoration claim pending independent review</summary><p>An internal report claims a planting site has recovered; logging that claim with its review status pending an outside ecologist’s visit keeps the record honest about what is self-reported versus independently confirmed.</p><p class="fineprint">Assertion: "Native cover exceeds 60% on restoration plot 4" · Source / identifier: internal monitoring log · Review status: "In review" (awaiting an independent check) · Method / limits: "Self-assessed via photo point comparison; no outside ecologist visit yet."</p><p>Expected outcome: a funder or the public reading this record sees explicitly that outside verification has not happened yet — update the status, not the assertion, once that visit occurs.</p></details></section>
+<div class="two"><section class="panel" id="inventory"><h2>What this tool does</h2><ul><li>Add, edit, search and delete records, with Undo</li><li>Saved twice on this device: localStorage plus an IndexedDB copy</li><li>Plain-language summary tiles and an accessible chart with a data table</li><li>Purpose-built workbench: Human review &amp; provenance queue</li><li>JSON backup and strict, schema-checked restore</li><li>Spreadsheet (CSV) export with formula-injection protection</li><li>Storage health panel and an optional request to keep data</li><li>Up to 1,000 records per tool, no accounts, no network</li></ul></section><section class="panel" id="checks"><h2>How to check it works</h2><ol><li>Add a Disputed and a Verified claim and confirm Disputed is listed first.</li><li>Leave a source empty and confirm it appears under source gaps.</li><li>Export the queue as Markdown and read it in any editor.</li><li>Change a status and confirm the order updates.</li><li>Reload and confirm the ledger persists.</li></ol></section></div>
+<section class="panel" id="limits"><h2>Limits and safety</h2><p>This sample combines several technologies into one independently functional, offline-capable HTML page. It uses localStorage, which is subject to origin isolation, limited quota and clearing; export backups. It does not implement cloud accounts, production permissions, or remote synchronization.</p><p class="fineprint">An educational, local-first tool, not certified professional software or a shared server. Records live only in this browser; export backups to keep them.</p></section>
+<section class="panel" id="prompt"><h2>Build it yourself with an AI assistant</h2><p class="muted">Paste this into the assistant you use, adapt it to your project, and check every result yourself. Generated code can look right and still be wrong.</p><pre id="ai-prompt">Create a robust, accessible, offline-first implementation of the Evidence provenance ledger application. Purpose: Separate assertions, sources and verification status. Build a standalone index.html with fields Assertion, Source / identifier, Review status, Method / limits; include real add/edit/delete, local persistence, validation, searching, record summaries, safe DOM rendering, JSON backup and versioned imports, graceful storage failure and readable print. Preserve consent, privacy and source attribution. Document all estimates and assumptions. Provide browser support checks and test results. The included atlas implementation is an educational prototype, not a complete production system.</pre><div class="toolbar"><button type="button" id="copy-prompt" class="js-only">Copy prompt</button><span id="copy-state" class="fineprint" role="status"></span></div></section>
+<section class="panel" id="source"><h2>Look under the hood</h2><p>Nothing is hidden. This is the exact code running on this page. Copy it, change it, learn from it.</p><details class="example"><summary>This page's own JavaScript</summary><pre id="source-code">JavaScript is needed to show the code here. You can also open this HTML file in any text editor.</pre></details><details class="example" id="runtime-source"><summary>Shared code used by every page (the shared atlas runtime and the record engine)</summary><pre id="runtime-code">Opens when you expand this section.</pre></details></section>
+<!-- atlas:notes:start -->
+<section class="panel js-only" id="your-notes">
+  <h2>Your notes on this page</h2>
+  <p class="muted">Jot down how you might use this, questions for later, or what you would teach someone else. Notes save as you type, stay on this device, and are included when you export your progress from the atlas home page.</p>
+  <label for="page-notes">Notes</label>
+  <textarea id="page-notes" rows="5" maxlength="5000" placeholder="For example: try this with the school garden team next week."></textarea>
+  <div class="toolbar"><button type="button" id="page-notes-download">Download these notes</button><span id="page-notes-status" class="fineprint" role="status"></span></div>
+</section>
+<!-- atlas:notes:end -->
+<!-- atlas:pager:start -->
+<nav class="pager no-print" aria-label="Previous and next pages"><a class="prev" href="../integrations/field-survey.html" rel="prev"><small>Previous</small>Offline field survey</a><a class="next" href="../integrations/household-resilience.html" rel="next"><small>Next</small>Household resilience checklist</a></nav><section class="panel no-print" id="related"><h2>Related pages</h2><p class="muted">Pages that share ideas with this one, picked from the catalog and learning paths.</p><div class="related"><a href="../integrations/deployment-audit.html">Deployment readiness board</a><a href="../labs/privacy.html">Privacy engineering</a><a href="../labs/knowledge.html">Knowledge management</a><a href="../labs/rag.html">Retrieval-augmented generation</a></div></section>
+<!-- atlas:pager:end -->
+</main>
+</div>
+<!-- atlas:footer:start -->
+<footer class="atlas-foot">
+  <div class="wrap">
+    <p class="zero-harm"><strong>Zero Harm &amp; Anti-Coercion.</strong> This page is built to inform and empower. It never tracks you, never pressures you, and never sends anything anywhere unless you choose to. What you enter stays on this device unless you export it. Using it to manipulate, surveil, coerce or harass anyone goes against its purpose.</p>
+    <div class="split">
+      <button type="button" class="privacy-chip" id="open-privacy" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span id="privacy-chip-text">Privacy lock on</span></button>
+      <nav class="foot-links" aria-label="Atlas resources"><a href="../index.html">Atlas home</a><a href="../README.md">Read me</a><a href="../LICENSE">MIT license</a><a href="../catalog.json">Catalog data</a></nav>
+    </div>
+    <p class="fineprint">Made by Foster + Navi for people and the planet. Next-Generation HTML Atlas, version 3.0. An educational reference, not an audited production component. Browser storage is not a backup, so export anything that matters.</p>
+    <noscript><p class="fineprint">JavaScript is off. Explanations, examples and links still work; interactive demos, saving and progress need JavaScript.</p></noscript>
+  </div>
+</footer>
+<div class="toast-region" id="toast-region" aria-live="polite"></div>
+
+<dialog class="atlas-dialog" id="atlas-palette" aria-label="Search the atlas">
+  <div class="palette-input-row">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-4.2-4.2"/></svg>
+    <input id="palette-input" type="text" role="combobox" aria-expanded="false" aria-controls="palette-list" aria-autocomplete="list" aria-label="Search pages, sections, terms or actions" placeholder="Search pages, sections, terms or actions" autocomplete="off" spellcheck="false">
+    <button type="button" class="btn-quiet" data-close>Close</button>
+  </div>
+  <div id="palette-list" role="listbox" aria-label="Search results"></div>
+  <div id="palette-detail" class="palette-detail" aria-live="polite" hidden></div>
+  <div class="palette-foot" aria-hidden="true"><span><kbd>↑</kbd> <kbd>↓</kbd> to move</span><span><kbd>Enter</kbd> to open</span><span><kbd>Esc</kbd> to close</span></div>
+</dialog>
+
+<dialog class="atlas-dialog" id="atlas-comfort" aria-labelledby="comfort-title">
+  <div class="dialog-head"><h2 id="comfort-title">Comfort settings</h2><button type="button" class="btn-quiet" data-close>Close</button></div>
+  <div class="dialog-body">
+    <p class="muted">Changes apply right away and are saved on this device only.</p>
+    <div class="setting"><fieldset><legend>Colour theme</legend><div class="choice-row">
+      <label><input type="radio" name="theme" value="auto"> Match my device</label><label><input type="radio" name="theme" value="night"> Night</label><label><input type="radio" name="theme" value="day"> Day</label><label><input type="radio" name="theme" value="contrast"> High contrast</label></div></fieldset></div>
+    <div class="setting"><fieldset><legend>Motion</legend><p>Calm stops animations and page transitions.</p><div class="choice-row">
+      <label><input type="radio" name="motion" value="auto"> Match my device</label><label><input type="radio" name="motion" value="reduced"> Calm</label><label><input type="radio" name="motion" value="full"> Allow motion</label></div></fieldset></div>
+    <div class="setting"><fieldset><legend>Ambient light</legend><p>The drifting fireflies and soft light behind the page. Purely decorative.</p><div class="choice-row">
+      <label><input type="radio" name="ambient" value="on"> On</label><label><input type="radio" name="ambient" value="calm"> Gentle</label><label><input type="radio" name="ambient" value="off"> Off</label></div></fieldset></div>
+    <div class="setting"><fieldset><legend>Surfaces</legend><p>Solid panels can be easier to read and faster on older devices.</p><div class="choice-row">
+      <label><input type="radio" name="glass" value="frosted"> Frosted glass</label><label><input type="radio" name="glass" value="solid"> Solid</label></div></fieldset></div>
+    <div class="setting"><fieldset><legend>Text size</legend><div class="choice-row">
+      <label><input type="radio" name="text" value="small"> Smaller</label><label><input type="radio" name="text" value="normal"> Standard</label><label><input type="radio" name="text" value="large"> Large</label><label><input type="radio" name="text" value="xlarge"> Extra large</label></div></fieldset></div>
+    <div class="setting"><fieldset><legend>Reading spacing</legend><p>Relaxed adds space between lines, letters and words, which many readers find easier.</p><div class="choice-row">
+      <label><input type="radio" name="reading" value="normal"> Standard</label><label><input type="radio" name="reading" value="relaxed"> Relaxed</label></div></fieldset></div>
+    <div class="setting"><fieldset><legend>Progress game</legend><p>Levels, badges and your learning rhythm on the atlas home. Your progress is kept either way.</p><div class="choice-row">
+      <label><input type="radio" name="game" value="on"> Show</label><label><input type="radio" name="game" value="off"> Hide</label></div></fieldset></div>
+    <div class="setting"><h3>Need a breather?</h3><p>A one-minute guided breathing pause, any time.</p><button type="button" id="open-pause">Start a one-minute pause</button></div>
+  </div>
+  <div class="dialog-foot"><button type="button" id="comfort-reset">Reset to defaults</button><button type="button" class="btn-primary" data-close>Done</button></div>
+</dialog>
+
+<dialog class="atlas-dialog" id="atlas-privacy" aria-labelledby="privacy-title">
+  <div class="dialog-head"><h2 id="privacy-title">Your privacy on this page</h2><button type="button" class="btn-quiet" data-close>Close</button></div>
+  <div class="dialog-body">
+    <ul class="checklist" id="privacy-facts"></ul>
+    <h3>Offline copy</h3>
+    <p id="offline-status" aria-live="polite">Checking…</p>
+    <div class="toolbar"><button type="button" id="offline-save" hidden>Save all pages for offline use</button><button type="button" id="offline-remove" hidden>Remove offline copy</button></div>
+    <h3>Erase everything</h3>
+    <p>Removes all atlas progress, notes, comfort settings, records you created in the tools, and any offline copy from this browser. Export anything you want to keep first.</p>
+    <button type="button" class="btn-danger" id="erase-all">Erase all atlas data on this device</button>
+    <div id="erase-confirm" class="callout warning" hidden><p><strong>Erase everything now?</strong> This cannot be undone.</p><div class="toolbar"><button type="button" id="erase-cancel">Keep my data</button><button type="button" class="btn-danger" id="erase-yes">Yes, erase everything</button></div></div>
+    <p id="erase-status" class="fineprint" role="status"></p>
+  </div>
+  <div class="dialog-foot"><button type="button" class="btn-primary" data-close>Done</button></div>
+</dialog>
+
+<dialog class="atlas-dialog" id="atlas-pause" aria-labelledby="pause-title">
+  <div class="dialog-head"><h2 id="pause-title">A one-minute pause</h2><button type="button" class="btn-quiet" data-close>Close</button></div>
+  <div class="dialog-body">
+    <p class="muted">Box breathing: in for four, hold for four, out for four, hold for four. Follow the light, or just the words.</p>
+    <div class="breath-stage"><div class="breath-orb" id="breath-orb" aria-hidden="true"></div></div>
+    <p class="breath-cue" id="breath-cue">Ready when you are.</p>
+    <p class="fineprint" id="breath-time" style="text-align:center;max-width:none" aria-live="polite"></p>
+    <div class="toolbar" style="justify-content:center"><label for="breath-length" class="sr-only">Length of pause</label><select id="breath-length" style="width:auto"><option value="60">1 minute</option><option value="120">2 minutes</option><option value="180">3 minutes</option></select><button type="button" class="btn-primary" id="breath-start">Begin</button><button type="button" id="breath-stop" hidden>Stop</button></div>
+    <p class="fineprint">If slow breathing feels uncomfortable, stop and breathe normally. This is a simple relaxation practice, not medical treatment.</p>
+  </div>
+</dialog>
+<!-- atlas:footer:end -->
+<script id="atlas-runtime">
+/* Generated by tools/atlas_build.py from catalog.json and glossary.json. Do not edit here. */
+const ATLAS_DATA={"version":"3.0","pages":[{"id":"index.html","t":"Atlas home","g":"index","n":0,"s":"A portable, offline-first atlas of the modern web: 44 topic labs and 24 working tools, each a single HTML file, with learning paths, a glossary and private progress tracking.","k":"index, learning paths, glossary, progress, search, offline, constellation","a":"Everyone"},{"id":"labs/semantic-html.html","t":"Semantic HTML & document architecture","g":"labs","n":1,"s":"HTML landmarks, structured documents, headings, meaningful text","k":"Semantics, landmarks, headings, native elements, structured documents, MathML, SVG","a":"Everyone, Teachers, Builders"},{"id":"labs/html-attributes.html","t":"HTML attributes & smart interfaces","g":"labs","n":2,"s":"Native attributes, validation, language, metadata, and keyboard behavior","k":"data attributes, dir, lang, inert, tabindex, autocomplete, ARIA","a":"Builders, Teachers"},{"id":"labs/native-interaction.html","t":"Native interactive HTML","g":"labs","n":3,"s":"Disclosures, dialogs, popovers and menu actions","k":"details, summary, dialog, popover, native select, focus","a":"Builders, Everyone"},{"id":"labs/advanced-forms.html","t":"Advanced forms & data entry","g":"labs","n":4,"s":"Accessible input validation and typed submissions","k":"input, fieldset, FormData, validity, constraints, form UX","a":"Everyone, Organizers, Builders"},{"id":"labs/css-layout.html","t":"Responsive CSS layout systems","g":"labs","n":5,"s":"Grid, Flexbox, container queries and fluid sizing","k":"Grid, flex, clamp, container queries, responsive composition","a":"Builders, Teachers"},{"id":"labs/visual-styling.html","t":"Advanced visual styling","g":"labs","n":6,"s":"Design tokens, color spaces and typography","k":"custom properties, OKLCH, gradients, contrast, themes","a":"Builders, Public service"},{"id":"labs/motion.html","t":"Animation & cinematic interfaces","g":"labs","n":7,"s":"Motion preferences and interruptible animation","k":"Web Animations, CSS keyframes, reduced motion, transitions","a":"Builders, Everyone"},{"id":"labs/javascript-architecture.html","t":"JavaScript application architecture","g":"labs","n":8,"s":"Event-driven state and modular behavior","k":"modules, state machines, events, DOM, structured clone","a":"Builders"},{"id":"labs/offline-first.html","t":"Offline-first functionality","g":"labs","n":9,"s":"Resilient offline drafts and connectivity transitions","k":"offline, local drafts, network events, durable state","a":"Field teams, Everyone, Builders"},{"id":"labs/pwa.html","t":"Progressive Web Apps","g":"labs","n":10,"s":"Manifest and service-worker diagnostics","k":"manifest, service workers, installability, secure context","a":"Builders, Field teams"},{"id":"labs/storage.html","t":"Local data storage","g":"labs","n":11,"s":"Transactional IndexedDB and storage durability","k":"IndexedDB, transactions, quota, persistence, recovery","a":"Builders, Field teams"},{"id":"labs/file-portability.html","t":"File import/export","g":"labs","n":12,"s":"Structured import, download, preview and validation","k":"JSON, Blob, File, import, export, schema validation","a":"Everyone, Public service, Builders"},{"id":"labs/integrity.html","t":"Integrity & provenance","g":"labs","n":13,"s":"SHA-256 verification and transparent provenance","k":"Web Crypto, digests, integrity, timestamps, provenance","a":"Public service, Field teams, Builders"},{"id":"labs/search.html","t":"Advanced search engines","g":"labs","n":14,"s":"Search, filtering and ranked local results","k":"full text, fuzzy ranking, filters, offline search","a":"Builders, Teachers"},{"id":"labs/knowledge.html","t":"Knowledge management","g":"labs","n":15,"s":"Linked records, backlinks, source categories","k":"annotations, backlinks, structured metadata, facts vs hypotheses","a":"Teachers, Field teams, Organizers"},{"id":"labs/graph-navigation.html","t":"Visual knowledge navigation","g":"labs","n":16,"s":"Accessible interactive SVG graph with text equivalent","k":"SVG, network graphs, keyboard navigation, alternative lists","a":"Teachers, Builders"},{"id":"labs/images.html","t":"Image processing","g":"labs","n":17,"s":"Local preview and canvas transforms","k":"File, Blob, Canvas, image decode, exports","a":"Everyone, Organizers"},{"id":"labs/audio-video.html","t":"Audio & video production","g":"labs","n":18,"s":"Web Audio synthesizer and media capability checks","k":"Web Audio, media elements, audiovisual access","a":"Everyone, Teachers"},{"id":"labs/visualization.html","t":"Analytical visualization","g":"labs","n":19,"s":"Interactive chart with accessible underlying data","k":"Canvas, charts, data tables, units, uncertainty","a":"Teachers, Field teams, Public service"},{"id":"labs/gpu.html","t":"GPU & graphics","g":"labs","n":20,"s":"Canvas particle field with GPU feature detection","k":"Canvas, WebGL, WebGPU, animation, fallback","a":"Builders"},{"id":"labs/spatial.html","t":"Spatial interfaces","g":"labs","n":21,"s":"CSS 3D model and WebXR capability inspection","k":"CSS transforms, WebXR, device fallback","a":"Builders, Teachers"},{"id":"labs/local-ai.html","t":"Local AI & browser AI","g":"labs","n":22,"s":"Honest model availability and deterministic fallback","k":"Prompt API checks, GPU, CPU fallback, local inference","a":"Everyone, Public service, Builders"},{"id":"labs/agents.html","t":"AI agent architecture","g":"labs","n":23,"s":"Permission-gated deterministic workflow simulator","k":"state machines, explicit approvals, execution logs","a":"Public service, Builders"},{"id":"labs/rag.html","t":"Retrieval-augmented generation","g":"labs","n":24,"s":"Citation-first lexical retrieval demo (no model claims)","k":"document retrieval, excerpts, provenance, unsupported answers","a":"Teachers, Public service, Builders"},{"id":"labs/ai-maintenance.html","t":"AI-assisted maintenance","g":"labs","n":25,"s":"HTML quality audit and suggested fixes","k":"static analysis, maintainability, tests, accessibility","a":"Builders, Public service"},{"id":"labs/collaboration.html","t":"Real-time collaboration","g":"labs","n":26,"s":"Same-origin tab synchronization with BroadcastChannel","k":"BroadcastChannel, CRDT concepts, multi-tab messages","a":"Organizers, Builders"},{"id":"labs/decentralization.html","t":"Decentralized architectures","g":"labs","n":27,"s":"Portable peer-exchange packages","k":"local-first, content addressing, exchange, provenance","a":"Organizers, Field teams, Builders"},{"id":"labs/communication.html","t":"Kind conversation spaces","g":"labs","n":28,"s":"Locally kept discussion with gentle tone checks and human-led moderation","k":"messages, safe rendering, drafts, moderation principles","a":"Organizers, Teachers, Everyone"},{"id":"labs/geospatial.html","t":"Geospatial GIS","g":"labs","n":29,"s":"Coordinate mapping and portable GeoJSON","k":"lat lon, GeoJSON, projections, spatial visualization","a":"Field teams, Teachers"},{"id":"labs/sensors.html","t":"Device sensors & permissions","g":"labs","n":30,"s":"Explicit capability inspection without silent tracking","k":"geolocation, device permissions, consent, fallback","a":"Everyone, Builders"},{"id":"labs/field-science.html","t":"Environmental monitoring","g":"labs","n":31,"s":"Measured time-series, calibration and uncertainty","k":"environmental measurements, units, quality flags","a":"Field teams, Teachers"},{"id":"labs/security.html","t":"Web security","g":"labs","n":32,"s":"Safe rendering and browser security inspection","k":"textContent, CSP, Trusted Types, origin, permissions","a":"Builders, Public service"},{"id":"labs/privacy.html","t":"Privacy engineering","g":"labs","n":33,"s":"Local permissions ledger and portable privacy choices","k":"data minimization, consent, retention, local processing","a":"Everyone, Public service, Organizers"},{"id":"labs/cryptography.html","t":"Cryptography & authentication","g":"labs","n":34,"s":"SHA-256 digest and random generation","k":"Web Crypto, SHA256, secure randomness, WebAuthn diagnostics","a":"Everyone, Organizers, Builders"},{"id":"labs/accessibility.html","t":"Accessibility & inclusive design","g":"labs","n":35,"s":"Keyboard, visual preferences and announced status","k":"WCAG, focus, contrast, motion, accessibility checks","a":"Everyone, Teachers, Public service"},{"id":"labs/performance.html","t":"Web performance","g":"labs","n":36,"s":"Real performance measurement and workload tester","k":"performance.now, timings, budget, async workloads","a":"Builders"},{"id":"labs/reliability.html","t":"Reliability & fault tolerance","g":"labs","n":37,"s":"Retries, backoff, cancellation and simulated failures","k":"timeouts, retry, recovery, cancellation, resilience","a":"Builders, Field teams"},{"id":"labs/seo.html","t":"Search discovery & metadata","g":"labs","n":38,"s":"Audit machine-readable metadata","k":"title, description, canonical, structured data, robots","a":"Organizers, Public service, Builders"},{"id":"labs/i18n.html","t":"Internationalization & localization","g":"labs","n":39,"s":"Intl formatting, language and direction","k":"Intl, locale, dates, numbers, currencies, RTL","a":"Everyone, Public service, Builders"},{"id":"labs/publishing.html","t":"Print & document publishing","g":"labs","n":40,"s":"Printable field guide and print preview","k":"@media print, semantic publishing, citation formatting","a":"Teachers, Organizers, Public service"},{"id":"labs/hosting.html","t":"Hosting & deployment","g":"labs","n":41,"s":"Deployment diagnostics and static/server boundaries","k":"secure contexts, host, manifest, headers, offline deployment","a":"Public service, Builders"},{"id":"labs/web-components.html","t":"Web Components & reusable elements","g":"labs","n":42,"s":"Custom elements, shadow DOM, slots and form-associated controls","k":"custom elements, shadow DOM, templates, slots, form-associated, reusable components","a":"Builders"},{"id":"labs/workers-wasm.html","t":"Background threads & WebAssembly","g":"labs","n":43,"s":"Web Workers keep pages responsive; WebAssembly runs compiled code safely","k":"web workers, WebAssembly, wasm, threads, concurrency, responsiveness","a":"Builders"},{"id":"labs/sustainable-web.html","t":"Sustainable, low-carbon web design","g":"labs","n":44,"s":"Measure page weight and estimate energy with adjustable, transparent assumptions","k":"sustainability, page weight, carbon, energy, efficiency, caching, images","a":"Everyone, Public service, Builders"},{"id":"integrations/offline-archive.html","t":"Offline knowledge archive","g":"integrations","n":1,"s":"Collect evidence-backed notes with tags and source URLs","k":"knowledge, Title, Source URL, Evidence category, Summary","a":"Field teams, Teachers, Organizers"},{"id":"integrations/food-garden.html","t":"Edible garden planner","g":"integrations","n":2,"s":"Plan edible planting beds and quantities","k":"product, Crop, Area (m²), Estimated yield (kg/m²), Planting date","a":"Everyone, Teachers, Organizers"},{"id":"integrations/learning-quests.html","t":"Learning quest builder","g":"integrations","n":3,"s":"Create learning activities with practical completion evidence","k":"effort, Quest, Minutes, Difficulty, Proof of learning","a":"Teachers, Everyone"},{"id":"integrations/field-survey.html","t":"Offline field survey","g":"integrations","n":4,"s":"Log observations with method and sampling context","k":"measure, Site label (not private address), Sample ID, Reading, Unit, Method / calibration","a":"Field teams"},{"id":"integrations/evidence-ledger.html","t":"Evidence provenance ledger","g":"integrations","n":5,"s":"Separate assertions, sources and verification status","k":"evidence, Assertion, Source / identifier, Review status, Method / limits","a":"Public service, Teachers, Organizers"},{"id":"integrations/household-resilience.html","t":"Household resilience checklist","g":"integrations","n":6,"s":"Plan essentials without making safety guarantees","k":"inventory, Preparedness item, Quantity, Priority, Storage location","a":"Everyone, Organizers"},{"id":"integrations/community-decisions.html","t":"Community decision register","g":"integrations","n":7,"s":"Document options, consent and procedural outcomes","k":"governance, Proposal, Affected stakeholders, Stage, Conditions / notes","a":"Organizers, Public service"},{"id":"integrations/map-notebook.html","t":"Geographic observation notebook","g":"integrations","n":8,"s":"Record field locations as labeled coordinates","k":"map, Place label, Latitude, Longitude, Observation","a":"Field teams, Teachers"},{"id":"integrations/story-studio.html","t":"Interactive story studio","g":"integrations","n":9,"s":"Track characters, motives and evolving symbols","k":"story, Character, What they want, Consequence, Recurring symbol","a":"Teachers, Everyone"},{"id":"integrations/audio-journal.html","t":"Accessible audio journal","g":"integrations","n":10,"s":"Organize audio session records and transcripts","k":"effort, Session title, Duration (minutes), Transcript / notes, Sharing","a":"Everyone, Teachers, Field teams"},{"id":"integrations/dataset-explorer.html","t":"Portable dataset explorer","g":"integrations","n":11,"s":"Store labeled measurements and compare records","k":"measure, Data point, Value, Unit, Uncertainty ±","a":"Field teams, Teachers, Public service"},{"id":"integrations/accessibility-audit.html","t":"Accessibility audit board","g":"integrations","n":12,"s":"Record test results and necessary remedies","k":"audit, Component, Criterion, Result, Remediation","a":"Public service, Builders"},{"id":"integrations/privacy-workbench.html","t":"Privacy impact workbench","g":"integrations","n":13,"s":"Document collection purposes and reduction options","k":"privacy, Data collected, Purpose, Necessity, Retention rule","a":"Public service, Organizers, Builders"},{"id":"integrations/exchange-hub.html","t":"Data exchange hub","g":"integrations","n":14,"s":"Create traceable dataset exchange packages","k":"exchange, Dataset, Schema version, Reuse license, Source and rights","a":"Public service, Field teams, Builders"},{"id":"integrations/collaboration-studio.html","t":"Collaboration planning studio","g":"integrations","n":15,"s":"Track participants, tasks and consent-based assignments","k":"workflow, Shared task, Owner alias, State, Handoff details","a":"Organizers, Teachers"},{"id":"integrations/restoration-monitor.html","t":"Restoration monitoring dashboard","g":"integrations","n":16,"s":"Track baselines and repeat observations","k":"delta, Plot / site, Baseline, Latest measurement, Measured indicator","a":"Field teams, Organizers"},{"id":"integrations/science-workbench.html","t":"Scientific calculation notebook","g":"integrations","n":17,"s":"Record quantities and explicit assumptions","k":"product, Experiment, Input value, Conversion / multiplier, Assumptions","a":"Teachers, Field teams"},{"id":"integrations/ai-evaluation.html","t":"AI evaluation notebook","g":"integrations","n":18,"s":"Record reproducible tests and human findings","k":"audit, Test case, Expected behavior, Observed behavior, Outcome","a":"Public service, Builders, Teachers"},{"id":"integrations/deployment-audit.html","t":"Deployment readiness board","g":"integrations","n":19,"s":"Track site release requirements and evidence","k":"audit, Release check, Area, State, Verification method","a":"Public service, Builders"},{"id":"integrations/emergency-kit.html","t":"Emergency kit inventory","g":"integrations","n":20,"s":"Maintain a portable inventory without implying professional advice","k":"inventory, Supply, Quantity, Expiry date, Storage and checks","a":"Everyone, Organizers"},{"id":"integrations/careers-map.html","t":"Regenerative career map","g":"integrations","n":21,"s":"Organize occupations, training and transferable capabilities","k":"effort, Occupation, Transferable skill, Training hours (estimate), Credential or source","a":"Everyone, Teachers, Organizers"},{"id":"integrations/publishing-desk.html","t":"Open publication desk","g":"integrations","n":22,"s":"Track article source, licensing and review readiness","k":"publishing, Publication title, Author / attribution, License / permissions, Review state","a":"Organizers, Public service, Teachers"},{"id":"integrations/compassionate-messages.html","t":"Compassionate message studio","g":"integrations","n":23,"s":"Write clear, kind messages using observations, feelings, needs and requests","k":"nonviolent communication, NVC, conflict, de-escalation, kindness, requests, peace","a":"Everyone, Organizers, Teachers"},{"id":"integrations/mutual-aid.html","t":"Mutual aid offers & needs board","g":"integrations","n":24,"s":"Match neighbours' offers and needs privately, with expiry and minimal data","k":"mutual aid, community, offers, needs, matching, neighbours, solidarity, privacy","a":"Organizers, Everyone"}],"paths":[{"id":"foundations","title":"Web foundations for everyone","steps":["labs/semantic-html.html","labs/html-attributes.html","labs/advanced-forms.html","labs/css-layout.html","labs/accessibility.html","labs/privacy.html","labs/offline-first.html","labs/file-portability.html"]},{"id":"classroom","title":"Teacher and classroom","steps":["labs/semantic-html.html","labs/accessibility.html","labs/visualization.html","labs/graph-navigation.html","labs/publishing.html","integrations/learning-quests.html","integrations/story-studio.html","integrations/audio-journal.html"]},{"id":"field","title":"Field researcher and land steward","steps":["labs/offline-first.html","labs/field-science.html","labs/geospatial.html","integrations/field-survey.html","integrations/map-notebook.html","integrations/dataset-explorer.html","integrations/restoration-monitor.html","integrations/food-garden.html"]},{"id":"organizer","title":"Community organizer and mutual aid","steps":["integrations/community-decisions.html","integrations/collaboration-studio.html","integrations/compassionate-messages.html","integrations/mutual-aid.html","labs/communication.html","integrations/household-resilience.html","integrations/emergency-kit.html","integrations/privacy-workbench.html"]},{"id":"public","title":"Policy, procurement and public service","steps":["labs/hosting.html","labs/security.html","labs/privacy.html","integrations/privacy-workbench.html","integrations/accessibility-audit.html","integrations/deployment-audit.html","integrations/evidence-ledger.html","labs/sustainable-web.html"]},{"id":"ai","title":"Responsible AI and knowledge","steps":["labs/knowledge.html","labs/search.html","labs/rag.html","labs/local-ai.html","labs/agents.html","integrations/ai-evaluation.html","labs/ai-maintenance.html","integrations/evidence-ledger.html"]},{"id":"builder","title":"Builder: the modern platform","steps":["labs/javascript-architecture.html","labs/web-components.html","labs/storage.html","labs/pwa.html","labs/workers-wasm.html","labs/performance.html","labs/reliability.html","labs/integrity.html","labs/sustainable-web.html"]}],"glossary":[{"term":"Accessibility","def":"Designing so people with different bodies, senses and minds can all use something: by keyboard, screen reader, voice, magnification or simply on a tired day.","aka":"a11y inclusive design","page":"labs/accessibility.html"},{"term":"Agent (AI agent)","def":"Software that plans and carries out several steps toward a goal. Safe agents ask a person before doing anything that changes data or costs money.","aka":"autonomous assistant","page":"labs/agents.html"},{"term":"Alt text","def":"A short written description of an image, read aloud by screen readers and shown if the image cannot load. Decorative images get empty alt text so they are skipped.","aka":"alternative text image description","page":"labs/accessibility.html"},{"term":"API","def":"A set of ready-made commands one program offers another. Browsers offer APIs for storage, sound, location and more, so pages do not have to build those from scratch.","aka":"application programming interface","page":"labs/javascript-architecture.html"},{"term":"ARIA","def":"Extra HTML attributes that tell assistive technology what a custom control is and what state it is in. The first rule of ARIA: use a native HTML element instead whenever one exists.","aka":"accessible rich internet applications roles states","page":"labs/html-attributes.html"},{"term":"Backup (export)","def":"A copy of your data saved as a file you control. Browser storage can be cleared, so exporting a backup is the only sure way to keep records long term.","aka":"download save file restore","page":"labs/file-portability.html"},{"term":"Baseline","def":"The first measurement you compare later ones against, such as plant counts before restoration began. Without a baseline you cannot say what changed.","aka":"reference measurement before after","page":"integrations/restoration-monitor.html"},{"term":"BroadcastChannel","def":"A browser feature that lets open tabs of the same site send each other messages instantly, without any server.","aka":"tabs messaging sync","page":"labs/collaboration.html"},{"term":"Cache","def":"A stored copy of something fetched earlier, kept so it can be shown again quickly or without a connection.","aka":"saved copy offline","page":"labs/pwa.html"},{"term":"Canvas","def":"An HTML element that scripts can paint on pixel by pixel. Used for charts, image editing and animation. Because it is just pixels, it needs a text alternative.","aka":"drawing surface pixels","page":"labs/gpu.html"},{"term":"Carbon intensity","def":"How much carbon dioxide is released to produce one unit of electricity where you are. It changes by country, season and hour, so energy estimates should let you set it.","aka":"grid emissions gCO2 per kWh","page":"labs/sustainable-web.html"},{"term":"Circuit breaker","def":"A pattern that stops calling a failing service for a while after repeated errors, giving it time to recover instead of piling on more requests.","aka":"fail fast pause retries","page":"labs/reliability.html"},{"term":"Consent","def":"A clear, informed, freely given yes that can be withdrawn at any time. Real consent is specific, never assumed from silence and never bundled into something else.","aka":"permission opt in agreement","page":"labs/privacy.html"},{"term":"Container query","def":"A CSS rule that adapts a component to the space its container gives it, rather than to the whole screen, so the same card works in a sidebar and a main column.","aka":"responsive component","page":"labs/css-layout.html"},{"term":"Content Security Policy (CSP)","def":"A rule a page gives the browser listing where it may load or send things from. Every atlas page uses one to block connections to other websites.","aka":"privacy lock security header","page":"labs/security.html"},{"term":"Contrast ratio","def":"How different two colours are in brightness, from 1:1 to 21:1. Body text needs at least 4.5:1 against its background to be readable for most people.","aka":"colour contrast legibility","page":"labs/visual-styling.html"},{"term":"CSV","def":"A plain text table format that any spreadsheet can open. Each line is a row and commas separate the columns.","aka":"comma separated values spreadsheet","page":"integrations/dataset-explorer.html"},{"term":"Custom element","def":"Your own HTML tag, such as <seed-card>, defined once in JavaScript and reusable anywhere on a page with its behaviour built in.","aka":"web component reusable tag","page":"labs/web-components.html"},{"term":"Data minimization","def":"Collecting only the data you truly need, for a stated purpose, and deleting it when that purpose ends. Data you never collect can never leak.","aka":"collect less privacy by design","page":"integrations/privacy-workbench.html"},{"term":"Dialog (modal)","def":"A box that appears over the page and asks for attention. The native <dialog> element handles keyboard focus and the Escape key for you.","aka":"popup window overlay","page":"labs/native-interaction.html"},{"term":"Digest (hash)","def":"A short fingerprint calculated from data. Change one character and the fingerprint changes completely, so it reveals tampering, but it cannot tell you whether the content is true.","aka":"SHA-256 fingerprint checksum","page":"labs/integrity.html"},{"term":"Encryption","def":"Scrambling data so only someone with the right key can read it. It protects privacy when files are stored or shared.","aka":"AES lock ciphertext passphrase","page":"labs/cryptography.html"},{"term":"Exponential backoff","def":"Waiting longer after each failed attempt (for example 1, 2, then 4 seconds) before trying again, so a struggling connection is not flooded.","aka":"retry wait delay","page":"labs/reliability.html"},{"term":"Feature detection","def":"Checking whether the browser supports something before using it, then offering a simpler path if it does not.","aka":"capability check fallback","page":"labs/pwa.html"},{"term":"Focus (keyboard focus)","def":"The element that will respond to the keyboard right now, usually shown with an outline. Moving focus in a sensible order is essential for keyboard users.","aka":"focus ring tab order","page":"labs/accessibility.html"},{"term":"GeoJSON","def":"A common text format for map features. Points are written longitude first, then latitude, which trips up many people.","aka":"map data coordinates format","page":"labs/geospatial.html"},{"term":"Great-circle distance","def":"The shortest distance between two points on a sphere, measured over the surface. It ignores roads and terrain, so it is not a travel route.","aka":"haversine as the crow flies","page":"integrations/map-notebook.html"},{"term":"Hallucination (AI)","def":"When an AI system states something fluent and confident that is not supported by any source. Citations and \"I don't know\" answers are the antidote.","aka":"made up answer fabrication","page":"labs/rag.html"},{"term":"Human in the loop","def":"A design where a person reviews and approves important steps an automated system proposes, instead of letting it act alone.","aka":"approval review oversight","page":"labs/agents.html"},{"term":"IndexedDB","def":"A database built into every modern browser. It holds much more than localStorage and works offline, but data stays on that one device.","aka":"browser database","page":"labs/storage.html"},{"term":"Intl","def":"The browser's built-in tool for writing dates, numbers, currencies and lists the way people expect in each language and region.","aka":"internationalization formatting locale","page":"labs/i18n.html"},{"term":"JSON","def":"A simple text format for structured data, readable by people and by almost every programming language. Atlas backups are JSON files.","aka":"data file format","page":"labs/file-portability.html"},{"term":"JSON-LD","def":"A way to describe a page's content (an article, an event, an organisation) in JSON so search engines and other tools can understand it.","aka":"structured data schema.org","page":"labs/seo.html"},{"term":"Landmark","def":"A major area of a page, such as navigation or main content. Screen-reader users jump between landmarks the way sighted people glance around.","aka":"header nav main footer region","page":"labs/semantic-html.html"},{"term":"Live region","def":"Part of a page that screen readers announce when its text changes, so a status like \"Saved\" is heard without moving focus.","aka":"aria-live announcement status","page":"labs/accessibility.html"},{"term":"Local-first","def":"Software that keeps your data on your own device first and works without a connection. Syncing or sharing is optional, never required.","aka":"on device ownership","page":"labs/offline-first.html"},{"term":"localStorage","def":"A small, simple place in the browser to keep text between visits. Quick to use, limited in size, and can be cleared by the browser or the person.","aka":"browser storage key value","page":"labs/storage.html"},{"term":"Manifest (web app)","def":"A small file that tells the browser a site's name, icons and colours, so it can be installed like an app.","aka":"install icon name","page":"labs/pwa.html"},{"term":"Metadata","def":"Information that describes content: its title, author, date, licence or language. Good metadata helps people and tools find and trust things.","aka":"data about data title description","page":"labs/seo.html"},{"term":"Mutual aid","def":"Neighbours meeting each other's needs through voluntary, reciprocal help, rather than charity from above. Offers and needs are shared as equals.","aka":"community support solidarity","page":"integrations/mutual-aid.html"},{"term":"Nonviolent Communication (NVC)","def":"A way of speaking that separates what happened from judgement, names feelings and needs, and makes requests the other person is free to decline.","aka":"compassionate communication observations feelings needs requests","page":"integrations/compassionate-messages.html"},{"term":"Offline-first","def":"Designing a tool to work fully without a connection, then using the network only as a bonus when it is there.","aka":"works without internet","page":"labs/offline-first.html"},{"term":"OKLCH","def":"A way of describing colour by lightness, intensity and hue that matches human perception, which makes even, accessible colour scales easier to build.","aka":"colour space lightness chroma hue","page":"labs/visual-styling.html"},{"term":"Origin","def":"The combination of scheme, host and port (like https://example.org). Browsers keep each origin's data and permissions separate for safety.","aka":"same origin scheme host port","page":"labs/security.html"},{"term":"Page weight","def":"How much data a page makes a device download. Lighter pages load faster on weak connections and use less energy.","aka":"transfer size bytes","page":"labs/sustainable-web.html"},{"term":"Permission prompt","def":"The browser's own question before a site can use sensitive things like location, camera or microphone. Good sites only ask after you choose an action that needs it.","aka":"allow block camera location microphone","page":"labs/sensors.html"},{"term":"Progressive enhancement","def":"Building a page that works in the simplest browser first, then adding richer features only where they are supported.","aka":"graceful degradation baseline","page":"labs/semantic-html.html"},{"term":"Provenance","def":"Where something came from and what happened to it since: who made it, when, from what sources, and who changed it.","aka":"source origin chain of custody","page":"integrations/evidence-ledger.html"},{"term":"PWA (progressive web app)","def":"A website that can be installed, opened from the home screen and used offline, built with ordinary web technology.","aka":"installable web app","page":"labs/pwa.html"},{"term":"RAG (retrieval-augmented generation)","def":"Answering questions by first finding relevant passages in trusted documents, then answering only from those passages with citations.","aka":"retrieval citations grounding","page":"labs/rag.html"},{"term":"Reduced motion","def":"A device setting people use when animation causes dizziness, nausea or distraction. Respectful sites tone down or remove motion when it is on.","aka":"prefers-reduced-motion calm animation","page":"labs/motion.html"},{"term":"Schema","def":"An agreed shape for data: which fields exist, what type each is, and which are required. Checking a schema stops broken files from corrupting your records.","aka":"structure format version","page":"labs/file-portability.html"},{"term":"Screen reader","def":"Software that reads the screen aloud or to a braille display, used by many blind and low-vision people. It relies on good HTML structure.","aka":"assistive technology voiceover nvda","page":"labs/accessibility.html"},{"term":"Secure context (HTTPS)","def":"A page delivered over an encrypted connection (or from your own computer). Many powerful browser features only work in secure contexts.","aka":"https localhost encryption","page":"labs/hosting.html"},{"term":"Semantic HTML","def":"Using HTML elements for what they mean (a heading, a list, a button) rather than how they look, so browsers and assistive tools understand the page.","aka":"meaningful markup elements","page":"labs/semantic-html.html"},{"term":"Service worker","def":"A small script a site installs in your browser that can save pages and serve them when you are offline.","aka":"offline helper background script","page":"labs/pwa.html"},{"term":"Shadow DOM","def":"A private inner structure for a web component, with its own styles that do not leak in or out.","aka":"encapsulation scoped styles","page":"labs/web-components.html"},{"term":"SVG","def":"Pictures described as shapes and text in code, so they stay sharp at any size and can be read and labelled for accessibility.","aka":"scalable vector graphics","page":"labs/graph-navigation.html"},{"term":"Uncertainty (measurement)","def":"How far a measured value might be from the true value, written like 7.2 ± 0.3. Honest data always says how sure it is.","aka":"error margin plus minus","page":"labs/field-science.html"},{"term":"View Transitions","def":"A browser feature that animates smoothly between two states of a page, or between pages, instead of jumping.","aka":"page animation morph","page":"labs/motion.html"},{"term":"WCAG","def":"The international guidelines for accessible web content, organised as testable success criteria at levels A, AA and AAA.","aka":"web content accessibility guidelines","page":"labs/accessibility.html"},{"term":"Web Audio","def":"A browser feature for generating, mixing and analysing sound in real time, entirely on your device.","aka":"sound synthesis oscillator","page":"labs/audio-video.html"},{"term":"WebAssembly","def":"A compact, fast format for running compiled code (from languages like Rust or C) safely inside the browser alongside JavaScript.","aka":"wasm fast compiled code","page":"labs/workers-wasm.html"},{"term":"Web Worker","def":"A script that runs in the background, separately from the page, so heavy work does not freeze buttons and scrolling.","aka":"background thread","page":"labs/workers-wasm.html"},{"term":"WebGL and WebGPU","def":"Browser features that use a device's graphics hardware for fast drawing and computation. Always provide a simpler fallback.","aka":"graphics card 3d rendering","page":"labs/gpu.html"},{"term":"WebXR","def":"A browser feature for virtual and augmented reality experiences on supported headsets and phones.","aka":"virtual reality augmented reality headset","page":"labs/spatial.html"},{"term":"XSS (cross-site scripting)","def":"An attack where text someone typed is treated as code by a page. Showing untrusted text with textContent instead of innerHTML prevents it.","aka":"injection attack untrusted html","page":"labs/security.html"}],"counts":{"total":69,"labs":44,"tools":24}};
+'use strict';
+/* =====================================================================
+   ATLAS RUNTIME v3 — shared by every page (copied in by the build tool).
+   Edit tools/shared/atlas.js, then run: python3 tools/atlas_build.py
+
+   What lives here, in order:
+     0. Small helpers page scripts rely on ($, say, download, …)
+     1. The atlas store: progress, notes and rhythm, saved on this device
+     2. Comfort settings (theme, motion, light, text size, reading spacing)
+     3. Toast messages (with Undo)
+     4. Page chrome: completion box, sidebar contents, print, source viewer
+     5. Command palette (Ctrl/⌘ K or "/")
+     6. Privacy lock, transparency meter, offline copy and "erase everything"
+     7. Notes on this page
+     8. A one-minute pause (box breathing)
+     9. Ambient light: fireflies and bokeh drawn behind the glass
+    10. Learning-path banner and boot sequence
+   Nothing in this file contacts any server. Everything is local.
+   ===================================================================== */
+
+/* ---------- 0. Helpers kept as plain globals for page scripts -------- */
+const $=(s,root=document)=>root.querySelector(s);
+const $$=(s,root=document)=>Array.from(root.querySelectorAll(s));
+const safe=v=>String(v??'');
+/* When an action runs again and its result comes out the same, briefly
+   highlight the result so the person can see it really was checked again. */
+function flashSame(e){if(!e)return;e.classList.remove('refreshed');void e.offsetWidth;e.classList.add('refreshed');clearTimeout(e._flashT);e._flashT=setTimeout(()=>e.classList.remove('refreshed'),800)}
+const say=(v,id='#status')=>{const e=$(id);if(!e)return;const t=safe(v);if(t&&e.textContent===t)flashSame(e);e.textContent=t};
+/* Save text as a file on this device (no upload; uses a temporary blob URL). */
+function download(name,text,type='application/json'){
+  const a=document.createElement('a'),u=URL.createObjectURL(new Blob([text],{type}));
+  a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(u),2000);
+}
+/* Ignore repeats within `ms` (one-shot actions such as starting a download). */
+function gentleLimit(fn,ms=350){let last=0;return(...args)=>{const now=Date.now();if(now-last<ms)return;last=now;return fn(...args)}}
+/* Run at once, then collapse a burst of calls into one final run, so what
+   is saved always matches the person's last action. */
+function coalesceCalls(fn,ms=300){
+  let timer=null,queued=false,latest=[];
+  const settle=()=>{timer=null;if(queued){queued=false;fn(...latest)}};
+  return(...args)=>{latest=args;if(timer===null)fn(...args);else{queued=true;clearTimeout(timer)}timer=setTimeout(settle,ms)};
+}
+
+/* ---------- 1. Atlas store --------------------------------------------
+   PURPOSE: progress, notes and learning rhythm survive reloads, offline.
+   HOW: IndexedDB first; every write is mirrored to localStorage; if
+   IndexedDB is unavailable the mirror is used alone. The names below are
+   unchanged from version 2, so earlier progress carries over untouched.
+   EXTEND: add fields to the state object and call saveState(s). */
+const ATLAS_DB='foster_navi_atlas_db',ATLAS_STORE='kv',ATLAS_KEY='foster_navi_atlas_v1';
+let _atlasDbPromise=null;
+function openAtlasDB(){
+  if(_atlasDbPromise)return _atlasDbPromise;
+  _atlasDbPromise=new Promise(resolve=>{
+    try{
+      if(!('indexedDB'in window)){resolve(null);return}
+      const req=indexedDB.open(ATLAS_DB,1);
+      req.onupgradeneeded=()=>{try{req.result.createObjectStore(ATLAS_STORE)}catch{}};
+      req.onsuccess=()=>{const db=req.result;db.onversionchange=()=>{db.close();_atlasDbPromise=null};resolve(db)};
+      req.onerror=()=>resolve(null);
+      req.onblocked=()=>resolve(null);
+    }catch{resolve(null)}
+  });
+  return _atlasDbPromise;
+}
+function idbGet(key){
+  return openAtlasDB().then(db=>new Promise(resolve=>{
+    if(!db){resolve(undefined);return}
+    try{const rq=db.transaction(ATLAS_STORE,'readonly').objectStore(ATLAS_STORE).get(key);rq.onsuccess=()=>resolve(rq.result);rq.onerror=()=>resolve(undefined)}catch{resolve(undefined)}
+  }));
+}
+function idbSet(key,value){
+  return openAtlasDB().then(db=>new Promise(resolve=>{
+    if(!db){resolve(false);return}
+    try{const tx=db.transaction(ATLAS_STORE,'readwrite');tx.objectStore(ATLAS_STORE).put(value,key);tx.oncomplete=()=>resolve(true);tx.onerror=()=>resolve(false);tx.onabort=()=>resolve(false)}catch{resolve(false)}
+  }));
+}
+async function getState(){
+  const fromIdb=await idbGet(ATLAS_KEY);
+  if(fromIdb&&typeof fromIdb==='object')return fromIdb;
+  try{
+    let parsed=JSON.parse(localStorage.getItem(ATLAS_KEY)||'{}');
+    if(!parsed||typeof parsed!=='object')parsed={};
+    if(Object.keys(parsed).length)idbSet(ATLAS_KEY,parsed);
+    return parsed;
+  }catch{return {}}
+}
+async function saveState(s){
+  const ok=await idbSet(ATLAS_KEY,s);
+  let mirrored=false;
+  try{localStorage.setItem(ATLAS_KEY,JSON.stringify(s));mirrored=true}catch{}
+  try{dispatchEvent(new CustomEvent('atlas:statechange',{detail:s}))}catch{}
+  return ok||mirrored;
+}
+/* Every read-modify-write goes through this queue so two quick actions
+   can never overwrite each other. Never call a locked helper from inside
+   another locked task. */
+let _stateLock=Promise.resolve();
+function withStateLock(task){const run=_stateLock.then(task,task);_stateLock=run.catch(()=>{});return run}
+async function markDone(id,on){
+  return withStateLock(async()=>{
+    const s=await getState();
+    s.done=Array.isArray(s.done)?s.done:[];
+    s.done=on?[...new Set([...s.done,id])]:s.done.filter(x=>x!==id);
+    await saveState(s);
+    return s.done.length;
+  });
+}
+/* Learning rhythm: counts the days you chose to learn. Rest days never
+   erase anything: "daysVisited" only grows, and a paused run is shown
+   kindly, never as a loss. Local calendar dates only. */
+function localYMD(d=new Date()){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+async function touchStreak(){return withStateLock(touchStreakLocked)}
+async function touchStreakLocked(){
+  const s=await getState(),today=localYMD();
+  const h=s.hud&&typeof s.hud==='object'?s.hud:{streak:0,longestStreak:0,lastVisit:null,daysVisited:0};
+  if(h.lastVisit===today)return;
+  let consecutive=false;
+  if(h.lastVisit){
+    const prev=new Date(h.lastVisit+'T00:00:00'),now=new Date(today+'T00:00:00');
+    consecutive=Math.round((now-prev)/86400000)===1;
+  }
+  h.streak=consecutive?(h.streak||0)+1:1;
+  h.longestStreak=Math.max(h.longestStreak||0,h.streak);
+  h.daysVisited=(Number(h.daysVisited)||0)+1;
+  h.lastVisit=today;
+  s.hud=h;
+  await saveState(s);
+}
+
+/* ---------- Everything new in v3 lives inside this one namespace ---------
+   so it can never collide with names used by an individual page script. */
+const Atlas=(()=>{
+  const D=typeof ATLAS_DATA==='object'?ATLAS_DATA:{pages:[],paths:[],glossary:[],counts:{total:0}};
+  const root=document.documentElement;
+  const page=document.body.dataset.page||'index.html';
+  const base=document.body.dataset.root||'';
+  const byId=new Map(D.pages.map(p=>[p.id,p]));
+  const mqReduce=()=>{try{return matchMedia('(prefers-reduced-motion: reduce)').matches}catch{return false}};
+  const motionReduced=()=>root.dataset.motion==='reduced';
+  const svg=(name)=>{
+    const P={
+      search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4.2-4.2"/>',
+      page:'<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/>',
+      tool:'<path d="M4 7h16M4 12h16M4 17h10"/>',
+      hash:'<path d="M5 9h14M5 15h14M10 4 8 20M16 4l-2 16"/>',
+      book:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/>',
+      spark:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/>',
+      lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+      leaf:'<path d="M5 19c0-8 6-14 15-14 0 9-6 15-14 15"/><path d="M5 19l8-8"/>'
+    };
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'+(P[name]||P.page)+'</svg>';
+  };
+  const href=id=>base+id;
+  const groupName=g=>g==='labs'?'Topic lab':g==='integrations'?'Working tool':'Atlas home';
+
+  /* ---------- 2. Comfort settings ------------------------------------
+     Saved in localStorage under one key, read by the boot script in
+     <head> before first paint. EXTEND: add a key to DEFAULTS, a fieldset
+     in the dialog (tools/shared/footer.html) and a line in apply(). */
+  const SETTINGS_KEY='atlas_settings_v3';
+  const DEFAULTS={theme:'auto',motion:'auto',ambient:'on',glass:'frosted',text:'normal',reading:'normal',game:'on'};
+  let memorySettings=null;
+  function readSettings(){
+    if(memorySettings)return {...memorySettings};
+    try{return {...DEFAULTS,...(JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}')||{})}}catch{return {...DEFAULTS}}
+  }
+  function applySettings(s){
+    root.dataset.theme=s.theme;
+    root.dataset.motion=s.motion==='reduced'||(s.motion!=='full'&&mqReduce())?'reduced':'full';
+    root.dataset.ambient=s.ambient;
+    root.dataset.text=s.text;
+    root.dataset.reading=s.reading;
+    root.dataset.game=s.game;
+    if(s.glass==='solid')root.dataset.glass='lite';else delete root.dataset.glass;
+    const dayNow=isDay();
+    $$('meta[name="theme-color"]').forEach(m=>{if(s.theme!=='auto'){m.content=dayNow?'#e8f0eb':'#061a1c';m.removeAttribute('media')}});
+    try{dispatchEvent(new CustomEvent('atlas:settings',{detail:s}))}catch{}
+  }
+  function saveSettings(s){
+    try{localStorage.setItem(SETTINGS_KEY,JSON.stringify(s));memorySettings=null}catch{memorySettings={...s}}
+    applySettings(s);
+  }
+  function isDay(){
+    const t=root.dataset.theme;
+    if(t==='day')return true;
+    if(t==='night'||t==='contrast')return false;
+    try{return matchMedia('(prefers-color-scheme: light)').matches}catch{return false}
+  }
+  function initComfort(){
+    const dlg=$('#atlas-comfort');if(!dlg)return;
+    const sync=()=>{const s=readSettings();$$('input[type=radio]',dlg).forEach(r=>{r.checked=s[r.name]===r.value})};
+    dlg.addEventListener('change',e=>{
+      const r=e.target;if(!r.matches('input[type=radio]'))return;
+      const s=readSettings();s[r.name]=r.value;saveSettings(s);
+      toast('Saved: '+r.closest('fieldset').querySelector('legend').textContent.trim().toLowerCase()+' set to '+r.parentElement.textContent.trim()+'.');
+    });
+    $('#comfort-reset')?.addEventListener('click',()=>{saveSettings({...DEFAULTS});sync();toast('Comfort settings are back to their defaults.')});
+    const btn=$('#open-comfort');if(btn){btn.hidden=false;btn.addEventListener('click',()=>{sync();openDialog(dlg)})}
+    try{matchMedia('(prefers-color-scheme: light)').addEventListener('change',()=>applySettings(readSettings()))}catch{}
+    try{matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',()=>applySettings(readSettings()))}catch{}
+  }
+
+  /* Dialog helper: native <dialog> gives focus trapping and Escape for free.
+     We return focus to whatever opened it. */
+  function openDialog(dlg){
+    if(!dlg||dlg.open)return;
+    const opener=document.activeElement;
+    if(typeof dlg.showModal==='function')dlg.showModal();else dlg.setAttribute('open','');
+    dlg.addEventListener('close',()=>{if(opener&&opener.focus&&document.contains(opener))opener.focus()},{once:true});
+  }
+  function closeDialog(dlg){if(dlg&&dlg.open){if(typeof dlg.close==='function')dlg.close();else dlg.removeAttribute('open')}}
+  document.addEventListener('click',e=>{const c=e.target.closest('[data-close]');if(c)closeDialog(c.closest('dialog'))});
+  /* Clicking the dimmed backdrop closes a dialog, like most apps. */
+  document.addEventListener('click',e=>{const d=e.target;if(d instanceof HTMLDialogElement&&d.open&&d.classList.contains('atlas-dialog')){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeDialog(d)}});
+
+  /* ---------- 3. Toasts ------------------------------------------------
+     toast('Saved.') or toast('Deleted.',{action:{label:'Undo',run:fn},focus:true})
+     Messages are announced politely to screen readers via the live region. */
+  function toast(message,opts={}){
+    const region=$('#toast-region');if(!region)return null;
+    const el=document.createElement('div');el.className='toast';
+    const text=document.createElement('span');text.textContent=message;el.append(text);
+    let timer=0;
+    const done=()=>{clearTimeout(timer);el.remove();if(opts.returnFocus&&document.contains(opts.returnFocus))opts.returnFocus.focus()};
+    if(opts.action){
+      const b=document.createElement('button');b.type='button';b.textContent=opts.action.label;
+      b.addEventListener('click',()=>{try{opts.action.run()}finally{done()}});
+      b.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();done()}});
+      el.append(b);
+    }
+    while(region.children.length>2)region.firstElementChild.remove();
+    region.append(el);
+    timer=setTimeout(()=>el.remove(),opts.timeout||(opts.action?9000:4500));
+    if(opts.focus&&el.querySelector('button'))el.querySelector('button').focus({preventScroll:true});
+    return el;
+  }
+
+  /* ---------- Result helpers for page scripts ---------------------------
+     Atlas.facts(target,[[label,value,note],…])  → tidy summary tiles
+     Atlas.checklist(target,[[state,text],…])     → ✓ / ! / ✕ / i list
+       (state: 'ok' | 'warn' | 'bad' | 'info')
+     Atlas.highlight(target,text,terms)           → text with <mark> on terms
+     All build DOM nodes with textContent, so untrusted text stays text. */
+  function facts(target,rows){
+    const el=typeof target==='string'?$(target):target;if(!el)return;
+    const dl=document.createElement('dl');dl.className='facts';
+    rows.forEach(([k,v,n])=>{const d=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=safe(v);if(n){const s=document.createElement('small');s.className='muted';s.textContent=n;dd.append(s)}d.append(dt,dd);dl.append(d)});
+    const before=el.textContent;el.replaceChildren(dl);if(before&&before===el.textContent)flashSame(el);return dl;
+  }
+  function checklist(target,rows){
+    const el=typeof target==='string'?$(target):target;if(!el)return;
+    const ul=document.createElement('ul');ul.className='checklist';
+    const sym={ok:'✓',warn:'!',bad:'✕',info:'i'},word={ok:'Yes',warn:'Check',bad:'No',info:'Note'};
+    rows.forEach(([state,text])=>{const li=document.createElement('li'),m=document.createElement('span'),sr=document.createElement('span'),s=document.createElement('span');m.className='mark '+state;m.textContent=sym[state]||'i';m.setAttribute('aria-hidden','true');sr.className='sr-only';sr.textContent=(word[state]||'Note')+': ';s.textContent=safe(text);li.append(m,sr,s);ul.append(li)});
+    const before=el.textContent;el.replaceChildren(ul);if(before&&before===el.textContent)flashSame(el);return ul;
+  }
+  function highlight(target,text,terms){
+    const el=typeof target==='string'?$(target):target;if(!el)return;
+    const words=[...new Set((terms||[]).map(t=>safe(t).trim()).filter(Boolean))].sort((a,b)=>b.length-a.length);
+    el.replaceChildren();
+    if(!words.length){el.textContent=text;return}
+    const re=new RegExp('('+words.map(w=>w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')','gi');
+    safe(text).split(re).forEach((part,i)=>{if(i%2){const m=document.createElement('mark');m.textContent=part;el.append(m)}else if(part)el.append(document.createTextNode(part))});
+  }
+  /* ---------- 4. Page chrome -------------------------------------------- */
+  async function initCompletion(){
+    const box=$('#completed');if(!box)return;
+    const st=await getState();
+    box.checked=(st.done||[]).includes(page);
+    box.addEventListener('change',coalesceCalls(async()=>{
+      await markDone(page,box.checked);
+      const note=$('#progress-note');
+      const msg=box.checked?'Marked complete on this device.':'Completion removed.';
+      if(note)note.textContent=msg;
+      updateSideProgress();
+    },300));
+  }
+  async function updateSideProgress(){
+    const box=$('#side-progress');if(!box)return;
+    const s=await getState(),done=new Set((s.done||[]).filter(id=>byId.has(id)&&byId.get(id).g!=='index'));
+    const total=(D.counts.labs+D.counts.tools)||1;
+    box.hidden=false;
+    $('#side-progress-text').textContent='You have completed '+done.size+' of '+total+' labs and tools.';
+    $('#side-progress-fill').style.width=Math.round(done.size/total*100)+'%';
+  }
+  /* Sidebar "On this page": built from every <section> that has an <h2>,
+     so a new section appears automatically. Highlights what is in view. */
+  function initSidebar(){
+    const list=$('#side-nav-list'),main=$('#main');
+    if(list&&main){
+      list.replaceChildren();
+      $$('section > h2, section > .panel-head > h2',main).forEach(h=>{
+        const sec=h.closest('section');if(!sec||sec.hidden)return;
+        if(!sec.id)sec.id=(h.textContent.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'section');
+        const li=document.createElement('li'),a=document.createElement('a');
+        a.href='#'+sec.id;a.textContent=h.textContent.trim();li.append(a);list.append(li);
+      });
+      const links=$$('a',list),map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+      if(links.length&&'IntersectionObserver'in window){
+        const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){const a=map.get(en.target.id);if(a){links.forEach(l=>{l.classList.toggle('active',l===a);l.removeAttribute('aria-current')});a.setAttribute('aria-current','location')}}}),{rootMargin:'-20% 0px -70% 0px'});
+        map.forEach((a,id)=>{const el=document.getElementById(id);if(el)io.observe(el)});
+      }
+    }
+    const t=$('#side-nav-toggle'),nav=$('#side-nav');
+    if(t&&nav){t.hidden=false;t.addEventListener('click',()=>{const open=nav.classList.toggle('open');t.setAttribute('aria-expanded',String(open))});
+      list?.addEventListener('click',e=>{if(e.target.closest('a')&&nav.classList.contains('open')){nav.classList.remove('open');t.setAttribute('aria-expanded','false')}});}
+  }
+  /* "Start here" guides can be folded away once you know your way around.
+     One choice for every page, remembered on this device. */
+  function initGuideToggle(){
+    const KEY='atlas_guides_folded';
+    let folded=false;try{folded=localStorage.getItem(KEY)==='1'}catch{}
+    const apply=()=>$$('.guide-toggle').forEach(b=>{const body=document.getElementById(b.getAttribute('aria-controls'));if(body)body.hidden=folded;b.setAttribute('aria-expanded',String(!folded));b.textContent=folded?'Show the guide':'Fold the guide away'});
+    $$('.guide-toggle').forEach(b=>b.addEventListener('click',()=>{folded=!folded;try{localStorage.setItem(KEY,folded?'1':'0')}catch{}apply()}));
+    apply();
+  }
+  /* Print: open every collapsed section first so nothing is left out. */
+  function initPrint(){
+    $$('[data-atlas-print]').forEach(b=>{b.hidden=false;b.addEventListener('click',()=>window.print())});
+    let reopened=[];
+    addEventListener('beforeprint',()=>{reopened=$$('main details:not([open])');reopened.forEach(d=>d.open=true)});
+    addEventListener('afterprint',()=>{reopened.forEach(d=>d.open=false);reopened=[]});
+  }
+  function initPromptCopy(){
+    const copy=$('#copy-prompt');if(!copy)return;
+    copy.addEventListener('click',async()=>{
+      const t=$('#ai-prompt')?.textContent||'';
+      try{await navigator.clipboard.writeText(t);$('#copy-state').textContent='Copied to your clipboard.';toast('Prompt copied.')}
+      catch{const r=document.createRange();r.selectNodeContents($('#ai-prompt'));const sel=getSelection();sel.removeAllRanges();sel.addRange(r);$('#copy-state').textContent='Selected. Press Ctrl+C (or ⌘C) to copy.'}
+    });
+  }
+  /* "Look under the hood": show the exact code that runs on this page. */
+  function initSourceViewer(){
+    const pageSrc=$('#source-code');
+    if(pageSrc){
+      const parts=['#integration-config','#demo-script'].map(s=>$(s)).filter(Boolean).map(s=>s.textContent.trim());
+      if(parts.length)pageSrc.textContent=parts.join('\n\n/* ---- */\n\n');
+    }
+    const shared=$('#runtime-source');
+    if(shared){shared.addEventListener('toggle',()=>{const pre=$('#runtime-code');if(shared.open&&pre&&!pre.dataset.filled){pre.textContent=['#integration-engine','#atlas-runtime'].map(s=>$(s)).filter(Boolean).map(s=>s.textContent.trim()).join('\n\n/* ---- */\n\n');pre.dataset.filled='1'}})}
+  }
+  function initServiceWorker(){
+    const sw=document.body.dataset.sw;
+    if(!sw||!('serviceWorker'in navigator))return;
+    if(location.protocol==='https:'||['localhost','127.0.0.1','[::1]'].includes(location.hostname)){
+      navigator.serviceWorker.register(base+sw).catch(()=>{});
+    }
+  }
+  /* Respect "Calm" motion for native page transitions too. */
+  function initTransitions(){
+    const skip=e=>{if(e.viewTransition&&motionReduced())e.viewTransition.skipTransition()};
+    addEventListener('pageswap',skip);addEventListener('pagereveal',skip);
+  }
+  /* Pointer light: surfaces catch a soft glow under a mouse or pen. */
+  function initPointerLight(){
+    let fine=false;try{fine=matchMedia('(pointer: fine)').matches}catch{}
+    if(!fine)return;
+    let raf=0,ev=null,lit=null;
+    document.addEventListener('pointermove',e=>{ev=e;if(!raf)raf=requestAnimationFrame(()=>{raf=0;
+      if(motionReduced()||root.dataset.theme==='contrast'){if(lit){lit.classList.remove('lit');lit=null}return}
+      const el=ev.target.closest?.('.panel,.card');
+      if(lit&&lit!==el){lit.classList.remove('lit');lit=null}
+      if(!el)return;
+      const r=el.getBoundingClientRect();
+      el.style.setProperty('--mx',(ev.clientX-r.left)+'px');el.style.setProperty('--my',(ev.clientY-r.top)+'px');
+      if(!el.classList.contains('lit')){el.classList.add('lit');lit=el}
+    })},{passive:true});
+  }
+
+  /* ---------- 5. Command palette ---------------------------------------
+     One search box for every page, the sections of this page, glossary
+     terms and actions. Open with the Search button, Ctrl/⌘ K, or "/".
+     Built on <dialog> + the ARIA combobox/listbox pattern. */
+  const palette={items:null,active:-1,shown:[]};
+  const norm=s=>safe(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  function actionItems(){
+    const acts=[];
+    const add=(title,sub,run,keys='')=>acts.push({kind:'action',title,sub,run,keys:norm(title+' '+sub+' '+keys)});
+    add(isDay()?'Switch to Night theme':'Switch to Day theme','Comfort',()=>{const s=readSettings();s.theme=isDay()?'night':'day';saveSettings(s);toast('Theme changed. Comfort settings has more options.')},'theme dark light colour color mode');
+    add('Comfort settings','Theme, motion, light, text size, reading spacing',()=>{$('#open-comfort')?.click()},'settings preferences accessibility dark light contrast font size dyslexia');
+    add('Take a one-minute pause','A short guided breathing break',()=>openPause(),'breathe calm rest break relax');
+    add('Privacy, offline copy and erase','See what this page stores and can contact',()=>openPrivacy(),'privacy data delete erase offline cache security');
+    if($('#completed'))add($('#completed').checked?'Mark this page as not complete':'Mark this page complete','Your progress',()=>{const b=$('#completed');b.checked=!b.checked;b.dispatchEvent(new Event('change',{bubbles:true}))},'done finish progress');
+    if($('#page-notes'))add('Write notes on this page','Saved on this device',()=>{$('#your-notes')?.scrollIntoView({block:'start'});$('#page-notes')?.focus({preventScroll:true})},'notes journal');
+    add('Print or save as PDF','Opens your browser\'s print dialog',()=>window.print(),'print pdf paper');
+    add('Go to the atlas home','Dashboard, learning paths, all pages',()=>{location.href=href('index.html')},'home index start dashboard');
+    add('Browse learning paths','Guided routes for different people',()=>{location.href=href('index.html#paths')},'path journey route course');
+    add('Open the glossary','Plain-language meanings of technical words',()=>{location.href=href('index.html#glossary')},'words terms definitions jargon');
+    return acts;
+  }
+  function buildPaletteItems(){
+    const items=actionItems();
+    $$('#side-nav-list a').forEach(a=>items.push({kind:'section',title:a.textContent,sub:'On this page',run:()=>{const t=document.getElementById(a.getAttribute('href').slice(1));t?.scrollIntoView({block:'start'});history.replaceState(null,'',a.getAttribute('href'))},keys:norm(a.textContent)}));
+    D.pages.forEach(p=>items.push({kind:p.g==='labs'?'lab':p.g==='integrations'?'tool':'home',title:p.t,sub:(p.g==='index'?'Atlas home':groupName(p.g)+' '+p.n)+(p.s?': '+p.s:''),run:()=>{location.href=href(p.id)},keys:norm(p.t+' '+(p.s||'')+' '+(p.k||'')+' '+(p.a||'')),current:p.id===page}));
+    D.glossary.forEach(g=>items.push({kind:'term',title:g.term,sub:g.def,run:()=>showTerm(g),keys:norm(g.term+' '+(g.aka||'')+' '+g.def),term:g}));
+    return items;
+  }
+  function scoreItem(it,tokens){
+    if(!tokens.length)return 1;
+    const title=norm(it.title);let score=0;
+    for(const t of tokens){
+      if(title.startsWith(t))score+=9;
+      else if(title.split(/[^a-z0-9]+/).some(w=>w.startsWith(t)))score+=6;
+      else if(title.includes(t))score+=4;
+      else if(it.keys.split(/[^a-z0-9]+/).some(w=>w.startsWith(t)))score+=2;
+      else if(it.keys.includes(t))score+=1;
+      else return 0;
+    }
+    if(title===tokens.join(' '))score+=10;
+    if(it.kind==='action')score+=1;
+    return score;
+  }
+  const KIND_LABEL={action:'Actions',section:'On this page',lab:'Topic labs',tool:'Working tools',home:'Atlas home',term:'Glossary'};
+  const KIND_ICON={action:'spark',section:'hash',lab:'page',tool:'tool',home:'leaf',term:'book'};
+  function renderPalette(q){
+    const list=$('#palette-list'),input=$('#palette-input');
+    const tokens=norm(q).split(/\s+/).filter(Boolean);
+    let ranked=palette.items.map(it=>({it,s:scoreItem(it,tokens)})).filter(x=>x.s>0);
+    /* With an empty box, offer actions and this page's sections first. */
+    if(!tokens.length)ranked=ranked.filter(x=>x.it.kind==='action'||x.it.kind==='section');
+    ranked.sort((a,b)=>b.s-a.s);
+    const order=['action','section','lab','tool','home','term'];
+    const groups=new Map(order.map(k=>[k,[]]));
+    ranked.slice(0,60).forEach(x=>{const k=x.it.kind;if(groups.get(k).length<(tokens.length?12:8))groups.get(k).push(x.it)});
+    list.replaceChildren();palette.shown=[];
+    let i=0;
+    for(const k of order){
+      const arr=groups.get(k);if(!arr.length)continue;
+      const g=document.createElement('div');g.setAttribute('role','group');g.setAttribute('aria-label',KIND_LABEL[k]);
+      const lab=document.createElement('div');lab.className='group-label';lab.setAttribute('aria-hidden','true');lab.textContent=KIND_LABEL[k];g.append(lab);
+      arr.forEach(it=>{
+        const o=document.createElement('div');o.setAttribute('role','option');o.id='pal-opt-'+(i++);o.setAttribute('aria-selected','false');
+        o.innerHTML=svg(KIND_ICON[k]);
+        const t=document.createElement('span');t.className='opt-title';t.textContent=it.title+(it.current?' (this page)':'');
+        const kind=document.createElement('span');kind.className='opt-kind';kind.textContent=k==='term'?'Meaning':k==='action'?'Action':'';
+        const sub=document.createElement('span');sub.className='opt-sub';sub.textContent=it.sub;
+        o.append(t,kind,sub);
+        o.addEventListener('click',()=>activate(palette.shown.indexOf(it)));
+        o.addEventListener('pointermove',()=>setActive(palette.shown.indexOf(it)));
+        g.append(o);palette.shown.push(it);
+      });
+      list.append(g);
+    }
+    if(!palette.shown.length){const e=document.createElement('div');e.className='palette-empty';e.textContent=tokens.length?'No matches for “'+q.trim()+'”. Try a broader word, such as “map”, “privacy” or “storage”.':'Start typing to search every page and term.';list.append(e)}
+    setActive(palette.shown.length?0:-1);
+    input.setAttribute('aria-expanded',palette.shown.length?'true':'false');
+  }
+  function setActive(i){
+    palette.active=i;
+    $$('#palette-list [role="option"]').forEach((o,j)=>o.setAttribute('aria-selected',String(j===i)));
+    const cur=i>=0?$('#pal-opt-'+i):null;
+    $('#palette-input').setAttribute('aria-activedescendant',cur?cur.id:'');
+    cur?.scrollIntoView({block:'nearest'});
+  }
+  function activate(i){
+    const it=palette.shown[i];if(!it)return;
+    if(it.kind==='term'){it.run();return}
+    closeDialog($('#atlas-palette'));
+    setTimeout(()=>it.run(),0);
+  }
+  function showTerm(g){
+    const box=$('#palette-detail');box.hidden=false;box.replaceChildren();
+    const h=document.createElement('h3');h.textContent=g.term;
+    const p=document.createElement('p');p.textContent=g.def;
+    box.append(h,p);
+    if(g.page&&byId.has(g.page)){const a=document.createElement('a');a.href=href(g.page);a.textContent='Learn more: '+byId.get(g.page).t;box.append(a)}
+  }
+  function openPalette(initial=''){
+    const dlg=$('#atlas-palette');if(!dlg)return;
+    palette.items=buildPaletteItems();
+    const input=$('#palette-input');input.value=initial;$('#palette-detail').hidden=true;
+    renderPalette(initial);openDialog(dlg);input.focus();
+  }
+  function initPalette(){
+    const dlg=$('#atlas-palette'),input=$('#palette-input');if(!dlg||!input)return;
+    const btn=$('#open-palette');
+    if(btn){btn.hidden=false;btn.addEventListener('click',()=>openPalette());
+      const k=btn.querySelector('kbd');if(k&&/Mac|iPhone|iPad/.test(navigator.platform||navigator.userAgent))k.textContent='⌘ K';}
+    input.addEventListener('input',()=>{$('#palette-detail').hidden=true;renderPalette(input.value)});
+    input.addEventListener('keydown',e=>{
+      const n=palette.shown.length;
+      if(e.key==='ArrowDown'){e.preventDefault();if(n)setActive((palette.active+1)%n)}
+      else if(e.key==='ArrowUp'){e.preventDefault();if(n)setActive((palette.active-1+n)%n)}
+      else if(e.key==='Home'&&e.ctrlKey){e.preventDefault();if(n)setActive(0)}
+      else if(e.key==='End'&&e.ctrlKey){e.preventDefault();if(n)setActive(n-1)}
+      else if(e.key==='Enter'){e.preventDefault();activate(palette.active)}
+    });
+    document.addEventListener('keydown',e=>{
+      const typing=e.target.closest&&e.target.closest('input,textarea,select,[contenteditable="true"]');
+      if((e.ctrlKey||e.metaKey)&&!e.altKey&&e.key.toLowerCase()==='k'){e.preventDefault();if(dlg.open)closeDialog(dlg);else openPalette()}
+      else if(e.key==='/'&&!typing&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!document.querySelector('dialog[open]')){e.preventDefault();openPalette()}
+    });
+  }
+
+  /* ---------- 6. Privacy lock & transparency ---------------------------
+     The page carries a Content-Security-Policy that tells your browser to
+     refuse connections to any other website. This panel shows that it is
+     on, counts what the page has actually loaded, manages the optional
+     offline copy, and can erase everything the atlas stored here. */
+  function outsideRequests(){
+    let n=0,local=0;
+    try{performance.getEntriesByType('resource').forEach(e=>{let o='';try{o=new URL(e.name,location.href).origin}catch{}if(/^(data|blob):/.test(e.name)||o===location.origin)local++;else n++})}catch{}
+    return {outside:n,local};
+  }
+  function refreshPrivacyChip(){
+    const t=$('#privacy-chip-text');if(!t)return;
+    const lock=!!document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+    const {outside}=outsideRequests();
+    t.textContent=(lock?'Privacy lock on':'Privacy lock unavailable')+': '+outside+' outside connection'+(outside===1?'':'s');
+  }
+  function swMessage(msg,timeout=20000){
+    return new Promise((resolve,reject)=>{
+      const ctl=navigator.serviceWorker&&navigator.serviceWorker.controller;
+      if(!ctl){reject(new Error('no-controller'));return}
+      const ch=new MessageChannel();const t=setTimeout(()=>reject(new Error('timeout')),timeout);
+      ch.port1.onmessage=e=>{if(e.data&&e.data.progress&&msg.onProgress){msg.onProgress(e.data);return}clearTimeout(t);resolve(e.data)};
+      const {onProgress,...plain}=msg;ctl.postMessage(plain,[ch.port2]);
+    });
+  }
+  async function refreshOffline(){
+    const out=$('#offline-status'),save=$('#offline-save'),drop=$('#offline-remove');if(!out)return;
+    save.hidden=drop.hidden=true;
+    if(location.protocol==='file:'){out.textContent='You opened the atlas as files on this device, so every page already works offline on its own. (An installable offline copy needs a web address such as https:// or http://localhost.)';return}
+    if(!('serviceWorker'in navigator)){out.textContent='This browser cannot keep an offline copy. Each page still works once loaded.';return}
+    try{const r=await swMessage({type:'status'},4000);out.textContent=r.cached+' of '+r.total+' pages are saved for offline use on this device'+(r.cached>=r.total?'. You are all set.':'.');save.hidden=r.cached>=r.total;drop.hidden=r.cached===0}
+    catch{out.textContent='The offline helper is still starting. Reload once while online, then check again.'}
+  }
+  function initPrivacy(){
+    const dlg=$('#atlas-privacy'),chip=$('#open-privacy');if(!dlg)return;
+    if(chip){chip.hidden=false;chip.addEventListener('click',openPrivacy)}
+    refreshPrivacyChip();
+    try{new PerformanceObserver(()=>refreshPrivacyChip()).observe({type:'resource',buffered:true})}catch{}
+    $('#offline-save')?.addEventListener('click',async()=>{
+      const out=$('#offline-status');out.textContent='Saving pages for offline use…';
+      try{const r=await swMessage({type:'cache-all',onProgress:p=>{out.textContent='Saving pages for offline use: '+p.cached+' of '+p.total+'…'}},120000);out.textContent=r.cached+' of '+r.total+' pages saved for offline use.';toast('Offline copy ready.');refreshOffline()}
+      catch{out.textContent='Could not finish saving. Check your connection and try again.'}
+    });
+    $('#offline-remove')?.addEventListener('click',async()=>{try{await swMessage({type:'clear'},8000);toast('Offline copy removed. Pages will be fetched again when online.')}catch{}refreshOffline()});
+    const ask=$('#erase-confirm');
+    $('#erase-all')?.addEventListener('click',()=>{ask.hidden=false;$('#erase-cancel').focus()});
+    $('#erase-cancel')?.addEventListener('click',()=>{ask.hidden=true;$('#erase-all').focus()});
+    $('#erase-yes')?.addEventListener('click',eraseEverything);
+  }
+  function openPrivacy(){
+    const dlg=$('#atlas-privacy');if(!dlg)return;
+    const lock=!!document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+    const {outside,local}=outsideRequests();
+    const facts=$('#privacy-facts');facts.replaceChildren();
+    const row=(ok,text)=>{const li=document.createElement('li');const m=document.createElement('span');m.className='mark '+(ok?'ok':'warn');m.textContent=ok?'✓':'!';m.setAttribute('aria-hidden','true');const s=document.createElement('span');s.textContent=text;li.append(m,s);facts.append(li)};
+    row(lock,lock?'Privacy lock is on. This page tells your browser to block connections to any other website, including trackers and analytics.':'This copy has no privacy lock. It still makes no outside connections by design.');
+    row(outside===0,outside===0?'Since it opened, this page has contacted 0 outside websites (measured by your browser: '+local+' file'+(local===1?'':'s')+' loaded from the atlas itself).':outside+' requests went to other addresses. Please report this, because the atlas is designed to make none.');
+    row(true,'There is no account, no cookie and no analytics. Your progress, notes, settings and tool records stay in this browser on this device.');
+    row(true,'Links to outside reference sites (like MDN) only open if you click them, and send no referrer.');
+    $('#erase-confirm').hidden=true;
+    openDialog(dlg);refreshOffline();
+  }
+  async function eraseEverything(){
+    const out=$('#erase-status');out.textContent='Erasing…';
+    const pref=/^(atlas|foster_navi|foster-navi)/;
+    try{Object.keys(localStorage).filter(k=>pref.test(k)).forEach(k=>localStorage.removeItem(k))}catch{}
+    try{Object.keys(sessionStorage).filter(k=>pref.test(k)).forEach(k=>sessionStorage.removeItem(k))}catch{}
+    const dbs=new Set(['foster_navi_atlas_db','foster_navi_records','atlas_lab_storage_v1','atlas_lab_storage_v2']);
+    try{if(indexedDB.databases)(await indexedDB.databases()).forEach(d=>{if(d.name&&pref.test(d.name))dbs.add(d.name)})}catch{}
+    _atlasDbPromise=null;
+    try{const db=await openAtlasDB();db&&db.close()}catch{}
+    _atlasDbPromise=null;
+    await Promise.all([...dbs].map(n=>new Promise(r=>{try{const q=indexedDB.deleteDatabase(n);q.onsuccess=q.onerror=q.onblocked=()=>r()}catch{r()}})));
+    try{if('caches'in window)for(const k of await caches.keys())if(k.startsWith('foster-navi-atlas'))await caches.delete(k)}catch{}
+    try{if(navigator.serviceWorker)for(const r of await navigator.serviceWorker.getRegistrations())await r.unregister()}catch{}
+    out.textContent='Everything the atlas stored in this browser has been erased. Reloading…';
+    setTimeout(()=>location.reload(),1400);
+  }
+
+  /* ---------- 7. Notes on this page -------------------------------------
+     Saved as you type (in the same store as progress) and included when
+     you export progress from the atlas home page. */
+  async function initNotes(){
+    const ta=$('#page-notes');if(!ta)return;
+    const status=$('#page-notes-status');
+    const s=await getState();
+    ta.value=(s.pageNotes&&typeof s.pageNotes[page]==='string')?s.pageNotes[page]:'';
+    const save=coalesceCalls(()=>withStateLock(async()=>{
+      const st=await getState();st.pageNotes=st.pageNotes&&typeof st.pageNotes==='object'?st.pageNotes:{};
+      const v=ta.value.slice(0,5000);if(v.trim())st.pageNotes[page]=v;else delete st.pageNotes[page];
+      const ok=await saveState(st);
+      status.textContent=ok?'Saved on this device at '+new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})+'.':'Could not save here. Copy your notes somewhere safe.';
+    }),800);
+    ta.addEventListener('input',save);
+    $('#page-notes-download')?.addEventListener('click',()=>{
+      const p=byId.get(page);download('notes-'+page.replace(/[^a-z0-9]+/gi,'-').replace(/-html$/,'')+'.txt',(p?p.t:document.title)+'\n\n'+ta.value,'text/plain;charset=utf-8');
+    });
+  }
+
+  /* ---------- 8. A one-minute pause --------------------------------------
+     Box breathing: in 4, hold 4, out 4, hold 4. The light grows and rests
+     with the count; with Calm motion only the words change. */
+  let breath={timer:0,end:0,phase:0};
+  function openPause(){const dlg=$('#atlas-pause');if(!dlg)return;stopBreath(false);openDialog(dlg);$('#breath-start')?.focus()}
+  function stopBreath(announce=true){
+    clearTimeout(breath.timer);breath.timer=0;
+    const orb=$('#breath-orb');orb?.classList.remove('in');
+    const s=$('#breath-start'),x=$('#breath-stop');if(s)s.hidden=false;if(x)x.hidden=true;
+    if(announce){$('#breath-cue').textContent='Welcome back.';$('#breath-time').textContent='Pause finished. Carry the calm with you.'}
+    else{$('#breath-cue').textContent='Ready when you are.';$('#breath-time').textContent=''}
+  }
+  function initPause(){
+    const dlg=$('#atlas-pause');if(!dlg)return;
+    $('#open-pause')?.addEventListener('click',()=>{closeDialog($('#atlas-comfort'));setTimeout(openPause,30)});
+    const cues=['Breathe in','Hold','Breathe out','Hold'];
+    const step=()=>{
+      const left=Math.max(0,Math.round((breath.end-Date.now())/1000));
+      if(left<=0){stopBreath(true);$('#breath-start').focus();return}
+      $('#breath-cue').textContent=cues[breath.phase];
+      $('#breath-orb').classList.toggle('in',breath.phase===0||breath.phase===1);
+      $('#breath-time').textContent=left>=60?Math.floor(left/60)+' min '+String(left%60).padStart(2,'0')+' s left':left+' seconds left';
+      breath.phase=(breath.phase+1)%4;breath.timer=setTimeout(step,4000);
+    };
+    $('#breath-start')?.addEventListener('click',()=>{
+      breath.end=Date.now()+Number($('#breath-length').value||60)*1000;breath.phase=0;
+      $('#breath-start').hidden=true;$('#breath-stop').hidden=false;$('#breath-stop').focus();step();
+    });
+    $('#breath-stop')?.addEventListener('click',()=>{stopBreath(true);$('#breath-start').focus()});
+    dlg.addEventListener('close',()=>{if(breath.timer)stopBreath(false)});
+  }
+
+  /* ---------- 9. Ambient light: fireflies & bokeh -----------------------
+     PURPOSE: the living light behind the frosted glass. Purely decorative.
+     HOW: a fixed <canvas> behind all content draws soft pre-rendered light
+     sprites. Positions come from a seeded random generator plus the clock,
+     so the field continues smoothly from page to page. Near particles are
+     large, soft bokeh discs; far ones are tiny fireflies that pulse.
+     CARE: about 30 frames per second, pauses when the tab is hidden, draws
+     one still frame for Calm motion, turns itself down if the device
+     struggles, and is off entirely for High contrast or Ambient: off.
+     EXTEND: tune COUNT_DIVISOR (density), palettes, or SPEED. */
+  const Ambient=(()=>{
+    const COUNT_DIVISOR=26000,SPEED=1;
+    let cv,ctx,w=0,h=0,dpr=1,parts=[],sprites=null,raf=0,last=0,slow=0,frames=0,mode='on',pointer={x:-9999,y:-9999},spriteTheme='';
+    function rng(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+    function palettes(){return isDay()?[[200,150,40],[90,160,130],[235,190,110]]:[[255,206,110],[127,227,191],[170,200,255]]}
+    function makeSprite(rgb,kind){
+      const s=document.createElement('canvas');s.width=s.height=128;const g=s.getContext('2d');if(!g)return s;
+      const c=rgb.join(','),grd=g.createRadialGradient(64,64,0,64,64,64);
+      if(kind==='bokeh'){grd.addColorStop(0,'rgba('+c+',.30)');grd.addColorStop(.6,'rgba('+c+',.22)');grd.addColorStop(.84,'rgba('+c+',.34)');grd.addColorStop(.93,'rgba('+c+',.10)');grd.addColorStop(1,'rgba('+c+',0)')}
+      else{grd.addColorStop(0,'rgba(255,255,240,1)');grd.addColorStop(.07,'rgba('+c+',.95)');grd.addColorStop(.26,'rgba('+c+',.30)');grd.addColorStop(1,'rgba('+c+',0)')}
+      g.fillStyle=grd;g.fillRect(0,0,128,128);return s;
+    }
+    function buildSprites(){const p=palettes();spriteTheme=isDay()?'day':'night';sprites={bokeh:p.map(c=>makeSprite(c,'bokeh')),fly:p.map(c=>makeSprite(c,'fly'))}}
+    function build(){
+      const R=rng(20260919);let n=Math.round(Math.min(72,Math.max(14,w*h/COUNT_DIVISOR)));
+      if(mode==='calm')n=Math.round(n*.55);
+      parts=[];for(let i=0;i<n;i++){const z=R(),near=z>.8;parts.push({bx:R(),by:R(),z,kind:near?'bokeh':'fly',col:Math.floor(R()*3),r:near?16+R()*30:1.4+R()*2.6,vx:(R()-.5)*.006,vy:-(.002+R()*.007),ph:R()*6.283,fl:.35+R()*.8,sw:8+R()*26})}
+    }
+    function size(){
+      dpr=Math.min(1.5,window.devicePixelRatio||1);w=innerWidth;h=innerHeight;
+      cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);build();
+    }
+    function draw(t){
+      if(spriteTheme!==(isDay()?'day':'night'))buildSprites();
+      ctx.clearRect(0,0,w,h);
+      const day=isDay(),calm=mode==='calm'||motionReduced(),sp=(calm?.45:1)*SPEED,sy=scrollY||0,H=h+160;
+      ctx.globalCompositeOperation=day?'source-over':'lighter';
+      for(const p of parts){
+        let x=(((p.bx+p.vx*t*sp)%1)+1)%1*(w+120)-60+Math.sin(t*.21*sp+p.ph)*p.sw;
+        let y=(((p.by+p.vy*t*sp)%1)+1)%1*H-80-sy*(.03+p.z*.16);
+        y=((y+80)%H+H)%H-80;
+        let a=p.kind==='fly'?Math.pow(Math.max(0,Math.sin(t*p.fl*sp+p.ph)),3)*.9+.08:.45+.25*Math.sin(t*.3*sp+p.ph);
+        const dx=x-pointer.x,dy=y-pointer.y,d2=dx*dx+dy*dy;if(d2<52000)a=Math.min(1,a+(1-d2/52000)*.35);
+        const s=p.kind==='bokeh'?p.r*(.7+p.z*.5):p.r*4.2*(.55+p.z*.6);
+        ctx.globalAlpha=Math.min(1,a*(day?.55:.85)*(calm?.75:1));
+        ctx.drawImage(sprites[p.kind][p.col],x-s,y-s,s*2,s*2);
+      }
+      ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
+    }
+    function loop(now){
+      raf=requestAnimationFrame(loop);
+      if(now-last<32)return;
+      const dt=now-last;last=now;frames++;
+      if(frames>45&&dt>70){if(++slow>45){slow=0;if(mode==='on'){mode='calm';build()}else{stop();draw(Date.now()/1000);return}}}
+      draw(Date.now()/1000);
+    }
+    function stop(){cancelAnimationFrame(raf);raf=0}
+    function start(){
+      const amb=root.dataset.ambient;
+      if(!cv||amb==='off'||root.dataset.theme==='contrast'){stop();if(ctx)ctx.clearRect(0,0,w,h);return}
+      mode=amb==='calm'?'calm':'on';build();
+      if(motionReduced()||document.hidden){stop();draw(Date.now()/1000);return}
+      if(!raf){last=0;raf=requestAnimationFrame(loop)}
+    }
+    function init(){
+      cv=$('#atlas-ambient');if(!cv)return;ctx=cv.getContext('2d');if(!ctx)return;
+      buildSprites();size();start();
+      let rt=0;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{size();start()},180)});
+      document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else start()});
+      addEventListener('atlas:settings',()=>{buildSprites();start()});
+      addEventListener('pointermove',e=>{pointer.x=e.clientX;pointer.y=e.clientY},{passive:true});
+      addEventListener('scroll',()=>{if(!raf&&!document.hidden&&root.dataset.ambient!=='off')draw(Date.now()/1000)},{passive:true});
+    }
+    return {init,start,stop};
+  })();
+
+  /* ---------- 10. Learning-path banner & boot ---------------------------- */
+  async function initPathBanner(){
+    const s=await getState();const pid=s.activePath;if(!pid)return;
+    const path=D.paths.find(p=>p.id===pid);if(!path)return;
+    const idx=path.steps.indexOf(page);if(idx<0)return;
+    const done=new Set(s.done||[]);
+    const next=path.steps.slice(idx+1).find(id=>!done.has(id))||path.steps.find(id=>!done.has(id)&&id!==page);
+    const hero=$('#main .hero');if(!hero)return;
+    const box=document.createElement('div');box.className='path-banner no-print';box.setAttribute('role','note');
+    const p=document.createElement('p');p.style.margin='0';
+    const strong=document.createElement('strong');strong.textContent=path.title;
+    p.append('You are following the ',strong,' path: step '+(idx+1)+' of '+path.steps.length+'.');
+    box.append(p);
+    if(next&&byId.has(next)){const a=document.createElement('a');a.className='btn';a.href=href(next);a.textContent='Next on your path: '+byId.get(next).t;box.append(a)}
+    else{const a=document.createElement('a');a.className='btn';a.href=href('index.html#paths');a.textContent='Path complete. Choose another';box.append(a)}
+    hero.after(box);
+  }
+  function boot(){
+    applySettings(readSettings());
+    initComfort();initPalette();initPrivacy();initPause();
+    initCompletion();initSidebar();initGuideToggle();initPrint();initPromptCopy();initSourceViewer();
+    initNotes();initTransitions();initPointerLight();initPathBanner();
+    updateSideProgress();initServiceWorker();Ambient.init();
+    addEventListener('atlas:statechange',()=>updateSideProgress());
+    touchStreak().catch(()=>{});
+  }
+  return {boot,toast,openDialog,closeDialog,openPalette,openPause,openPrivacy,readSettings,saveSettings,isDay,data:D,page,href,svg,Ambient,facts,checklist,highlight,motionReduced};
+})();
+/* Boot once the whole page (including its own scripts) has been parsed. */
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>Atlas.boot(),{once:true});else Atlas.boot();
+</script>
+<script id="integration-config">
+/* This tool's fields and samples. The shared engine reads it. */
+const INTEGRATION_CONFIG={
+ "slug": "evidence-ledger",
+ "title": "Evidence provenance ledger",
+ "fields": [
+  {
+   "id": "claim",
+   "label": "Assertion",
+   "type": "text"
+  },
+  {
+   "id": "source",
+   "label": "Source / identifier",
+   "type": "text",
+   "required": false,
+   "hint": "Where the claim came from. Leave empty if unknown; the gap will be listed for follow-up."
+  },
+  {
+   "id": "status",
+   "label": "Review status",
+   "type": "select:Unverified|In review|Verified|Disputed"
+  },
+  {
+   "id": "reason",
+   "label": "Method / limits",
+   "type": "textarea"
+  }
+ ],
+ "mode": "evidence",
+ "samples": [
+  {
+   "claim": "The new culvert reduced spring flooding on Mill Road",
+   "source": "Resident survey, May 2026 (14 responses)",
+   "status": "Unverified",
+   "reason": "Self-reported; no water-level data from before the installation."
+  },
+  {
+   "claim": "Tree canopy in the east ward grew 8% since 2020",
+   "source": "Municipal canopy report, appendix C",
+   "status": "In review",
+   "reason": "Image resolution differs between years; checking the method."
+  },
+  {
+   "claim": "The pond contains invasive goldfish",
+   "source": "Two photos from the volunteer group chat",
+   "status": "Disputed",
+   "reason": "Photos may show native golden shiners; needs an in-person ID."
+  }
+ ]
+};
+</script>
+<script id="integration-engine">
+'use strict';
+/* =====================================================================
+   INTEGRATION ENGINE v3 — the record-keeping core shared by every
+   working tool (copied in by tools/atlas_build.py; edit
+   tools/shared/engine.js). Each tool page supplies INTEGRATION_CONFIG
+   (its fields and samples) and its own purpose-built workbench script.
+
+   What the engine gives every tool:
+   - add, edit, search and delete records (with Undo)
+   - saves on this device twice: localStorage (instant) plus an
+     IndexedDB copy (larger, sturdier); the newer copy always wins
+   - plain-language insights, an accessible chart with a data table
+   - JSON backup and restore with strict checks, plus CSV export
+   - a storage health panel and an optional "keep my data" request
+   Names kept from version 2 (items, render, persist, config, …) let
+   older workbench scripts run unchanged.
+   ===================================================================== */
+const config=INTEGRATION_CONFIG;
+const dbKey='atlas_integration_v1_'+config.slug;          /* same key as v2: your records carry over */
+const metaKey=dbKey+'__meta';
+const numeric=config.fields.filter(f=>f.type==='number');
+let items=[],editing=null;
+try{const saved=JSON.parse(localStorage.getItem(dbKey)||'[]');items=Array.isArray(saved)?saved:[]}catch{items=[]}
+function number(v){const n=Number(v);return Number.isFinite(n)?n:0}
+
+/* ---------- Saving: localStorage now, IndexedDB copy right after ------- */
+const RecordStore=(()=>{
+  const DB='foster_navi_records',STORE='projects';
+  let dbp=null,meta={rev:0,savedAt:null,lastExport:null},extras={};
+  try{meta={...meta,...(JSON.parse(localStorage.getItem(metaKey)||'{}')||{})}}catch{}
+  function open(){
+    if(dbp)return dbp;
+    dbp=new Promise(resolve=>{try{if(!('indexedDB'in window)){resolve(null);return}
+      const r=indexedDB.open(DB,1);r.onupgradeneeded=()=>{try{r.result.createObjectStore(STORE)}catch{}};
+      r.onsuccess=()=>{const db=r.result;db.onversionchange=()=>{db.close();dbp=null};resolve(db)};r.onerror=()=>resolve(null);r.onblocked=()=>resolve(null)}catch{resolve(null)}});
+    return dbp;
+  }
+  async function idbPut(value){const db=await open();if(!db)return false;return new Promise(res=>{try{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).put(value,config.slug);tx.oncomplete=()=>res(true);tx.onerror=tx.onabort=()=>res(false)}catch{res(false)}})}
+  async function idbGet(){const db=await open();if(!db)return null;return new Promise(res=>{try{const q=db.transaction(STORE,'readonly').objectStore(STORE).get(config.slug);q.onsuccess=()=>res(q.result||null);q.onerror=()=>res(null)}catch{res(null)}})}
+  const state={local:null,idb:null};
+  function writeMeta(){try{localStorage.setItem(metaKey,JSON.stringify(meta));return true}catch{return false}}
+  /* Synchronous on purpose: older workbench code checks persist()'s result. */
+  function persistNow(){
+    meta.rev=(meta.rev||0)+1;meta.savedAt=new Date().toISOString();
+    let local=false;
+    try{localStorage.setItem(dbKey,JSON.stringify(items));local=writeMeta()}catch{}
+    state.local=local;
+    const snapshot={rev:meta.rev,savedAt:meta.savedAt,records:items.slice(),extras:collectExtras()};
+    const pending=idbPut(snapshot).then(ok=>{state.idb=ok;if(!ok&&!local)say('Could not save on this device. Export a JSON backup now so nothing is lost.');Health.render();return ok});
+    if(!local&&!('indexedDB'in window)){say('Local save failed. Export your data and check your browser storage settings.');return false}
+    if(!local)pending.then(ok=>{if(ok)Atlas.toast('Saved to the larger browser store; the quick store was full or unavailable.')});
+    return true;
+  }
+  /* After load: if the IndexedDB copy is newer (for example the quick store
+     was cleared or full), restore it and say so. */
+  async function reconcile(){
+    const db=await open(),copy=await idbGet();
+    let localMissing=false;try{localMissing=localStorage.getItem(dbKey)===null}catch{localMissing=true}
+    state.idb=db?(copy?true:'ready'):false;
+    if(copy&&Array.isArray(copy.records)&&((copy.rev||0)>(meta.rev||0)||(localMissing&&copy.records.length&&!items.length))){
+      items=copy.records;meta.rev=copy.rev;meta.savedAt=copy.savedAt;
+      if(copy.extras)applyExtras(copy.extras);
+      try{localStorage.setItem(dbKey,JSON.stringify(items));writeMeta()}catch{}
+      render();Atlas.toast('Restored '+items.length+' record'+(items.length===1?'':'s')+' from this device\'s backup store.');
+    }else if(!copy&&items.length){idbPut({rev:meta.rev||0,savedAt:meta.savedAt,records:items.slice(),extras:collectExtras()}).then(ok=>{state.idb=ok;Health.render()})}
+    Health.render();
+  }
+  function registerExtra(name,api){extras[name]=api}
+  function collectExtras(){const o={};for(const [k,api] of Object.entries(extras)){try{o[k]=api.get()}catch{}}return o}
+  function applyExtras(o){if(!o||typeof o!=='object')return;for(const [k,api] of Object.entries(extras)){if(k in o){try{api.set(o[k])}catch{}}}}
+  function markExported(){meta.lastExport=new Date().toISOString();writeMeta();Health.render()}
+  return {persistNow,reconcile,registerExtra,collectExtras,applyExtras,markExported,meta:()=>meta,state};
+})();
+function persist(){return RecordStore.persistNow()}
+/* Workbenches with extra state (for example quest completions) register it
+   here so it travels inside JSON backups. */
+function registerExtraState(name,api){RecordStore.registerExtra(name,api)}
+
+/* ---------- Plain-language summary of the records ------------------- */
+function aggregate(){
+  const n=items.length,sum=k=>items.reduce((s,r)=>s+number(r[k]),0),groups=k=>items.reduce((a,r)=>(a[safe(r[k]||'Unknown')]=(a[safe(r[k]||'Unknown')]||0)+1,a),{});
+  const m=config.mode,f=config.fields;
+  const firstNum=numeric[0]?.id;
+  switch(m){
+    case 'product':{const [a,b]=numeric.map(x=>x.id);return {records:n,estimatedTotal:items.reduce((s,r)=>s+number(r[a])*number(r[b]),0),unit:config.productUnit||'derived units',method:'Sum of each record\'s product; user-supplied estimates, not validated predictions.'}}
+    case 'effort':return {records:n,totalHoursOrMinutes:firstNum?sum(firstNum):0,note:'Units follow the form label; they are not interchangeable.'};
+    case 'measure':return {records:n,mean:n&&firstNum?sum(firstNum)/n:null,warning:'Only compare observations with matching units and calibration.'};
+    case 'delta':return {records:n,aggregateChange:items.reduce((s,r)=>s+number(r.current)-number(r.baseline),0),note:'Only meaningful when indicators and units match.'};
+    case 'inventory':return {records:n,totalQuantity:firstNum?sum(firstNum):0,note:'Totals do not establish preparedness or safety.'};
+    case 'map':return {records:n,validCoordinates:items.filter(r=>Number.isFinite(+r.lat)&&Number.isFinite(+r.lon)&&Math.abs(+r.lat)<=90&&Math.abs(+r.lon)<=180).length};
+    default:{const cat=f.find(x=>x.type.startsWith('select:'));return cat?{records:n,[cat.id+'Counts']:groups(cat.id)}:{records:n}}
+  }
+}
+function insightTiles(){
+  const out=$('#insight');if(!out)return;
+  out.replaceChildren();
+  const dl=document.createElement('dl');dl.className='facts';
+  const tile=(label,value,note)=>{const d=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;if(note){const s=document.createElement('small');s.className='muted';s.textContent=note;dd.append(s)}d.append(dt,dd);dl.append(d)};
+  tile('Records saved',String(items.length),items.length?'':'Add one with the form or a sample.');
+  const cat=config.fields.find(x=>x.type.startsWith('select:'));
+  if(cat&&items.length){
+    const counts={};items.forEach(r=>{const k=safe(r[cat.id]||'Not set');counts[k]=(counts[k]||0)+1});
+    const top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];
+    tile('Most common '+cat.label.toLowerCase(),top[0],top[1]+' of '+items.length);
+  }
+  numeric.slice(0,2).forEach(f=>{
+    const vals=items.map(r=>Number(r[f.id])).filter(Number.isFinite);
+    if(vals.length)tile('Total '+f.label.toLowerCase(),fmt(vals.reduce((a,b)=>a+b,0)),'Average '+fmt(vals.reduce((a,b)=>a+b,0)/vals.length));
+  });
+  if(config.mode==='product'&&items.length){const a=aggregate();tile(config.productLabel||'Estimated total',fmt(a.estimatedTotal)+' '+(config.productUnit||''),'From your own assumptions')}
+  const latest=items.map(r=>r.updated||r.created).filter(Boolean).sort().pop();
+  if(latest)tile('Last change',new Date(latest).toLocaleDateString(undefined,{dateStyle:'medium'}));
+  out.append(dl);
+  const tech=$('#insight-json');if(tech)tech.textContent=JSON.stringify(aggregate(),null,2);
+}
+
+/* ---------- Chart: your real values, drawn crisply, with a table ------- */
+function chartSeries(){
+  const numericField=numeric[0],categoryField=config.fields.find(f=>f.type.startsWith('select:'));
+  if(numericField){
+    return {label:numericField.label+' (last '+Math.min(12,items.length)+' records)',unit:numericField.label,values:items.slice(-12).map((r,i)=>({name:String(r[config.fields[0].id]||'Record '+(i+1)),value:Number(r[numericField.id])})).filter(r=>Number.isFinite(r.value))};
+  }
+  if(categoryField){
+    const g={};categoryField.type.slice(7).split('|').forEach(k=>g[k]=0);
+    items.forEach(r=>{const k=String(r[categoryField.id]||'Missing');g[k]=(g[k]||0)+1});
+    return {label:'Records by '+categoryField.label.toLowerCase(),unit:'Records',values:Object.entries(g).map(([name,value])=>({name,value}))};
+  }
+  const g={};items.forEach(r=>{const d=String(r.created||'Unknown').slice(0,10);g[d]=(g[d]||0)+1});
+  return {label:'Records added per day',unit:'Records',values:Object.entries(g).sort().slice(-12).map(([name,value])=>({name,value}))};
+}
+function drawGraph(){
+  const canvas=$('#integration-chart');if(!canvas)return;
+  const ctx=canvas.getContext('2d');if(!ctx)return;
+  const css=getComputedStyle(document.documentElement);
+  const col=n=>css.getPropertyValue(n).trim()||'#7fe3bf';
+  const dpr=Math.min(2,window.devicePixelRatio||1),W=Math.max(280,canvas.clientWidth||560),H=Math.max(200,canvas.clientHeight||240);
+  canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
+  const s=chartSeries(),font='13px '+(css.getPropertyValue('--font-sans')||'sans-serif');
+  ctx.font='600 '+font;ctx.fillStyle=col('--text');ctx.fillText(s.label.slice(0,70),14,22);
+  const table=$('#chart-table-body');if(table){table.replaceChildren();s.values.forEach(v=>{const tr=table.insertRow();tr.insertCell().textContent=v.name;tr.insertCell().textContent=fmt(v.value)})}
+  const cap=$('#chart-caption');if(cap)cap.textContent=s.label+'. Values also listed in the table below the chart.';
+  canvas.setAttribute('aria-label',s.label+(s.values.length?': '+s.values.map(v=>v.name+' '+fmt(v.value)).slice(0,8).join(', '):': no data yet'));
+  if(!s.values.length){ctx.font=font;ctx.fillStyle=col('--muted');ctx.fillText('Add records to see your own values here.',14,H/2);return}
+  const left=14,right=W-14,top=40,bottom=H-38;
+  let min=Math.min(0,...s.values.map(v=>v.value)),max=Math.max(0,...s.values.map(v=>v.value));if(max===min)max=min+1;
+  const y=v=>bottom-(v-min)/(max-min)*(bottom-top),zero=y(0);
+  ctx.strokeStyle=col('--edge-strong');ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(left,zero+.5);ctx.lineTo(right,zero+.5);ctx.stroke();
+  const n=s.values.length,slot=(right-left)/n,bw=Math.min(54,slot*.62);
+  const accent=col('--accent');
+  s.values.forEach((v,i)=>{
+    const x=left+slot*i+(slot-bw)/2,yy=y(v.value),h=Math.max(2,Math.abs(zero-yy)),t=Math.min(yy,zero);
+    const g=ctx.createLinearGradient(0,t,0,t+h);g.addColorStop(0,accent);g.addColorStop(1,accent+'66');
+    ctx.fillStyle=g;const r=Math.min(6,bw/2,h/2);ctx.beginPath();
+    if(ctx.roundRect)ctx.roundRect(x,t,bw,h,v.value>=0?[r,r,0,0]:[0,0,r,r]);else ctx.rect(x,t,bw,h);ctx.fill();
+    ctx.fillStyle=col('--text');ctx.font='600 12px sans-serif';ctx.textAlign='center';
+    ctx.fillText(fmt(v.value),x+bw/2,Math.max(top-4,t-6));
+    ctx.fillStyle=col('--muted');ctx.font='12px sans-serif';
+    const label=v.name.length>12?v.name.slice(0,11)+'…':v.name;ctx.fillText(label,x+bw/2,H-16);ctx.textAlign='left';
+  });
+}
+let _chartRO=null;
+function watchChart(){const c=$('#integration-chart');if(!c||_chartRO||!('ResizeObserver'in window))return;let t=0;_chartRO=new ResizeObserver(()=>{clearTimeout(t);t=setTimeout(drawGraph,120)});_chartRO.observe(c)}
+addEventListener('atlas:settings',()=>drawGraph());
+
+/* ---------- Table of records -------------------------------------------- */
+function recordName(rec){return safe(rec[config.fields[0].id]).slice(0,60)||'this record'}
+function safeCell(tr,t){const td=tr.insertCell(),s=safe(t);td.textContent=s.length>140?s.slice(0,140)+'…':s;if(s.length>140)td.title=s}
+function render(){
+  const q=($('#integration-search')?.value||'').trim().toLowerCase();
+  const visible=items.filter(r=>!q||config.fields.some(f=>safe(r[f.id]).toLowerCase().includes(q)));
+  const table=$('#records');table.replaceChildren();
+  visible.forEach(rec=>{
+    const tr=table.insertRow();config.fields.forEach(f=>safeCell(tr,rec[f.id]));
+    const actions=tr.insertCell(),edit=document.createElement('button'),remove=document.createElement('button');
+    edit.type=remove.type='button';edit.textContent='Edit';remove.textContent='Delete';remove.className='btn-danger';
+    edit.setAttribute('aria-label','Edit '+recordName(rec));remove.setAttribute('aria-label','Delete '+recordName(rec));
+    edit.addEventListener('click',()=>startEdit(rec));
+    remove.addEventListener('click',()=>deleteRecord(rec));
+    actions.append(edit,' ',remove);
+  });
+  const empty=$('#records-empty');
+  if(empty){empty.hidden=visible.length>0;empty.textContent=items.length?'No records match “'+q+'”. Clear the search to see all '+items.length+'.':'No records yet. Use the form above, or add a sample to explore.'}
+  $('#record-count').textContent=items.length+' saved, '+visible.length+' shown';
+  insightTiles();drawGraph();if(config.mode==='map')renderMap();Health.render();
+}
+function startEdit(rec){
+  editing=rec.id;
+  config.fields.forEach(f=>{const el=$('#field-'+f.id);if(el)el.value=rec[f.id]??''});
+  $('#record-save').textContent='Save changes';
+  const b=$('#editing-banner');if(b){b.hidden=false;$('#editing-name').textContent=recordName(rec)}
+  $('#record-form').scrollIntoView({block:'start'});
+  $('#field-'+config.fields[0].id).focus({preventScroll:true});
+}
+function deleteRecord(rec){
+  const before=items.slice();
+  items=items.filter(x=>x.id!==rec.id);
+  if(!persist()){items=before;render();return}
+  if(editing===rec.id)resetForm();
+  render();say('Deleted “'+recordName(rec)+'”.');
+  Atlas.toast('Deleted “'+recordName(rec)+'”.',{action:{label:'Undo',run:()=>{items=before;if(persist()){render();say('Restored “'+recordName(rec)+'”.')}}},focus:true,returnFocus:$('#integration-search')});
+}
+function renderMap(){
+  const g=$('#integration-map');if(!g)return;g.replaceChildren();const NS='http://www.w3.org/2000/svg';
+  for(const r of items){
+    const lat=Number(r.lat),lon=Number(r.lon);if(!Number.isFinite(lat)||!Number.isFinite(lon)||Math.abs(lat)>90||Math.abs(lon)>180)continue;
+    const c=document.createElementNS(NS,'circle');c.setAttribute('cx',String(lon+180));c.setAttribute('cy',String(90-lat));c.setAttribute('r','3.2');c.setAttribute('class','map-point');
+    const t=document.createElementNS(NS,'title');t.textContent=safe(r.place)+' ('+lat+', '+lon+')';c.append(t);g.append(c);
+  }
+}
+function resetForm(){
+  $('#record-form').reset();editing=null;$('#record-save').textContent='Save new record';
+  const b=$('#editing-banner');if(b)b.hidden=true;
+}
+
+/* ---------- Form, search, import and export ---------------------------- */
+$('#record-form').addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!e.currentTarget.reportValidity()){say('Please fix the highlighted field, then save again.');return}
+  const old=editing?items.find(x=>x.id===editing):null;
+  const rec={id:editing||('r_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2)),created:old?.created||new Date().toISOString(),updated:new Date().toISOString()};
+  config.fields.forEach(f=>rec[f.id]=$('#field-'+f.id).value);
+  if(config.mode==='map'&&(Math.abs(number(rec.lat))>90||Math.abs(number(rec.lon))>180)){say('Coordinates must be within ±90 latitude and ±180 longitude.');return}
+  if(!editing&&items.length>=1000){say('This tool holds up to 1,000 records. Export a backup and start a new set.');return}
+  const before=items.slice();
+  if(editing){const at=items.findIndex(x=>x.id===editing);if(at<0){say('That record no longer exists.');resetForm();return}items[at]={...items[at],...rec}}
+  else items.push(rec);
+  const wasEditing=!!editing;
+  if(persist()){resetForm();render();say(wasEditing?'Changes saved on this device.':'Saved on this device. Export a backup now and then.');Atlas.toast(wasEditing?'Changes saved.':'Record saved.')}
+  else{items=before;render()}
+});
+$('#record-reset').addEventListener('click',()=>{resetForm();say('Form cleared.')});
+$('#editing-cancel')?.addEventListener('click',()=>{resetForm();say('Editing cancelled. Nothing was changed.')});
+$('#integration-search').addEventListener('input',coalesceCalls(()=>render(),120)); /* call by name: workbenches extend render() */
+$('#integration-export').addEventListener('click',()=>{
+  download(config.slug+'.json',JSON.stringify({format:'atlas-integration/1',project:config.slug,exported:new Date().toISOString(),records:items,extras:RecordStore.collectExtras()},null,2));
+  RecordStore.markExported();say('Backup downloaded. Keep a copy somewhere other than this browser.');
+});
+$('#integration-csv')?.addEventListener('click',()=>{
+  outputCSV(config.slug+'.csv',config.fields.map(f=>f.label),items.map(r=>config.fields.map(f=>r[f.id])));
+  say('Spreadsheet (CSV) downloaded with '+items.length+' record'+(items.length===1?'':'s')+'.');
+});
+$('#integration-import').addEventListener('change',async e=>{
+  try{
+    const file=e.target.files[0];if(!file)return;
+    if(file.size>2000000)throw Error('the file is larger than 2 MB');
+    const x=JSON.parse(await file.text());
+    if(x.format!=='atlas-integration/1'||x.project!==config.slug||!Array.isArray(x.records))throw Error('this file belongs to a different tool or is not an atlas backup');
+    if(x.records.length>1000)throw Error('more than 1,000 records');
+    const valid=x.records.map(r=>{
+      if(!r||typeof r!=='object'||typeof r.id!=='string')throw Error('a record is missing its id');
+      const n={id:r.id.slice(0,80),created:safe(r.created).slice(0,40),updated:safe(r.updated).slice(0,40)};
+      for(const field of config.fields){
+        const v=r[field.id],el=document.getElementById('field-'+field.id);
+        if(typeof v!=='string'&&typeof v!=='number')throw Error('“'+field.label+'” is missing in a record');
+        const sv=safe(v);
+        if(el?.required&&sv.trim()==='')throw Error('“'+field.label+'” is empty in a record');
+        if(sv.length>5000)throw Error('“'+field.label+'” is longer than 5,000 characters');
+        if(field.type==='number'){
+          if(sv.trim()!==''&&!Number.isFinite(Number(v)))throw Error('“'+field.label+'” is not a number');
+          if(el&&el.min!==''&&Number(v)<Number(el.min))throw Error('“'+field.label+'” is below '+el.min);
+          if(el&&el.max!==''&&Number(v)>Number(el.max))throw Error('“'+field.label+'” is above '+el.max);
+        }
+        if(field.type==='date'&&sv&&(!/^\d{4}-\d{2}-\d{2}$/.test(sv)||new Date(sv+'T00:00:00Z').toISOString().slice(0,10)!==sv))throw Error('“'+field.label+'” is not a valid date');
+        if(field.type.startsWith('select:')&&!field.type.slice(7).split('|').includes(sv))throw Error('“'+field.label+'” has an unexpected value');
+        n[field.id]=sv;
+      }
+      return n;
+    });
+    const map=new Map(items.map(r=>[r.id,r]));valid.forEach(r=>map.set(r.id,r));
+    if(map.size>1000)throw Error('merging would exceed 1,000 records');
+    const before=items;items=[...map.values()];
+    if(x.extras)RecordStore.applyExtras(x.extras);
+    if(!persist()){items=before;render();throw Error('saving failed, so your existing records were kept')}
+    render();say('Validated and merged '+valid.length+' records. Records with the same id were updated.');
+    Atlas.toast('Backup restored: '+valid.length+' record'+(valid.length===1?'':'s')+'.');
+  }catch(err){say('Import stopped: '+err.message+'. Nothing was changed.')}
+  finally{e.target.value=''}
+});
+$('#integration-clear').addEventListener('click',()=>{
+  if(!items.length){say('There are no records to delete.');return}
+  if(!confirm('Delete all '+items.length+' records in this tool on this device? You can undo for a few seconds afterwards.'))return;
+  const before=items.slice();items=[];
+  if(!persist()){items=before;render();return}
+  resetForm();render();say('All records deleted from this device.');
+  Atlas.toast('Deleted '+before.length+' records.',{action:{label:'Undo',run:()=>{items=before;if(persist()){render();say('All records restored.')}}},focus:true,returnFocus:$('#integration-search')});
+});
+/* Samples: each click adds the next realistic example from this tool's
+   config. They are illustrations only; replace them with your own data.
+   A date sample may be written "today", "today+14" or "today-3", so
+   examples about deadlines stay meaningful whenever they are loaded. */
+let _sampleIndex=0;
+function sampleValue(f,v){const s=safe(v??''),m=f.type==='date'&&/^today([+-]\d{1,4})?$/.exec(s);if(!m)return s;const d=new Date();d.setDate(d.getDate()+Number(m[1]||0));return localYMD(d)}
+$('#sample-load').addEventListener('click',()=>{
+  if(items.length>=1000){say('Record limit reached. Export a backup first.');return}
+  const pool=Array.isArray(config.samples)&&config.samples.length?config.samples:null;
+  const r={id:'example_'+Date.now().toString(36)+'_'+_sampleIndex,created:new Date().toISOString(),updated:new Date().toISOString()};
+  if(pool){const s=pool[_sampleIndex%pool.length];config.fields.forEach(f=>r[f.id]=sampleValue(f,s[f.id]))}
+  else config.fields.forEach(f=>{r[f.id]=f.type==='number'?'2':f.type==='date'?localYMD():f.type.startsWith('select:')?f.type.slice(7).split('|')[0]:f.type==='url'?'https://example.org':f.label+' sample'});
+  _sampleIndex++;items.push(r);
+  if(!persist()){items.pop();render();return}
+  render();say('Sample added: “'+recordName(r)+'”. Samples are illustrations; replace them with your own data.');
+});
+
+/* ---------- Storage health ----------------------------------------------
+   Shows where your records live, how big they are, when you last made a
+   backup, and lets you ask the browser to keep them (it may say no). */
+const Health=(()=>{
+  let persisted=null;
+  function render(){
+    const box=$('#storage-health');if(!box)return;
+    const meta=RecordStore.meta(),st=RecordStore.state;
+    const bytes=new Blob([JSON.stringify(items)]).size;
+    const rows=[
+      ['Records',String(items.length),'Up to 1,000 per tool'],
+      ['Size on this device',!items.length?'Empty':bytes<1024?bytes+' bytes':(bytes/1024).toFixed(1)+' KB','Plain text, readable in any editor once exported'],
+      ['Quick store',st.local===false?'Not available':items.length?'Saved':'Ready','localStorage'],
+      ['Backup store',st.idb===true?'Saved':st.idb==='ready'?'Ready':st.idb===false?'Not available':'Checking…','IndexedDB copy'],
+      ['Last exported backup',meta.lastExport?new Date(meta.lastExport).toLocaleDateString(undefined,{dateStyle:'medium'}):'Never','Export after important changes'],
+      ['Kept by the browser',persisted===true?'Yes':persisted===false?'Not yet':'Unknown','Browsers may clear unprotected data when space runs low']
+    ];
+    const dl=document.createElement('dl');dl.className='facts';
+    rows.forEach(([k,v,n])=>{const d=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd'),s=document.createElement('small');dt.textContent=k;dd.textContent=v;s.className='muted';s.textContent=n;dd.append(s);d.append(dt,dd);dl.append(d)});
+    box.replaceChildren(dl);
+  }
+  async function check(){try{if(navigator.storage?.persisted)persisted=await navigator.storage.persisted()}catch{}render()}
+  $('#storage-persist')?.addEventListener('click',async()=>{
+    const out=$('#storage-persist-status');
+    if(!navigator.storage?.persist){out.textContent='This browser does not offer that option. Regular JSON backups are the safest choice.';return}
+    try{persisted=await navigator.storage.persist();out.textContent=persisted?'Done: the browser will keep this atlas\'s data unless you clear it yourself.':'The browser declined for now (this is common for sites you have not installed or bookmarked). Keep exporting backups.'}
+    catch{out.textContent='The request could not be made here. Keep exporting backups.'}
+    render();
+  });
+  return {render,check};
+})();
+
+/* ---------- Toolkit used by the purpose-built workbenches --------------- */
+const purposeRoot=document.getElementById('purpose-output');
+function node(tag,text='',parent=purposeRoot){const x=document.createElement(tag);x.textContent=String(text);parent.append(x);return x}
+function wipe(){purposeRoot.replaceChildren()}
+function line(label,value){const p=node('p');p.className='stat-line';node('strong',label+': ',p);node('span',value,p);return p}
+function rows(headers,data){const wrap=node('div');wrap.className='table-scroll';const t=node('table','',wrap),h=node('thead','',t),tr=node('tr','',h);headers.forEach(x=>{const th=node('th',x,tr);th.scope='col'});const body=node('tbody','',t);data.forEach(row=>{const r=node('tr','',body);row.forEach(v=>node('td',v,r))});if(!data.length){const r=node('tr','',body),td=node('td','Nothing to show yet.',r);td.colSpan=headers.length;td.className='muted'}return t}
+/* CSV cells are quoted, and anything a spreadsheet could run as a formula
+   is neutralised with a leading apostrophe. */
+function csv(v){let t=String(v??'');if(/^\s*[=+@\t\r]/.test(t)||/^\s*-(?!\d+(?:\.\d+)?\s*$)/.test(t))t="'"+t;return '"'+t.replace(/"/g,'""')+'"'}
+function outputCSV(name,heads,data){download(name,'﻿'+[heads,...data].map(r=>r.map(csv).join(',')).join('\r\n'),'text/csv;charset=utf-8')}
+function num(v){const n=Number(v);return Number.isFinite(n)?n:NaN}
+function fmt(n){return Number.isFinite(n)?new Intl.NumberFormat(undefined,{maximumFractionDigits:3}).format(n):'not available'}
+function groupBy(key){const m=new Map();items.forEach(r=>{const k=String(r[key]??'').trim()||'Not supplied';if(!m.has(k))m.set(k,[]);m.get(k).push(r)});return m}
+function eventButton(id,action){const el=document.getElementById(id);if(el)el.addEventListener('click',action)}
+
+/* First paint, then reconcile with the IndexedDB copy in the background. */
+render();watchChart();Health.check();
+/* Wait until every script on the page (including the workbench) has run. */
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>RecordStore.reconcile().catch(()=>{}),{once:true});
+else setTimeout(()=>RecordStore.reconcile().catch(()=>{}),0);
+</script>
+<script id="demo-script">
+/* PURPOSE-BUILT evidence-ledger WORKBENCH: the part of this page that is unique to this tool. */
+function reviewQueue(){return [...items].sort((a,b)=>({Disputed:0,Unverified:1,'In review':2,Verified:3}[a.status]??4)-({Disputed:0,Unverified:1,'In review':2,Verified:3}[b.status]??4))}
+function renderSpecial(){wipe();let m=groupBy('status');line('Human-assigned review states',[...m].map(([k,v])=>k+': '+v.length).join(' · ')||'None');line('Source gaps',items.filter(r=>!String(r.source).trim()).map(r=>r.claim).join(' · ')||'None');rows(['Review first','Declared status','Source identifier','Method / limits'],reviewQueue().map(r=>[r.claim,r.status,r.source,r.reason]));}
+eventButton('purpose-export',()=>download('evidence_review.md','# Evidence review queue\n\n'+reviewQueue().map(r=>'## '+r.claim.replace(/[\r\n]/g,' ')+'\nStatus: '+r.status+'\nSource: '+r.source+'\nLimits: '+r.reason).join('\n\n'),'text/markdown'));
+const baseRender=render;render=function(){baseRender();renderSpecial()};renderSpecial();
+</script>
+</body>
+</html>
